@@ -440,6 +440,28 @@
 
 </div>
 
+<!-- POPUP CONFIRMATION -->
+<div id="popup-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:999;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;">
+  <div style="background:#FFF1E7;border-radius:20px;padding:32px 28px;max-width:380px;width:100%;text-align:center;">
+    
+    <div style="font-size:36px;margin-bottom:16px;">🎉</div>
+    
+    <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#1E120A;margin:0 0 8px;">Ton e-book est en route !</h2>
+    <p style="font-size:14px;color:#5C3D2A;margin:0 0 24px;line-height:1.6;">Vérifie ta boîte mail dans quelques minutes — pense à checker tes spams.</p>
+
+    <div style="background:#fdf0f7;border-radius:14px;padding:20px;margin-bottom:24px;text-align:left;">
+      <p style="font-size:14px;font-weight:600;color:#1E120A;margin:0 0 8px;font-family:'Playfair Display',serif;">Et si tu voulais aller plus loin ?</p>
+      <p style="font-size:13px;color:#5C3D2A;line-height:1.65;margin:0 0 10px;">Tu viens de découvrir que tu es une Amoureuse Accro. Pose tes questions directement à Sofi & Oli — une situation avec un homme, un message qui te tracasse, un schéma qui revient.</p>
+      <p style="font-size:13px;color:#5C3D2A;margin:0 0 10px;">Réponse en quelques secondes, 24h/24.</p>
+      <p style="font-size:12px;font-weight:700;color:#660A43;margin:0;">7 premiers messages gratuits · sans carte bancaire</p>
+    </div>
+
+    <a href="https://ia.abrilove.fr" style="display:block;width:100%;padding:15px;background:#660A43;color:white;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;text-decoration:none;margin-bottom:12px;box-sizing:border-box;">Commencer gratuitement → 7 messages offerts</a>
+    
+    <button onclick="document.getElementById('popup-overlay').style.display='none'" style="background:none;border:none;font-size:13px;color:#5C3D2A;cursor:pointer;text-decoration:underline;font-family:'DM Sans',sans-serif;">Retour au site</button>
+  </div>
+</div>
+
 <script>
   // Timer 30 min
   const stored = localStorage.getItem('oto_accro_end');
@@ -473,6 +495,8 @@
     const dot = e.lastIndexOf('.');
     return at > 0 && dot > at + 1 && dot < e.length - 1;
   }
+
+  const emailFromUrl = params.get('email') || params.get('prefilled_email') || '';
 
   document.addEventListener('DOMContentLoaded', function() {
     if (emailFromUrl) document.getElementById('email-field').value = emailFromUrl;
@@ -565,12 +589,12 @@
     document.getElementById('pay-btn').style.display = 'none';
     document.querySelector('.secure-note').style.display = 'none';
     document.getElementById('payment-errors').style.display = 'none';
-    document.getElementById('success-block').style.display = 'block';
+    document.getElementById('success-block').style.display = 'none';
+    document.getElementById('popup-overlay').style.display = 'flex';
   }
 
   // Retour redirect Stripe
   const params = new URLSearchParams(window.location.search);
-const emailFromUrl = params.get('email') || params.get('prefilled_email') || '';
   if (params.get('payment_intent_client_secret')) {
     document.addEventListener('DOMContentLoaded', async function() {
       document.getElementById('paiement').scrollIntoView({ behavior: 'smooth' });
