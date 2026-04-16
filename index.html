@@ -1,297 +1,344 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ton profil : L'Amoureuse Accro</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://js.stripe.com/v3/"></script>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ton profil : L'Amoureuse Accro</title>
+  <script src="https://js.stripe.com/v3/"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --rose: #660A43;
+      --creme: #FFF1E7;
+      --creme2: #F5E8DA;
+      --brun: #1E120A;
+      --brun2: #5C3D2A;
+    }
 
-  body {
-    background-color: #660a43;
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    padding: 24px 16px 60px;
-  }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--rose);
+      color: var(--brun);
+      min-height: 100vh;
+      padding: 24px 16px 60px;
+    }
 
-  .card {
-    background: #fff;
-    border-radius: 20px;
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 36px 28px 48px;
-  }
+    .card {
+      background: var(--creme);
+      border-radius: 20px;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 36px 28px 48px;
+    }
 
-  .profil-tag {
-    display: inline-block;
-    background: #fdf0f7;
-    color: #660a43;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 6px 14px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-  }
+    .profil-tag {
+      display: inline-block;
+      background: rgba(102,10,67,0.1);
+      color: var(--rose);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
 
-  h1 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 1.25;
-    color: #1a1a1a;
-    margin-bottom: 28px;
-  }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--brun);
+      margin-bottom: 28px;
+    }
 
-  h1 em {
-    color: #660a43;
-    font-style: italic;
-  }
+    h1 em { color: var(--rose); font-style: italic; }
 
-  .narrative p {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.8;
-    color: #2d2d2d;
-    margin-bottom: 18px;
-  }
+    .narrative p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--brun);
+      margin-bottom: 18px;
+    }
 
-  .narrative p strong {
-    color: #1a1a1a;
-    font-weight: 600;
-  }
+    .narrative p strong { font-weight: 600; }
+    .narrative p em { font-style: italic; color: var(--rose); }
 
-  .narrative p em {
-    font-style: italic;
-    color: #660a43;
-  }
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: var(--rose);
+      border-radius: 2px;
+      margin: 32px 0;
+    }
 
-  .divider {
-    width: 40px;
-    height: 3px;
-    background: #660a43;
-    border-radius: 2px;
-    margin: 32px 0;
-  }
+    .cta-scroll {
+      display: block;
+      width: 100%;
+      background: var(--rose);
+      color: white;
+      text-align: center;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 28px 0;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
 
-  .cta-scroll {
-    display: block;
-    width: 100%;
-    background: #660a43;
-    color: white;
-    text-align: center;
-    padding: 16px 24px;
-    border-radius: 12px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    margin: 28px 0;
-    cursor: pointer;
-    border: none;
-    transition: background 0.2s;
-  }
+    .cta-scroll:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(102, 10, 67, 0.3);
+    }
 
-  .cta-scroll:hover { background: #4d0832; }
+    .testimonials { margin: 36px 0; }
 
-  .testimonials { margin: 36px 0; }
+    .testimonials h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--brun);
+      margin-bottom: 20px;
+    }
 
-  .testimonials h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 20px;
-  }
+    .testimonial {
+      border-left: 3px solid var(--rose);
+      padding: 14px 18px;
+      margin-bottom: 14px;
+      background: white;
+      border-radius: 0 8px 8px 0;
+    }
 
-  .testimonial {
-    border-left: 3px solid #660a43;
-    padding: 14px 18px;
-    margin-bottom: 14px;
-    background: #fafafa;
-    border-radius: 0 8px 8px 0;
-  }
+    .testimonial p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #333;
+      font-style: italic;
+      margin-bottom: 6px;
+    }
 
-  .testimonial p {
-    font-size: 15px;
-    line-height: 1.65;
-    color: #333;
-    font-style: italic;
-    margin-bottom: 6px;
-  }
+    .testimonial .author {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--rose);
+    }
 
-  .testimonial .author {
-    font-size: 13px;
-    font-weight: 600;
-    color: #660a43;
-  }
+    /* BLOC PAIEMENT */
+    .payment-block {
+      background: white;
+      border-radius: 16px;
+      padding: 32px 28px;
+      margin-top: 36px;
+    }
 
-  /* BLOC PAIEMENT */
-  .payment-block {
-    background: #fdf0f7;
-    border-radius: 16px;
-    padding: 28px 24px;
-    margin-top: 36px;
-  }
+    .offer-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--brun2);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 6px;
+      display: block;
+    }
 
-  .payment-block .label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #660a43;
-    margin-bottom: 10px;
-  }
+    .payment-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--brun);
+      margin-bottom: 4px;
+    }
 
-  .payment-block h2 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-    line-height: 1.3;
-  }
+    .offer-sub {
+      font-size: 13px;
+      color: var(--brun2);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
 
-  .payment-block .desc {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
 
-  .price-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
+    .price-current {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--rose);
+      line-height: 1;
+    }
 
-  .price-current {
-    font-family: 'Poppins', sans-serif;
-    font-size: 30px;
-    font-weight: 700;
-    color: #660a43;
-  }
+    .price-old {
+      font-size: 20px;
+      color: var(--brun2);
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
 
-  .price-old {
-    font-size: 18px;
-    color: #aaa;
-    text-decoration: line-through;
-  }
+    .price-note {
+      font-size: 12px;
+      color: var(--brun2);
+      margin-bottom: 20px;
+      opacity: 0.7;
+    }
 
-  .price-badge {
-    background: #660a43;
-    color: white;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 20px;
-  }
+    .timer-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--rose);
+      font-weight: 600;
+      margin-bottom: 24px;
+      background: rgba(102,10,67,0.06);
+      padding: 10px 14px;
+      border-radius: 10px;
+    }
 
-  .timer-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: #660a43;
-    font-weight: 600;
-    margin-bottom: 24px;
-  }
+    #timer { font-size: 15px; font-weight: 700; }
 
-  #timer { font-size: 16px; font-weight: 700; }
+    .field-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--brun2);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      display: block;
+    }
 
-  /* Email input */
-  .email-row {
-    margin-bottom: 16px;
-  }
+    .field-input {
+      width: 100%;
+      border: 1.5px solid var(--creme2);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      color: var(--brun);
+      outline: none;
+      background: var(--creme);
+      transition: all 0.3s ease;
+      margin-bottom: 18px;
+    }
 
-  .email-row label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 6px;
-  }
+    .field-input:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(102, 10, 67, 0.1);
+      transform: translateY(-2px);
+    }
 
-  .email-row input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1.5px solid #ddd;
-    border-radius: 10px;
-    font-size: 15px;
-    font-family: 'DM Sans', sans-serif;
-    outline: none;
-    transition: border 0.2s;
-  }
+    .field-input::placeholder { color: #C0AFA4; }
 
-  .email-row input:focus { border-color: #660a43; }
+    #payment-element { margin-bottom: 18px; }
 
-  #payment-element { margin-bottom: 20px; }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
 
-  #pay-btn {
-    display: block;
-    width: 100%;
-    background: #660a43;
-    color: white;
-    text-align: center;
-    padding: 17px 24px;
-    border-radius: 12px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
+    .stripe-skeleton-bar {
+      height: 44px;
+      background: linear-gradient(90deg, #F5E8DA 25%, #FFF1E7 50%, #F5E8DA 75%);
+      background-size: 200% 100%;
+      border-radius: 10px;
+      animation: shimmer 1.2s infinite;
+    }
 
-  #pay-btn:hover { background: #4d0832; }
-  #pay-btn:disabled { background: #ccc; cursor: not-allowed; }
+    #payment-errors {
+      color: #C0392B;
+      font-size: 12px;
+      margin-bottom: 12px;
+      min-height: 16px;
+    }
 
-  .pay-sub {
-    text-align: center;
-    font-size: 12px;
-    color: #999;
-    margin-top: 10px;
-  }
+    .btn-pay {
+      width: 100%;
+      padding: 16px;
+      background: var(--rose);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
 
-  #payment-message {
-    text-align: center;
-    font-size: 14px;
-    color: #660a43;
-    margin-top: 12px;
-    min-height: 20px;
-  }
+    .btn-pay:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(102, 10, 67, 0.3);
+    }
 
-  #success-block {
-    display: none;
-    text-align: center;
-    padding: 20px;
-  }
+    .btn-pay:disabled { opacity: 0.6; cursor: not-allowed; }
 
-  #success-block h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-  }
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2.5px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
 
-  #success-block p {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.6;
-  }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-  @media (max-width: 480px) {
-    body { padding: 14px 10px 48px; }
-    .card { padding: 24px 18px 36px; }
-    h1 { font-size: 24px; }
-    .price-current { font-size: 26px; }
-  }
-</style>
+    .secure-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--brun2);
+      opacity: 0.6;
+      margin-top: 14px;
+    }
+
+    #success-block {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    #success-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--brun);
+      margin-bottom: 10px;
+    }
+
+    #success-block p {
+      font-size: 15px;
+      color: var(--brun2);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 14px 10px 48px; }
+      .card { padding: 24px 18px 36px; }
+      h1 { font-size: 24px; }
+      .price-current { font-size: 30px; }
+      .payment-block { padding: 24px 18px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -307,17 +354,13 @@
     <p>Cette façon de t'emballer pour quelqu'un en quelques jours. De commencer à imaginer une histoire avant même qu'elle existe vraiment. De surveiller ton téléphone sans vraiment te l'avouer.</p>
     <p>Et quand il répond moins vite. Quand le ton change un peu. Quand il y a un silence de trop — <strong>ton cerveau s'allume.</strong> Tu analyses. Tu cherches une explication. Tu espères que c'est rien.</p>
     <p>T'as pas besoin qu'on te l'explique. Tu sais exactement de quoi on parle.</p>
-
     <div class="divider"></div>
-
     <p>De l'extérieur, tout a l'air sous contrôle. Tu es intelligente, autonome, tu gères ta vie.</p>
     <p>Mais à l'intérieur, il y a souvent cette pensée qui revient : <em>« Pourquoi ça recommence toujours pareil ? »</em></p>
     <p>Tu rencontres quelqu'un. Il y a de l'intensité, de la connexion, quelque chose de fort. Tu te dis que cette fois, c'est différent.</p>
     <p>Et puis… quelque chose se répète. Pas exactement la même histoire. Pas exactement le même homme. Mais toujours le même goût à la fin. <strong>Une distance. Un silence. Une blessure familière.</strong></p>
     <p>Alors tu te demandes : est-ce que c'est moi qui choisis mal ? Est-ce que j'attire toujours le même type ? Ou est-ce que le problème, c'est moi ?</p>
-
     <div class="divider"></div>
-
     <p>Le problème, ce n'est pas toi.</p>
     <p>C'est que personne ne t'a jamais montré comment ton système d'attachement fonctionne. Pourquoi tu t'accroches si vite. Pourquoi l'intensité te rassure au lieu de t'alerter. Pourquoi tu confonds <strong>l'espoir d'une relation</strong> avec une relation réelle.</p>
     <p>Une fois que tu comprends ça — vraiment — quelque chose change. Tu ne deviens pas froide. Tu ne te fermes pas. Tu deviens simplement <em>plus libre.</em></p>
@@ -351,35 +394,48 @@
 
   <!-- BLOC PAIEMENT -->
   <div class="payment-block" id="paiement">
-    <div class="label">✦ Offre réservée · résultats du quiz</div>
-    <h2>Accro aux mauvais hommes — L'e-book</h2>
-    <p class="desc">~200 pages. 10 chapitres pour comprendre ton attachement, reconnaître un homme réellement disponible, et aimer sans te consumer. PDF envoyé immédiatement par mail.</p>
+
+    <span class="offer-label">✦ Offre réservée · résultats du quiz</span>
+    <h2>Accro aux mauvais hommes</h2>
+    <p class="offer-sub">~200 pages · PDF envoyé immédiatement par mail · Mises à jour à vie</p>
 
     <div class="price-row">
       <span class="price-current">17€</span>
       <span class="price-old">34€</span>
-      <span class="price-badge">−50%</span>
     </div>
+    <p class="price-note">Paiement unique · Accès à vie</p>
 
     <div class="timer-row">
       ⏳ Offre disponible pendant <span id="timer">30:00</span>
     </div>
 
-    <div class="email-row">
-      <label for="email-input">Ton email (pour recevoir le PDF)</label>
-      <input type="email" id="email-input" placeholder="ton@email.com" />
+    <label class="field-label" for="email-field">Email · pour recevoir ton PDF</label>
+    <input type="email" id="email-field" class="field-input" placeholder="ton@email.fr" autocomplete="email" />
+
+    <div id="payment-element">
+      <div id="stripe-skeleton" style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+        <div class="stripe-skeleton-bar"></div>
+        <div class="stripe-skeleton-bar"></div>
+      </div>
     </div>
 
-    <div id="payment-element"></div>
-    <div id="payment-message"></div>
+    <div id="payment-errors"></div>
 
-    <button id="pay-btn" disabled>Chargement…</button>
-    <p class="pay-sub">Paiement sécurisé · PDF envoyé immédiatement</p>
+    <button class="btn-pay" id="pay-btn" onclick="handlePay()">
+      <span id="btn-label">Obtenir mon e-book →</span>
+      <div class="spinner" id="spinner"></div>
+    </button>
+
+    <div class="secure-note">
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Paiement sécurisé · PDF envoyé immédiatement
+    </div>
 
     <div id="success-block">
       <h3>🎉 Paiement confirmé !</h3>
       <p>Ton e-book arrive dans ta boîte mail dans quelques minutes.<br>Vérifie tes spams si tu ne le vois pas.</p>
     </div>
+
   </div>
 
 </div>
@@ -405,93 +461,122 @@
   updateTimer();
 
   // Stripe
-  const stripe = Stripe('pk_live_51Rm9dBI8ilInoMaXKDs2hp5pR1Fq3fcK60MlclXizEDZZxFAUN92E6jpKjILZX0dHtO7gUa3KMfQZKchX6qaPIi8003ZsII2e7');
   const WORKER_URL = 'https://abrilove-oto-worker.sofiane-daboussi.workers.dev';
+  const PK = 'pk_live_51Rm9dBI8ilInoMaXKDs2hp5pR1Fq3fcK60MlclXizEDZZxFAUN92E6jpKjILZX0dHtO7gUa3KMfQZKchX6qaPIi8003ZsII2e7';
 
+  const stripe = Stripe(PK);
   let elements;
   let clientSecret;
 
-  async function initStripe() {
-    try {
-      const email = document.getElementById('email-input').value.trim();
-      const res = await fetch(`${WORKER_URL}/create-payment-intent`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ profil: 'accro', email }),
-      });
-      const data = await res.json();
-      if (data.error) { showMessage(data.error); return; }
-
-      clientSecret = data.clientSecret;
-
-      elements = stripe.elements({ clientSecret, appearance: {
-        theme: 'stripe',
-        variables: { colorPrimary: '#660a43', borderRadius: '10px', fontFamily: 'DM Sans, sans-serif' }
-      }});
-
-      const paymentElement = elements.create('payment');
-      paymentElement.mount('#payment-element');
-
-      const btn = document.getElementById('pay-btn');
-      btn.disabled = false;
-      btn.textContent = 'Obtenir mon e-book →';
-
-    } catch(e) {
-      showMessage('Erreur de connexion. Réessaie.');
-    }
+  function isValidEmail(e) {
+    const at = e.indexOf('@');
+    const dot = e.lastIndexOf('.');
+    return at > 0 && dot > at + 1 && dot < e.length - 1;
   }
 
-  // Init Stripe quand email valide
-  let initDone = false;
-  document.getElementById('email-input').addEventListener('blur', function() {
-    if (!initDone && this.value.includes('@') && this.value.includes('.')) {
-      initDone = true;
-      initStripe();
-    }
+  document.addEventListener('DOMContentLoaded', function() {
+    elements = stripe.elements({
+      mode: 'payment',
+      amount: 1700,
+      currency: 'eur',
+      appearance: {
+        theme: 'stripe',
+        variables: {
+          colorPrimary: '#660A43',
+          colorBackground: '#FFF1E7',
+          colorText: '#1E120A',
+          colorDanger: '#C0392B',
+          fontFamily: 'DM Sans, sans-serif',
+          borderRadius: '10px',
+        },
+      },
+    });
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const paymentElement = elements.create('payment', {
+      layout: 'tabs',
+      paymentMethodOrder: isMobile ? ['apple_pay', 'google_pay', 'card'] : ['card', 'apple_pay', 'google_pay']
+    });
+    paymentElement.mount('#payment-element');
+    paymentElement.on('ready', function() {
+      const sk = document.getElementById('stripe-skeleton');
+      if (sk) sk.remove();
+    });
   });
 
-  // Paiement
-  document.getElementById('pay-btn').addEventListener('click', async function() {
-    if (!elements) return;
-    const btn = this;
-    btn.disabled = true;
-    btn.textContent = 'Traitement…';
+  async function handlePay() {
+    const email = document.getElementById('email-field').value.trim();
+    const errEl = document.getElementById('payment-errors');
+    if (!isValidEmail(email)) { errEl.textContent = 'Entre ton adresse email valide.'; return; }
 
-    const { error } = await stripe.confirmPayment({
+    const btn = document.getElementById('pay-btn');
+    const label = document.getElementById('btn-label');
+    const spinner = document.getElementById('spinner');
+    btn.disabled = true; label.textContent = 'Traitement...'; spinner.style.display = 'block'; errEl.textContent = '';
+
+    const submitResult = await elements.submit();
+    if (submitResult.error) {
+      errEl.textContent = submitResult.error.message;
+      btn.disabled = false; label.textContent = 'Obtenir mon e-book →'; spinner.style.display = 'none'; return;
+    }
+
+    const res = await fetch(WORKER_URL + '/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ profil: 'accro', email }),
+    });
+    const data = await res.json();
+    if (data.error) {
+      errEl.textContent = 'Erreur : ' + data.error;
+      btn.disabled = false; label.textContent = 'Obtenir mon e-book →'; spinner.style.display = 'none'; return;
+    }
+
+    clientSecret = data.clientSecret;
+
+    const returnUrl = window.location.origin + window.location.pathname +
+      '?email=' + encodeURIComponent(email) +
+      '&payment_intent_client_secret=' + encodeURIComponent(clientSecret);
+
+    const confirmResult = await stripe.confirmPayment({
       elements,
-      confirmParams: { return_url: window.location.href },
+      clientSecret,
+      confirmParams: {
+        return_url: returnUrl,
+        payment_method_data: { billing_details: { email } }
+      },
       redirect: 'if_required',
     });
 
-    if (error) {
-      showMessage(error.message);
-      btn.disabled = false;
-      btn.textContent = 'Obtenir mon e-book →';
-    } else {
-      document.getElementById('payment-element').style.display = 'none';
-      document.getElementById('email-input').parentElement.style.display = 'none';
-      document.getElementById('pay-btn').style.display = 'none';
-      document.querySelector('.pay-sub').style.display = 'none';
-      document.getElementById('timer-row') && (document.getElementById('timer-row').style.display = 'none');
-      document.getElementById('success-block').style.display = 'block';
+    if (confirmResult.error) {
+      errEl.textContent = confirmResult.error.message;
+      btn.disabled = false; label.textContent = 'Obtenir mon e-book →'; spinner.style.display = 'none'; return;
     }
-  });
 
-  function showMessage(msg) {
-    document.getElementById('payment-message').textContent = msg;
+    if (confirmResult.paymentIntent && confirmResult.paymentIntent.status === 'succeeded') {
+      showSuccess();
+    }
   }
 
-  // Vérif si retour depuis Stripe redirect
+  function showSuccess() {
+    document.getElementById('payment-element').style.display = 'none';
+    document.getElementById('email-field').parentElement.style.display = 'none';
+    document.getElementById('pay-btn').style.display = 'none';
+    document.querySelector('.secure-note').style.display = 'none';
+    document.getElementById('payment-errors').style.display = 'none';
+    document.getElementById('success-block').style.display = 'block';
+  }
+
+  // Retour redirect Stripe
   const params = new URLSearchParams(window.location.search);
   if (params.get('payment_intent_client_secret')) {
-    stripe.retrievePaymentIntent(params.get('payment_intent_client_secret')).then(({ paymentIntent }) => {
-      if (paymentIntent.status === 'succeeded') {
-        document.getElementById('payment-element').style.display = 'none';
-        document.getElementById('email-input').parentElement.style.display = 'none';
-        document.getElementById('pay-btn').style.display = 'none';
-        document.querySelector('.pay-sub').style.display = 'none';
-        document.getElementById('success-block').style.display = 'block';
-      }
+    document.addEventListener('DOMContentLoaded', async function() {
+      document.getElementById('paiement').scrollIntoView({ behavior: 'smooth' });
+      try {
+        const result = await stripe.retrievePaymentIntent(params.get('payment_intent_client_secret'));
+        if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
+          showSuccess();
+        }
+      } catch(e) {}
     });
   }
 </script>
