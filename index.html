@@ -371,21 +371,112 @@
     Je veux mon e-book → 17€
   </button>
 
-  <div class="testimonials">
-    <h3>Ce que disent les femmes qui l'ont lu…</h3>
-    <div class="testimonial">
-      <p>« J'ai pleuré au chapitre 3. C'était exactement moi. J'avais jamais mis des mots dessus comme ça. »</p>
-      <span class="author">— Camille, 29 ans</span>
-    </div>
-    <div class="testimonial">
-      <p>« Je comprenais pas pourquoi je retombais toujours sur le même type d'homme. Après ce guide, j'ai enfin compris le mécanisme. »</p>
-      <span class="author">— Laura, 34 ans</span>
-    </div>
-    <div class="testimonial">
-      <p>« Le chapitre sur la dopamine et l'attachement m'a changé la vie. Littéralement. »</p>
-      <span class="author">— Inès, 26 ans</span>
-    </div>
-  </div>
+  <style>
+.abri-track-wrap {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+  user-select: none;
+  -webkit-user-select: none;
+  margin: 36px 0;
+}
+.abri-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  will-change: transform;
+}
+.abri-screen-card {
+  flex-shrink: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  height: 340px;
+  opacity: 0.92;
+  transition: opacity 0.3s;
+}
+.abri-screen-card img {
+  height: 100%;
+  width: auto;
+  display: block;
+  -webkit-touch-callout: none;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+</style>
+<div class="abri-track-wrap" id="abri-wrap">
+  <div class="abri-track" id="abri-temo-track"></div>
+</div>
+<script>
+(function(){
+  var imgs = [
+    "/images/accro1.avif",
+    "/images/accro2.avif",
+    "/images/accro3.avif",
+    "/images/accro4.avif",
+    "/images/accro5.avif",
+    "/images/accro6.avif"
+  ];
+  var track = document.getElementById('abri-temo-track');
+  var allImgs = imgs.concat(imgs);
+  var totalWidth = 0;
+  var halfWidth = 0;
+  var cardWidths = [];
+  allImgs.forEach(function(src, i){
+    var card = document.createElement('div');
+    card.className = 'abri-screen-card';
+    var img = document.createElement('img');
+    img.src = src;
+    img.draggable = false;
+    card.appendChild(img);
+    track.appendChild(card);
+  });
+  function calcWidths() {
+    var cards = track.querySelectorAll('.abri-screen-card');
+    totalWidth = 0;
+    cardWidths = [];
+    cards.forEach(function(c) {
+      var w = c.offsetWidth + 20;
+      cardWidths.push(w);
+      totalWidth += w;
+    });
+    halfWidth = totalWidth / 2;
+  }
+  var pos = 0;
+  var paused = false;
+  var speed = 0.7;
+  var raf = null;
+  function step() {
+    if (!paused) {
+      pos += speed;
+      if (pos >= halfWidth) pos -= halfWidth;
+      track.style.transform = 'translateX(-' + pos + 'px)';
+    }
+    raf = requestAnimationFrame(step);
+  }
+  window.addEventListener('load', function(){
+    calcWidths();
+    raf = requestAnimationFrame(step);
+  });
+  var wrap = document.getElementById('abri-wrap');
+  wrap.addEventListener('mousedown', function(){ paused = true; });
+  wrap.addEventListener('mouseup', function(){ paused = false; });
+  wrap.addEventListener('mouseleave', function(){ paused = false; });
+  var timer = null;
+  wrap.addEventListener('touchstart', function(){
+    timer = setTimeout(function(){ paused = true; }, 150);
+  }, { passive: true });
+  wrap.addEventListener('touchmove', function(){
+    clearTimeout(timer); paused = false;
+  }, { passive: true });
+  wrap.addEventListener('touchend', function(){
+    clearTimeout(timer); paused = false;
+  }, { passive: true });
+  wrap.addEventListener('touchcancel', function(){
+    clearTimeout(timer); paused = false;
+  }, { passive: true });
+})();
+</script>
 
   <button class="cta-scroll" onclick="document.getElementById('paiement').scrollIntoView({behavior:'smooth'})">
     Je choisis de comprendre → 17€
