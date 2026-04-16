@@ -18,13 +18,17 @@
       --brun2: #5C3D2A;
     }
 
-    body {
-      html { background: #660A43; }
-      font-family: 'DM Sans', sans-serif;
+    html {
       background: linear-gradient(135deg, #660A43 0%, #8B1A5C 100%);
+      min-height: 100%;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: transparent;
       color: var(--brun);
       min-height: 100vh;
-      padding: 24px 16px 0;
+      padding: 24px 16px 24px;
     }
 
     .card {
@@ -92,7 +96,7 @@
       cursor: pointer;
       border: none;
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      animation: pulse 1s ease-in-out infinite;
+      animation: pulse 1.2s ease-in-out infinite;
     }
 
     .cta-scroll:hover {
@@ -101,45 +105,11 @@
       letter-spacing: 0.03em;
     }
 
-    .cta-scroll:active {
-      transform: scale(0.97);
-    }
+    .cta-scroll:active { transform: scale(0.97); }
 
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.04); }
-    }
-
-    .testimonials { margin: 36px 0; }
-
-    .testimonials h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--brun);
-      margin-bottom: 20px;
-    }
-
-    .testimonial {
-      border-left: 3px solid var(--rose);
-      padding: 14px 18px;
-      margin-bottom: 14px;
-      background: white;
-      border-radius: 0 8px 8px 0;
-    }
-
-    .testimonial p {
-      font-size: 15px;
-      line-height: 1.65;
-      color: #333;
-      font-style: italic;
-      margin-bottom: 6px;
-    }
-
-    .testimonial .author {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--rose);
     }
 
     .payment-block {
@@ -342,8 +312,68 @@
       line-height: 1.6;
     }
 
+    .abri-track-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+      user-select: none;
+      -webkit-user-select: none;
+      margin: 36px 0;
+    }
+    .abri-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      will-change: transform;
+    }
+    .abri-screen-card {
+      flex-shrink: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      height: 340px;
+      opacity: 0.92;
+      transition: opacity 0.3s;
+    }
+    .abri-screen-card img {
+      height: 100%;
+      width: auto;
+      display: block;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .iphone{width:260px;background:#FFF1E7;border-radius:44px;border:11px solid #1a0812;box-shadow:0 0 0 1px #3a1020,0 30px 70px rgba(0,0,0,0.4);overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;}
+    .iphone .status-bar{background:#FFF1E7;display:flex;align-items:center;justify-content:space-between;padding:10px 22px 8px;font-size:13px;font-weight:700;color:#2a0a1a;position:relative;}
+    .iphone .dynamic-island{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:95px;height:30px;background:#1a0812;border-radius:20px;}
+    .iphone .chat-header{display:flex;align-items:center;gap:8px;padding:4px 14px 10px;border-bottom:1px solid rgba(102,10,67,0.1);}
+    .iphone .back{color:#660A43;font-size:22px;font-weight:300;}
+    .iphone .avatar{width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0;}
+    .iphone .avatar img{width:100%;height:100%;object-fit:cover;}
+    .iphone .info{flex:1;}
+    .iphone .name{font-size:12px;font-weight:700;color:#2a0a1a;}
+    .iphone .online{font-size:10px;color:#4caf50;font-weight:500;}
+    .iphone .messages{padding:12px;display:flex;flex-direction:column;gap:7px;min-height:340px;background:#FFF1E7;}
+    .iphone .row{display:flex;flex-direction:column;}
+    .iphone .bubble{max-width:80%;padding:9px 13px;border-radius:18px;font-size:12.5px;line-height:1.45;opacity:0;transform:translateY(6px);transition:opacity 0.4s,transform 0.4s;}
+    .iphone .bubble.show{opacity:1;transform:translateY(0);}
+    .iphone .bubble-u{background:#660A43;color:#fff;align-self:flex-end;border-radius:18px 18px 4px 18px;}
+    .iphone .bubble-a{background:rgba(102,10,67,0.1);color:#2a0a1a;align-self:flex-start;border-radius:18px 18px 18px 4px;}
+    .iphone .sender{font-size:9.5px;font-weight:700;color:#660A43;margin-bottom:3px;padding-left:2px;}
+    .iphone .typing{display:flex;gap:4px;padding:10px 14px;background:rgba(102,10,67,0.1);border-radius:18px 18px 18px 4px;width:fit-content;opacity:0;transition:opacity 0.3s;}
+    .iphone .typing.show{opacity:1;}
+    .iphone .typing span{width:6px;height:6px;border-radius:50%;background:#660A43;opacity:0.35;animation:abri-dot 1.2s infinite;}
+    .iphone .typing span:nth-child(2){animation-delay:0.2s;}
+    .iphone .typing span:nth-child(3){animation-delay:0.4s;}
+    .iphone .input-bar{display:flex;align-items:center;gap:8px;padding:8px 12px 18px;background:#FFF1E7;border-top:1px solid rgba(102,10,67,0.08);}
+    .iphone .input-field{flex:1;background:rgba(102,10,67,0.07);border:none;border-radius:20px;padding:9px 13px;font-size:12px;color:rgba(42,10,26,0.35);}
+    .iphone .send-btn{width:30px;height:30px;background:#660A43;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .iphone .send-btn svg{width:13px;height:13px;fill:#FFF1E7;}
+    @keyframes abri-dot{0%,60%,100%{opacity:0.2;transform:scale(0.8);}30%{opacity:1;transform:scale(1);}}
+
     @media (max-width: 480px) {
-      body { padding: 14px 10px 48px; }
+      body { padding: 14px 10px 24px; }
       .card { padding: 24px 18px 36px; }
       h1 { font-size: 24px; }
       .price-current { font-size: 30px; }
@@ -383,117 +413,9 @@
     Je veux mon e-book → 17€
   </button>
 
-  <style>
-.abri-track-wrap {
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
-  user-select: none;
-  -webkit-user-select: none;
-  margin: 36px 0;
-}
-.abri-track {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-  will-change: transform;
-}
-.abri-screen-card {
-  flex-shrink: 0;
-  border-radius: 18px;
-  overflow: hidden;
-  height: 340px;
-  opacity: 0.92;
-  transition: opacity 0.3s;
-}
-.abri-screen-card img {
-  height: 100%;
-  width: auto;
-  display: block;
-  -webkit-touch-callout: none;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-select: none;
-}
-</style>
-<div class="abri-track-wrap" id="abri-wrap">
-  <div class="abri-track" id="abri-temo-track"></div>
-</div>
-<script>
-(function(){
-  var imgs = [
-    "/images/accro1.avif",
-    "/images/accro2.avif",
-    "/images/accro3.avif",
-    "/images/accro4.avif",
-    "/images/accro5.avif",
-    "/images/accro6.avif"
-  ];
-  var track = document.getElementById('abri-temo-track');
-  var allImgs = imgs.concat(imgs);
-  var totalWidth = 0;
-  var halfWidth = 0;
-  var cardWidths = [];
-  allImgs.forEach(function(src, i){
-    var card = document.createElement('div');
-    card.className = 'abri-screen-card';
-    var img = document.createElement('img');
-    img.src = src;
-    img.draggable = false;
-    card.appendChild(img);
-    track.appendChild(card);
-  });
-  function calcWidths() {
-    var cards = track.querySelectorAll('.abri-screen-card');
-    totalWidth = 0;
-    cardWidths = [];
-    cards.forEach(function(c) {
-      var w = c.offsetWidth + 20;
-      cardWidths.push(w);
-      totalWidth += w;
-    });
-    halfWidth = totalWidth / 2;
-  }
-  var pos = 0;
-  var paused = false;
-  var speed = 0.7;
-  var raf = null;
-  function step() {
-    if (!paused) {
-      pos += speed;
-      if (pos >= halfWidth) pos -= halfWidth;
-      track.style.transform = 'translateX(-' + pos + 'px)';
-    }
-    raf = requestAnimationFrame(step);
-  }
-  function tryStart() {
-    calcWidths();
-    if (halfWidth > 0) {
-      raf = requestAnimationFrame(step);
-    } else {
-      setTimeout(tryStart, 100);
-    }
-  }
-  tryStart();
-  var wrap = document.getElementById('abri-wrap');
-  wrap.addEventListener('mousedown', function(){ paused = true; });
-  wrap.addEventListener('mouseup', function(){ paused = false; });
-  wrap.addEventListener('mouseleave', function(){ paused = false; });
-  var timer = null;
-  wrap.addEventListener('touchstart', function(){
-    timer = setTimeout(function(){ paused = true; }, 150);
-  }, { passive: true });
-  wrap.addEventListener('touchmove', function(){
-    clearTimeout(timer); paused = false;
-  }, { passive: true });
-  wrap.addEventListener('touchend', function(){
-    clearTimeout(timer); paused = false;
-  }, { passive: true });
-  wrap.addEventListener('touchcancel', function(){
-    clearTimeout(timer); paused = false;
-  }, { passive: true });
-})();
-</script>
+  <div class="abri-track-wrap" id="abri-wrap">
+    <div class="abri-track" id="abri-temo-track"></div>
+  </div>
 
   <button class="cta-scroll" onclick="document.getElementById('paiement').scrollIntoView({behavior:'smooth'})">
     Je choisis de comprendre → 17€
@@ -501,162 +423,86 @@
 
   <!-- BLOC PAIEMENT -->
   <div class="payment-block" id="paiement">
-
     <span class="offer-label">✦ Offre réservée · résultats du quiz</span>
     <h2>Accro aux mauvais hommes</h2>
     <p class="offer-sub">~200 pages · PDF envoyé immédiatement par mail · Mises à jour à vie</p>
-
     <div class="price-row">
       <span class="price-current">17€</span>
       <span class="price-old">34€</span>
     </div>
     <p class="price-note">Paiement unique · Accès à vie</p>
-
     <div class="timer-row">
       ⏳ Offre disponible pendant <span id="timer">30:00</span>
     </div>
-
     <label class="field-label" for="email-field">Email · pour recevoir ton PDF</label>
     <input type="email" id="email-field" class="field-input" placeholder="ton@email.fr" autocomplete="email" />
-
     <div id="payment-element">
       <div id="stripe-skeleton" style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
         <div class="stripe-skeleton-bar"></div>
         <div class="stripe-skeleton-bar"></div>
       </div>
     </div>
-
     <div id="payment-errors"></div>
-
     <button class="btn-pay" id="pay-btn" onclick="handlePay()">
       <span id="btn-label">Obtenir mon e-book →</span>
       <div class="spinner" id="spinner"></div>
     </button>
-
     <div class="secure-note">
       <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       Paiement sécurisé · PDF envoyé immédiatement
     </div>
-
     <div id="success-block">
       <h3>🎉 Paiement confirmé !</h3>
       <p>Ton e-book arrive dans ta boîte mail dans quelques minutes.<br>Vérifie tes spams si tu ne le vois pas.</p>
     </div>
-
   </div>
 
-  <div style="margin-top:48px;padding:36px 28px;background:var(--creme);border-radius:20px;">
-  <div style="display:flex;gap:40px;align-items:center;flex-wrap:wrap;">
-
-    <!-- TEXTE GAUCHE -->
-    <div style="flex:1;min-width:240px;">
-      <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--brun);margin-bottom:16px;line-height:1.3;">Tu as une question avant de te décider ?</h3>
-      <p style="font-size:15px;color:var(--brun2);line-height:1.75;margin-bottom:20px;">Tu analyses ses messages depuis des heures. Tu sais pas si tu dois lui écrire. Tu te demandes si tu t'accroches trop ou si c'est lui le problème.</p>
-      <p style="font-size:15px;color:var(--brun2);line-height:1.75;margin-bottom:24px;">Pose ta question — tu reçois une réponse en quelques secondes, maintenant, peu importe l'heure. Des milliers d'heures de coaching en relations amoureuses, disponibles pour toi instantanément.</p>
-      <div style="position:relative;display:inline-block;width:100%;">
-        <div style="position:absolute;top:-12px;right:12px;background:#FFF1E7;color:#660A43;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;border:1.5px solid #660A43;">7 premiers messages offerts</div>
-        <a href="https://ia.abrilove.fr" style="display:block;width:100%;padding:14px;background:#660A43;color:white;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;text-decoration:none;box-sizing:border-box;text-align:center;">Poser ma question maintenant →</a>
-      </div>
-      <p style="font-size:11px;color:var(--brun2);opacity:0.6;margin-top:8px;text-align:center;">Sans carte bancaire</p>
-    </div>
-
-    <!-- IPHONE DROITE -->
-    <div style="flex-shrink:0;display:flex;justify-content:center;width:100%;max-width:280px;margin:0 auto;">
-      <style>
-      .iphone{width:260px;background:#FFF1E7;border-radius:44px;border:11px solid #1a0812;box-shadow:0 0 0 1px #3a1020,0 30px 70px rgba(0,0,0,0.4);overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;}
-      .iphone .status-bar{background:#FFF1E7;display:flex;align-items:center;justify-content:space-between;padding:10px 22px 8px;font-size:13px;font-weight:700;color:#2a0a1a;position:relative;}
-      .iphone .dynamic-island{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:95px;height:30px;background:#1a0812;border-radius:20px;}
-      .iphone .chat-header{display:flex;align-items:center;gap:8px;padding:4px 14px 10px;border-bottom:1px solid rgba(102,10,67,0.1);}
-      .iphone .back{color:#660A43;font-size:22px;font-weight:300;}
-      .iphone .avatar{width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0;}
-      .iphone .avatar img{width:100%;height:100%;object-fit:cover;}
-      .iphone .info{flex:1;}
-      .iphone .name{font-size:12px;font-weight:700;color:#2a0a1a;}
-      .iphone .online{font-size:10px;color:#4caf50;font-weight:500;}
-      .iphone .messages{padding:12px;display:flex;flex-direction:column;gap:7px;min-height:340px;background:#FFF1E7;}
-      .iphone .row{display:flex;flex-direction:column;}
-      .iphone .bubble{max-width:80%;padding:9px 13px;border-radius:18px;font-size:12.5px;line-height:1.45;opacity:0;transform:translateY(6px);transition:opacity 0.4s,transform 0.4s;}
-      .iphone .bubble.show{opacity:1;transform:translateY(0);}
-      .iphone .bubble-u{background:#660A43;color:#fff;align-self:flex-end;border-radius:18px 18px 4px 18px;}
-      .iphone .bubble-a{background:rgba(102,10,67,0.1);color:#2a0a1a;align-self:flex-start;border-radius:18px 18px 18px 4px;}
-      .iphone .sender{font-size:9.5px;font-weight:700;color:#660A43;margin-bottom:3px;padding-left:2px;}
-      .iphone .typing{display:flex;gap:4px;padding:10px 14px;background:rgba(102,10,67,0.1);border-radius:18px 18px 18px 4px;width:fit-content;opacity:0;transition:opacity 0.3s;}
-      .iphone .typing.show{opacity:1;}
-      .iphone .typing span{width:6px;height:6px;border-radius:50%;background:#660A43;opacity:0.35;animation:abri-dot 1.2s infinite;}
-      .iphone .typing span:nth-child(2){animation-delay:0.2s;}
-      .iphone .typing span:nth-child(3){animation-delay:0.4s;}
-      .iphone .input-bar{display:flex;align-items:center;gap:8px;padding:8px 12px 18px;background:#FFF1E7;border-top:1px solid rgba(102,10,67,0.08);}
-      .iphone .input-field{flex:1;background:rgba(102,10,67,0.07);border:none;border-radius:20px;padding:9px 13px;font-size:12px;color:rgba(42,10,26,0.35);}
-      .iphone .send-btn{width:30px;height:30px;background:#660A43;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-      .iphone .send-btn svg{width:13px;height:13px;fill:#FFF1E7;}
-      @keyframes abri-dot{0%,60%,100%{opacity:0.2;transform:scale(0.8);}30%{opacity:1;transform:scale(1);}}
-      @media(max-width:600px){.iphone-wrap{max-width:100% !important;}}
-      </style>
-
-      <div class="iphone">
-        <div class="status-bar">
-          <span>9:41</span>
-          <div class="dynamic-island"></div>
-          <span>●●●</span>
+  <!-- BLOC QUESTION IA -->
+  <div style="margin-top:48px;">
+    <div style="display:flex;gap:40px;align-items:center;flex-wrap:wrap;">
+      <div style="flex:1;min-width:240px;">
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--brun);margin-bottom:16px;line-height:1.3;">Tu as une question avant de te décider ?</h3>
+        <p style="font-size:15px;color:var(--brun2);line-height:1.75;margin-bottom:20px;">Tu analyses ses messages depuis des heures. Tu sais pas si tu dois lui écrire. Tu te demandes si tu t'accroches trop ou si c'est lui le problème.</p>
+        <p style="font-size:15px;color:var(--brun2);line-height:1.75;margin-bottom:24px;">Pose ta question — tu reçois une réponse en quelques secondes, maintenant, peu importe l'heure. Des milliers d'heures de coaching en relations amoureuses, disponibles pour toi instantanément.</p>
+        <div style="position:relative;display:inline-block;width:100%;">
+          <div style="position:absolute;top:-12px;right:12px;background:#FFF1E7;color:#660A43;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;border:1.5px solid #660A43;">7 premiers messages offerts</div>
+          <a href="https://ia.abrilove.fr" style="display:block;width:100%;padding:14px;background:#660A43;color:white;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;text-decoration:none;box-sizing:border-box;text-align:center;">Poser ma question maintenant →</a>
         </div>
-        <div class="chat-header">
-          <span class="back">‹</span>
-          <div class="avatar"><img src="https://cdn.prod.website-files.com/686bb5337ed61a425660e143/69b163fc41e69155b8609953_Copie%20de%20Copie%20de%20Copie%20de%20Copie%20de%20Blue%20and%20Pink%20Soft%20Magazine%20Cover%20Mockup%20Instagram%20Post%20(6).avif"></div>
-          <div class="info">
-            <div class="name">Sofi & Oli — Abrilove</div>
-            <div class="online">● En ligne</div>
+        <p style="font-size:11px;color:var(--brun2);opacity:0.6;margin-top:8px;text-align:center;">Sans carte bancaire</p>
+      </div>
+      <div style="flex-shrink:0;display:flex;justify-content:center;width:100%;max-width:280px;margin:0 auto;">
+        <div class="iphone">
+          <div class="status-bar">
+            <span>9:41</span>
+            <div class="dynamic-island"></div>
+            <span>●●●</span>
+          </div>
+          <div class="chat-header">
+            <span class="back">‹</span>
+            <div class="avatar"><img src="https://cdn.prod.website-files.com/686bb5337ed61a425660e143/69b163fc41e69155b8609953_Copie%20de%20Copie%20de%20Copie%20de%20Copie%20de%20Blue%20and%20Pink%20Soft%20Magazine%20Cover%20Mockup%20Instagram%20Post%20(6).avif"></div>
+            <div class="info">
+              <div class="name">Sofi & Oli — Abrilove</div>
+              <div class="online">● En ligne</div>
+            </div>
+          </div>
+          <div class="messages" id="abri-msgs">
+            <div class="row" id="abri-m1" style="align-items:flex-end;display:none"><div class="bubble bubble-u">Il me laisse en vu depuis 2 jours… 😞</div></div>
+            <div class="row" id="abri-t1" style="display:none"><div class="typing"><span></span><span></span><span></span></div></div>
+            <div class="row" id="abri-m2" style="align-items:flex-start;display:none"><div class="sender">Sofi & Oli 💛</div><div class="bubble bubble-a">C'est nouveau chez lui ou il l'a déjà fait avant ?</div></div>
+            <div class="row" id="abri-m3" style="align-items:flex-end;display:none"><div class="bubble bubble-u">Jamais… 😔</div></div>
+            <div class="row" id="abri-t2" style="display:none"><div class="typing"><span></span><span></span><span></span></div></div>
+            <div class="row" id="abri-m4" style="align-items:flex-start;display:none"><div class="sender">Sofi & Oli 💛</div><div class="bubble bubble-a">Les hommes se retirent rarement par indifférence. Voilà quoi faire 👇</div></div>
+          </div>
+          <div class="input-bar">
+            <div class="input-field">Écris ta situation…</div>
+            <div class="send-btn"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></div>
           </div>
         </div>
-        <div class="messages" id="abri-msgs">
-          <div class="row" id="abri-m1" style="align-items:flex-end;display:none"><div class="bubble bubble-u">Il me laisse en vu depuis 2 jours… 😞</div></div>
-          <div class="row" id="abri-t1" style="display:none"><div class="typing"><span></span><span></span><span></span></div></div>
-          <div class="row" id="abri-m2" style="align-items:flex-start;display:none"><div class="sender">Sofi & Oli 💛</div><div class="bubble bubble-a">C'est nouveau chez lui ou il l'a déjà fait avant ?</div></div>
-          <div class="row" id="abri-m3" style="align-items:flex-end;display:none"><div class="bubble bubble-u">Jamais… 😔</div></div>
-          <div class="row" id="abri-t2" style="display:none"><div class="typing"><span></span><span></span><span></span></div></div>
-          <div class="row" id="abri-m4" style="align-items:flex-start;display:none"><div class="sender">Sofi & Oli 💛</div><div class="bubble bubble-a">Les hommes se retirent rarement par indifférence. Voilà quoi faire 👇</div></div>
-        </div>
-        <div class="input-bar">
-          <div class="input-field">Écris ta situation…</div>
-          <div class="send-btn"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></div>
-        </div>
       </div>
     </div>
-
   </div>
+
 </div>
-
-<script>
-(function(){
-  const steps=[
-    {show:'abri-m1',delay:600},
-    {show:'abri-t1',delay:2000},
-    {hide:'abri-t1',show:'abri-m2',delay:4500},
-    {show:'abri-m3',delay:7000},
-    {show:'abri-t2',delay:8800},
-    {hide:'abri-t2',show:'abri-m4',delay:12000},
-    {restart:true,delay:17000}
-  ];
-  function run(arr){
-    arr.forEach(s=>setTimeout(()=>{
-      if(s.restart){reset();return;}
-      if(s.hide){const el=document.getElementById(s.hide);el.style.display='none';const t=el.querySelector('.typing');if(t)t.classList.remove('show');}
-      if(s.show){const el=document.getElementById(s.show);el.style.display='flex';el.style.flexDirection='column';setTimeout(()=>{const b=el.querySelector('.bubble');const t=el.querySelector('.typing');if(b)b.classList.add('show');if(t)t.classList.add('show');document.getElementById('abri-msgs').scrollTop=9999;},30);}
-    },s.delay));
-  }
-  function reset(){
-    ['abri-m1','abri-m2','abri-m3','abri-m4','abri-t1','abri-t2'].forEach(id=>{
-      const el=document.getElementById(id);el.style.display='none';
-      const b=el.querySelector('.bubble');const t=el.querySelector('.typing');
-      if(b)b.classList.remove('show');if(t)t.classList.remove('show');
-    });
-    document.getElementById('abri-msgs').scrollTop=0;
-    setTimeout(()=>run(steps),800);
-  }
-  run(steps);
-})();
-</script>
-
-  </div>
 
 <!-- POPUP CONFIRMATION -->
 <div id="popup-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:999;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;">
@@ -679,14 +525,10 @@
 </div>
 
 <script>
+  // Timer
   const stored = localStorage.getItem('oto_accro_end');
   let endTime;
-  if (stored) {
-    endTime = parseInt(stored);
-  } else {
-    endTime = Date.now() + 30 * 60 * 1000;
-    localStorage.setItem('oto_accro_end', endTime);
-  }
+  if (stored) { endTime = parseInt(stored); } else { endTime = Date.now() + 30 * 60 * 1000; localStorage.setItem('oto_accro_end', endTime); }
   function updateTimer() {
     const remaining = endTime - Date.now();
     if (remaining <= 0) { document.getElementById('timer').textContent = '00:00'; return; }
@@ -697,107 +539,71 @@
   }
   updateTimer();
 
+  // Carousel
+  (function(){
+    var imgs = ["/images/accro1.avif","/images/accro2.avif","/images/accro3.avif","/images/accro4.avif","/images/accro5.avif","/images/accro6.avif"];
+    var track = document.getElementById('abri-temo-track');
+    imgs.concat(imgs).forEach(function(src){
+      var card = document.createElement('div'); card.className = 'abri-screen-card';
+      var img = document.createElement('img'); img.src = src; img.draggable = false;
+      card.appendChild(img); track.appendChild(card);
+    });
+    var pos = 0, paused = false, halfWidth = 0;
+    function calcWidths() { var w = 0; track.querySelectorAll('.abri-screen-card').forEach(function(c){ w += c.offsetWidth + 20; }); halfWidth = w / 2; }
+    function step() { if (!paused) { pos += 0.7; if (pos >= halfWidth) pos -= halfWidth; track.style.transform = 'translateX(-' + pos + 'px)'; } requestAnimationFrame(step); }
+    function tryStart() { calcWidths(); if (halfWidth > 0) requestAnimationFrame(step); else setTimeout(tryStart, 100); }
+    tryStart();
+    var wrap = document.getElementById('abri-wrap');
+    wrap.addEventListener('mousedown', function(){ paused = true; });
+    wrap.addEventListener('mouseup', function(){ paused = false; });
+    wrap.addEventListener('mouseleave', function(){ paused = false; });
+    var t = null;
+    wrap.addEventListener('touchstart', function(){ t = setTimeout(function(){ paused = true; }, 150); }, {passive:true});
+    wrap.addEventListener('touchmove', function(){ clearTimeout(t); paused = false; }, {passive:true});
+    wrap.addEventListener('touchend', function(){ clearTimeout(t); paused = false; }, {passive:true});
+  })();
+
+  // iPhone animation
+  (function(){
+    const steps=[{show:'abri-m1',delay:600},{show:'abri-t1',delay:2000},{hide:'abri-t1',show:'abri-m2',delay:4500},{show:'abri-m3',delay:7000},{show:'abri-t2',delay:8800},{hide:'abri-t2',show:'abri-m4',delay:12000},{restart:true,delay:17000}];
+    function run(arr){ arr.forEach(s=>setTimeout(()=>{ if(s.restart){reset();return;} if(s.hide){const el=document.getElementById(s.hide);el.style.display='none';const t=el.querySelector('.typing');if(t)t.classList.remove('show');} if(s.show){const el=document.getElementById(s.show);el.style.display='flex';el.style.flexDirection='column';setTimeout(()=>{const b=el.querySelector('.bubble');const t=el.querySelector('.typing');if(b)b.classList.add('show');if(t)t.classList.add('show');document.getElementById('abri-msgs').scrollTop=9999;},30);}},s.delay)); }
+    function reset(){ ['abri-m1','abri-m2','abri-m3','abri-m4','abri-t1','abri-t2'].forEach(id=>{ const el=document.getElementById(id);el.style.display='none'; const b=el.querySelector('.bubble');const t=el.querySelector('.typing'); if(b)b.classList.remove('show');if(t)t.classList.remove('show'); }); document.getElementById('abri-msgs').scrollTop=0; setTimeout(()=>run(steps),800); }
+    run(steps);
+  })();
+
+  // Stripe
   const WORKER_URL = 'https://abrilove-oto-worker.sofiane-daboussi.workers.dev';
   const PK = 'pk_live_51Rm9dBI8ilInoMaXKDs2hp5pR1Fq3fcK60MlclXizEDZZxFAUN92E6jpKjILZX0dHtO7gUa3KMfQZKchX6qaPIi8003ZsII2e7';
-
   const stripe = Stripe(PK);
-  let elements;
-  let clientSecret;
-
-  function isValidEmail(e) {
-    const at = e.indexOf('@');
-    const dot = e.lastIndexOf('.');
-    return at > 0 && dot > at + 1 && dot < e.length - 1;
-  }
-
+  let elements, clientSecret;
+  function isValidEmail(e) { const at = e.indexOf('@'); const dot = e.lastIndexOf('.'); return at > 0 && dot > at + 1 && dot < e.length - 1; }
   const params = new URLSearchParams(window.location.search);
   const emailFromUrl = params.get('email') || params.get('prefilled_email') || '';
-
   document.addEventListener('DOMContentLoaded', function() {
     if (emailFromUrl) document.getElementById('email-field').value = emailFromUrl;
-
-    elements = stripe.elements({
-      mode: 'payment',
-      amount: 1700,
-      currency: 'eur',
-      appearance: {
-        theme: 'stripe',
-        variables: {
-          colorPrimary: '#660A43',
-          colorBackground: '#FFF1E7',
-          colorText: '#1E120A',
-          colorDanger: '#C0392B',
-          fontFamily: 'DM Sans, sans-serif',
-          borderRadius: '10px',
-        },
-      },
-    });
-
+    elements = stripe.elements({ mode: 'payment', amount: 1700, currency: 'eur', appearance: { theme: 'stripe', variables: { colorPrimary: '#660A43', colorBackground: '#FFF1E7', colorText: '#1E120A', colorDanger: '#C0392B', fontFamily: 'DM Sans, sans-serif', borderRadius: '10px' } } });
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const paymentElement = elements.create('payment', {
-      layout: 'tabs',
-      paymentMethodOrder: isMobile ? ['apple_pay', 'google_pay', 'card'] : ['card', 'apple_pay', 'google_pay']
-    });
+    const paymentElement = elements.create('payment', { layout: 'tabs', paymentMethodOrder: isMobile ? ['apple_pay', 'google_pay', 'card'] : ['card', 'apple_pay', 'google_pay'] });
     paymentElement.mount('#payment-element');
-    paymentElement.on('ready', function() {
-      const sk = document.getElementById('stripe-skeleton');
-      if (sk) sk.remove();
-    });
+    paymentElement.on('ready', function() { const sk = document.getElementById('stripe-skeleton'); if (sk) sk.remove(); });
   });
-
   async function handlePay() {
     const email = document.getElementById('email-field').value.trim();
     const errEl = document.getElementById('payment-errors');
     if (!isValidEmail(email)) { errEl.textContent = 'Entre ton adresse email valide.'; return; }
-
-    const btn = document.getElementById('pay-btn');
-    const label = document.getElementById('btn-label');
-    const spinner = document.getElementById('spinner');
+    const btn = document.getElementById('pay-btn'); const label = document.getElementById('btn-label'); const spinner = document.getElementById('spinner');
     btn.disabled = true; label.textContent = 'Traitement...'; spinner.style.display = 'block'; errEl.textContent = '';
-
     const submitResult = await elements.submit();
-    if (submitResult.error) {
-      errEl.textContent = submitResult.error.message;
-      btn.disabled = false; label.textContent = 'Obtenir mon e-book →'; spinner.style.display = 'none'; return;
-    }
-
-    const res = await fetch(WORKER_URL + '/create-payment-intent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ profil: 'accro', email }),
-    });
+    if (submitResult.error) { errEl.textContent = submitResult.error.message; btn.disabled = false; label.textContent = 'Obtenir mon e-book →'; spinner.style.display = 'none'; return; }
+    const res = await fetch(WORKER_URL + '/create-payment-intent', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ profil: 'accro', email }) });
     const data = await res.json();
-    if (data.error) {
-      errEl.textContent = 'Erreur : ' + data.error;
-      btn.disabled = false; label.textContent = 'Obtenir mon e-book →'; spinner.style.display = 'none'; return;
-    }
-
+    if (data.error) { errEl.textContent = 'Erreur : ' + data.error; btn.disabled = false; label.textContent = 'Obtenir mon e-book →'; spinner.style.display = 'none'; return; }
     clientSecret = data.clientSecret;
-
-    const returnUrl = window.location.origin + window.location.pathname +
-      '?email=' + encodeURIComponent(email) +
-      '&payment_intent_client_secret=' + encodeURIComponent(clientSecret);
-
-    const confirmResult = await stripe.confirmPayment({
-      elements,
-      clientSecret,
-      confirmParams: {
-        return_url: returnUrl,
-        payment_method_data: { billing_details: { email } }
-      },
-      redirect: 'if_required',
-    });
-
-    if (confirmResult.error) {
-      errEl.textContent = confirmResult.error.message;
-      btn.disabled = false; label.textContent = 'Obtenir mon e-book →'; spinner.style.display = 'none'; return;
-    }
-
-    if (confirmResult.paymentIntent && confirmResult.paymentIntent.status === 'succeeded') {
-      showSuccess();
-    }
+    const returnUrl = window.location.origin + window.location.pathname + '?email=' + encodeURIComponent(email) + '&payment_intent_client_secret=' + encodeURIComponent(clientSecret);
+    const confirmResult = await stripe.confirmPayment({ elements, clientSecret, confirmParams: { return_url: returnUrl, payment_method_data: { billing_details: { email } } }, redirect: 'if_required' });
+    if (confirmResult.error) { errEl.textContent = confirmResult.error.message; btn.disabled = false; label.textContent = 'Obtenir mon e-book →'; spinner.style.display = 'none'; return; }
+    if (confirmResult.paymentIntent && confirmResult.paymentIntent.status === 'succeeded') showSuccess();
   }
-
   function showSuccess() {
     document.getElementById('payment-element').style.display = 'none';
     document.getElementById('email-field').parentElement.style.display = 'none';
@@ -807,16 +613,10 @@
     document.getElementById('success-block').style.display = 'none';
     document.getElementById('popup-overlay').style.display = 'flex';
   }
-
   if (params.get('payment_intent_client_secret')) {
     document.addEventListener('DOMContentLoaded', async function() {
       document.getElementById('paiement').scrollIntoView({ behavior: 'smooth' });
-      try {
-        const result = await stripe.retrievePaymentIntent(params.get('payment_intent_client_secret'));
-        if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
-          showSuccess();
-        }
-      } catch(e) {}
+      try { const result = await stripe.retrievePaymentIntent(params.get('payment_intent_client_secret')); if (result.paymentIntent && result.paymentIntent.status === 'succeeded') showSuccess(); } catch(e) {}
     });
   }
 </script>
