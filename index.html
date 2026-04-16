@@ -474,7 +474,11 @@
     return at > 0 && dot > at + 1 && dot < e.length - 1;
   }
 
+  const emailFromUrl = params.get('email') || params.get('prefilled_email') || '';
+
   document.addEventListener('DOMContentLoaded', function() {
+    if (emailFromUrl) document.getElementById('email-field').value = emailFromUrl;
+
     elements = stripe.elements({
       mode: 'payment',
       amount: 1700,
