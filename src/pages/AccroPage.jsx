@@ -52,7 +52,7 @@ export default function AccroPage() {
   const [stripeSkeleton, setStripeSkeleton] = useState(true)
   const [stickyVisible, setStickyVisible] = useState(false)
   const [stickyAnimating, setStickyAnimating] = useState(false)
-  const [sliderPos, setSliderPos] = useState(50)
+  const [sliderPos, setSliderPos] = useState(70)
 
   const narrativeEndRef = useRef(null)
   const paiementRef = useRef(null)
@@ -166,20 +166,28 @@ export default function AccroPage() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Slider hint animation
+  // Slider hint animation on scroll into view
   useEffect(() => {
-    const t = setTimeout(() => {
+    if (!baContainerRef.current) return
+    let triggered = false
+    function runHint() {
+      if (triggered) return
+      triggered = true
       let start = null
       function frame(ts) {
         if (!start) start = ts
         const p = Math.min((ts - start) / 1200, 1)
-        setSliderPos(50 - 22 * Math.sin(p * Math.PI))
+        setSliderPos(70 - 35 * Math.sin(p * Math.PI))
         if (p < 1) requestAnimationFrame(frame)
-        else setSliderPos(50)
+        else setSliderPos(70)
       }
       requestAnimationFrame(frame)
-    }, 900)
-    return () => clearTimeout(t)
+    }
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) runHint()
+    }, { threshold: 0.3 })
+    observer.observe(baContainerRef.current)
+    return () => observer.disconnect()
   }, [])
 
   // Slider drag
@@ -396,24 +404,23 @@ export default function AccroPage() {
           )}
         </div>
 
-        {/* AVANT / APRÈS SLIDER */}
+        {/* POUR TOI / PAS POUR TOI SLIDER */}
         <div className="ba-section">
-          <p className="ba-title">Glisse pour voir la différence</p>
-          <p className="ba-hint">← Avant · Après →</p>
+          <p className="ba-title">Cet e-book est fait pour toi ?</p>
+          <p className="ba-hint">Glisse pour voir →</p>
           <div
             className="ba-container"
             ref={baContainerRef}
             onMouseDown={e => { isDragging.current = true; const rect = e.currentTarget.getBoundingClientRect(); setSliderPos(Math.min(95, Math.max(5, ((e.clientX - rect.left) / rect.width) * 100))) }}
             onTouchStart={e => { isDragging.current = true; const rect = e.currentTarget.getBoundingClientRect(); setSliderPos(Math.min(95, Math.max(5, ((e.touches[0].clientX - rect.left) / rect.width) * 100))) }}
           >
+            {/* PAS POUR TOI — panel du dessous (sombre) */}
             <div className="ba-avant">
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '14px', fontWeight: 700, color: 'rgba(255,255,255,0.4)', marginBottom: '8px' }}>Ce n'est pas pour toi si…</p>
               {[
-                "Tu analyses ses messages en boucle sans trouver de réponse.",
-                "Tu t'accroches même quand tu sens que ça ne va nulle part.",
-                "Tu ne sais plus si tu surréagis ou si c'est réel.",
-                "Tu confonds l'intensité avec quelque chose de vrai.",
-                "Tu perds ton énergie dans des relations qui stagnent.",
-                "Tu te demandes pourquoi ça recommence toujours pareil.",
+                "Tu veux \"le faire changer\" ou trouver la phrase parfaite pour qu'il devienne sérieux.",
+                "Tu n'as aucune envie de regarder tes propres schémas, parce que c'est toujours \"la faute des hommes.\"",
+                "Tu veux rester dans le doute plutôt qu'apprendre à voir clair, même si ça fait un peu mal au début.",
               ].map((text, i) => (
                 <div key={i} className="ba-item">
                   <span className="ba-item-icon">✕</span>
@@ -421,14 +428,16 @@ export default function AccroPage() {
                 </div>
               ))}
             </div>
+            {/* POUR TOI — panel du dessus (rose) */}
             <div className="ba-apres" style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '14px', fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: '8px' }}>Cet e-book est pour toi si…</p>
               {[
-                "Tu lis la situation clairement, sans te raconter d'histoires.",
-                "Tu reconnais quand tu donnes trop à quelqu'un qui donne peu.",
-                "Tu fais confiance à ce que tu ressens, sans te corriger.",
-                "Tu sais faire la différence entre intensité et intérêt réel.",
-                "Tu n'investis plus ton cœur là où ça ne grandit pas.",
-                "Tu comprends le schéma — et tu sais comment en sortir.",
+                "Tu retombes dans le même schéma, même quand tu te promets \"cette fois ce sera différent.\"",
+                "Tu t'attaches trop vite, puis tu attends, analyses, espères, et tu t'épuises doucement.",
+                "Tu sur-analyses les messages et les silences parce que tu ne sais plus ce qui est réel.",
+                "Tu veux des repères clairs pour reconnaître un vrai intérêt et arrêter de vivre dans le doute.",
+                "Tu ne veux plus perdre ton temps et ton cœur dans des relations qui n'avancent pas.",
+                "Tu veux revenir à toi : plus de calme, plus de clarté, et savoir ce que tu fais.",
               ].map((text, i) => (
                 <div key={i} className="ba-item">
                   <span className="ba-item-icon">✓</span>
@@ -436,8 +445,8 @@ export default function AccroPage() {
                 </div>
               ))}
             </div>
-            <span className="ba-corner-label ba-label-avant">Avant</span>
-            <span className="ba-corner-label ba-label-apres">Après</span>
+            <span className="ba-corner-label ba-label-avant">Pas pour toi</span>
+            <span className="ba-corner-label ba-label-apres">Pour toi</span>
             <div className="ba-handle" style={{ left: `${sliderPos}%` }}>
               <div className="ba-handle-line" />
               <div className="ba-handle-knob">
