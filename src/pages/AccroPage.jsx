@@ -52,12 +52,13 @@ export default function AccroPage() {
   const [stripeSkeleton, setStripeSkeleton] = useState(true)
   const [stickyVisible, setStickyVisible] = useState(false)
   const [stickyAnimating, setStickyAnimating] = useState(false)
-  const [sliderPos, setSliderPos] = useState(70)
+  const [sliderPos, setSliderPos] = useState(55)
 
   const narrativeEndRef = useRef(null)
   const paiementRef = useRef(null)
   const baContainerRef = useRef(null)
   const isDragging = useRef(false)
+  const touchStartRef = useRef({ x: 0, y: 0, decided: false })
   const carouselRef = useRef(null)
   const trackRef = useRef(null)
   const stickyHideTimer = useRef(null)
@@ -166,7 +167,7 @@ export default function AccroPage() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Slider hint animation on scroll into view
+  // Book hint animation on scroll into view
   useEffect(() => {
     if (!baContainerRef.current) return
     let triggered = false
@@ -176,10 +177,10 @@ export default function AccroPage() {
       let start = null
       function frame(ts) {
         if (!start) start = ts
-        const p = Math.min((ts - start) / 1200, 1)
-        setSliderPos(70 - 35 * Math.sin(p * Math.PI))
+        const p = Math.min((ts - start) / 1300, 1)
+        setSliderPos(55 - 28 * Math.sin(p * Math.PI))
         if (p < 1) requestAnimationFrame(frame)
-        else setSliderPos(70)
+        else setSliderPos(55)
       }
       requestAnimationFrame(frame)
     }
@@ -190,16 +191,28 @@ export default function AccroPage() {
     return () => observer.disconnect()
   }, [])
 
-  // Slider drag
+  // Book drag — only on horizontal touch, dissocié du scroll vertical
   useEffect(() => {
     function getPos(e) {
-      if (!baContainerRef.current) return 50
+      if (!baContainerRef.current) return 55
       const rect = baContainerRef.current.getBoundingClientRect()
       const clientX = e.touches ? e.touches[0].clientX : e.clientX
-      return Math.min(95, Math.max(5, ((clientX - rect.left) / rect.width) * 100))
+      return Math.min(88, Math.max(12, ((clientX - rect.left) / rect.width) * 100))
     }
-    function onMove(e) { if (isDragging.current) setSliderPos(getPos(e)) }
-    function onUp() { isDragging.current = false }
+    function onMove(e) {
+      if (!isDragging.current) return
+      if (e.touches) {
+        if (!touchStartRef.current.decided) {
+          const dx = Math.abs(e.touches[0].clientX - touchStartRef.current.x)
+          const dy = Math.abs(e.touches[0].clientY - touchStartRef.current.y)
+          if (dx < 4 && dy < 4) return
+          if (dy > dx) { isDragging.current = false; return }
+          touchStartRef.current.decided = true
+        }
+      }
+      setSliderPos(getPos(e))
+    }
+    function onUp() { isDragging.current = false; touchStartRef.current.decided = false }
     window.addEventListener('mousemove', onMove)
     window.addEventListener('mouseup', onUp)
     window.addEventListener('touchmove', onMove, { passive: true })
@@ -404,33 +417,13 @@ export default function AccroPage() {
           )}
         </div>
 
-        {/* POUR TOI / PAS POUR TOI SLIDER */}
-        <div className="ba-section">
-          <p className="ba-title">Cet e-book est fait pour toi ?</p>
-          <p className="ba-hint">Glisse pour voir →</p>
-          <div
-            className="ba-container"
-            ref={baContainerRef}
-            onMouseDown={e => { isDragging.current = true; const rect = e.currentTarget.getBoundingClientRect(); setSliderPos(Math.min(95, Math.max(5, ((e.clientX - rect.left) / rect.width) * 100))) }}
-            onTouchStart={e => { isDragging.current = true; const rect = e.currentTarget.getBoundingClientRect(); setSliderPos(Math.min(95, Math.max(5, ((e.touches[0].clientX - rect.left) / rect.width) * 100))) }}
-          >
-            {/* PAS POUR TOI — panel du dessous (sombre) */}
-            <div className="ba-avant">
-              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '14px', fontWeight: 700, color: 'rgba(255,255,255,0.4)', marginBottom: '8px' }}>Ce n'est pas pour toi si…</p>
-              {[
-                "Tu veux \"le faire changer\" ou trouver la phrase parfaite pour qu'il devienne sérieux.",
-                "Tu n'as aucune envie de regarder tes propres schémas, parce que c'est toujours \"la faute des hommes.\"",
-                "Tu veux rester dans le doute plutôt qu'apprendre à voir clair, même si ça fait un peu mal au début.",
-              ].map((text, i) => (
-                <div key={i} className="ba-item">
-                  <span className="ba-item-icon">✕</span>
-                  <span className="ba-item-text">{text}</span>
-                </div>
-              ))}
-            </div>
-            {/* POUR TOI — panel du dessus (rose) */}
-            <div className="ba-apres" style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}>
-              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '14px', fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: '8px' }}>Cet e-book est pour toi si…</p>
+        {/* LIVRE POUR TOI / PAS POUR TOI */}
+        <div className="book-section">
+          <p className="book-title">Cet e-book est fait pour toi ?</p>
+          <div className="book-spread" ref={baContainerRef}>
+            {/* PAGE GAUCHE — Pour toi */}
+            <div className="book-page book-page-left" style={{ width: `${sliderPos}%` }}>
+              <p className="book-page-title">Pour toi si…</p>
               {[
                 "Tu retombes dans le même schéma, même quand tu te promets \"cette fois ce sera différent.\"",
                 "Tu t'attaches trop vite, puis tu attends, analyses, espères, et tu t'épuises doucement.",
@@ -439,21 +432,31 @@ export default function AccroPage() {
                 "Tu ne veux plus perdre ton temps et ton cœur dans des relations qui n'avancent pas.",
                 "Tu veux revenir à toi : plus de calme, plus de clarté, et savoir ce que tu fais.",
               ].map((text, i) => (
-                <div key={i} className="ba-item">
-                  <span className="ba-item-icon">✓</span>
-                  <span className="ba-item-text">{text}</span>
+                <div key={i} className="book-item">
+                  <span className="book-item-icon">✓</span>
+                  <span className="book-item-text">{text}</span>
                 </div>
               ))}
             </div>
-            <span className="ba-corner-label ba-label-avant">Pas pour toi</span>
-            <span className="ba-corner-label ba-label-apres">Pour toi</span>
-            <div className="ba-handle" style={{ left: `${sliderPos}%` }}>
-              <div className="ba-handle-line" />
-              <div className="ba-handle-knob">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M6 3l-4 6 4 6M12 3l4 6-4 6" stroke="#660A43" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
+            {/* RELIURE */}
+            <div
+              className="book-spine"
+              onMouseDown={e => { e.preventDefault(); isDragging.current = true }}
+              onTouchStart={e => { isDragging.current = true; touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, decided: false } }}
+            />
+            {/* PAGE DROITE — Pas pour toi */}
+            <div className="book-page book-page-right" style={{ flex: 1 }}>
+              <p className="book-page-title">Pas pour toi si…</p>
+              {[
+                "Tu veux \"le faire changer\" ou trouver la phrase parfaite pour qu'il devienne sérieux.",
+                "Tu n'as aucune envie de regarder tes propres schémas, parce que c'est toujours \"la faute des hommes.\"",
+                "Tu veux rester dans le doute plutôt qu'apprendre à voir clair, même si ça fait un peu mal au début.",
+              ].map((text, i) => (
+                <div key={i} className="book-item">
+                  <span className="book-item-icon">✕</span>
+                  <span className="book-item-text">{text}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
