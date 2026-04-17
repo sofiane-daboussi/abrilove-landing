@@ -385,10 +385,11 @@ export default function AccroPage() {
               }}
             >
               <button className="flip-back-btn" onClick={() => setFlipped(false)}>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                Retour
+                <div className="flip-peek-arrow">
+                  <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
+                    <path d="M7 2l-4 5 4 5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
               </button>
               {[
                 "Tu retombes dans le même schéma, même quand tu te promets « cette fois ce sera différent. »",
