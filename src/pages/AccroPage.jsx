@@ -420,8 +420,13 @@ export default function AccroPage() {
         {/* LIVRE POUR TOI / PAS POUR TOI */}
         <div className="book-section">
           <p className="book-title">Cet e-book est fait pour toi ?</p>
-          <div className="book-spread" ref={baContainerRef}>
-            {/* PAGE GAUCHE — Pour toi */}
+          <p className="book-hint">← Glisse pour explorer →</p>
+          <div
+            className="book-spread"
+            ref={baContainerRef}
+            onMouseDown={e => { isDragging.current = true; touchStartRef.current = { x: e.clientX, y: e.clientY, decided: true } }}
+            onTouchStart={e => { isDragging.current = true; touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, decided: false } }}
+          >
             <div className="book-page book-page-left" style={{ width: `${sliderPos}%` }}>
               <p className="book-page-title">Pour toi si…</p>
               {[
@@ -437,15 +442,10 @@ export default function AccroPage() {
                   <span className="book-item-text">{text}</span>
                 </div>
               ))}
+              <div className="page-fold" />
             </div>
-            {/* RELIURE */}
-            <div
-              className="book-spine"
-              onMouseDown={e => { e.preventDefault(); isDragging.current = true }}
-              onTouchStart={e => { isDragging.current = true; touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, decided: false } }}
-            />
-            {/* PAGE DROITE — Pas pour toi */}
-            <div className="book-page book-page-right" style={{ flex: 1 }}>
+            <div className="book-spine" />
+            <div className="book-page book-page-right">
               <p className="book-page-title">Pas pour toi si…</p>
               {[
                 "Tu veux \"le faire changer\" ou trouver la phrase parfaite pour qu'il devienne sérieux.",
@@ -457,6 +457,7 @@ export default function AccroPage() {
                   <span className="book-item-text">{text}</span>
                 </div>
               ))}
+              <div className="page-fold" />
             </div>
           </div>
         </div>

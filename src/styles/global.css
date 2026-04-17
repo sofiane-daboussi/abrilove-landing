@@ -425,24 +425,28 @@ p strong, p em { color: #660A43; }
 .quiz-conclusion a { display: inline-block; background: white; color: #660A43; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; padding: 12px 24px; border-radius: 10px; text-decoration: none; }
 
 .book-section { margin-top: 48px; }
-.book-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #660A43; margin-bottom: 20px; }
-.book-spread { display: flex; border-radius: 16px; overflow: hidden; box-shadow: 0 16px 48px rgba(30,18,10,0.18); }
-.book-page { flex: 1; padding: 28px 20px 32px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-.book-page-left { background: #660A43; border-right: none; }
-.book-spine { width: 14px; background: linear-gradient(to right, #3a0825 0%, #8B3050 40%, #8B3050 60%, #3a0825 100%); flex-shrink: 0; box-shadow: inset -2px 0 6px rgba(0,0,0,0.2), inset 2px 0 6px rgba(0,0,0,0.2); cursor: ew-resize; touch-action: none; }
-.book-page-right { background: var(--creme2); }
-.book-page-title { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
-.book-page-left .book-page-title { color: rgba(255,255,255,0.85); }
+.book-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #660A43; margin-bottom: 6px; }
+.book-hint { font-size: 12px; color: var(--brun2); opacity: 0.65; margin-bottom: 16px; }
+.book-spread { display: flex; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(30,18,10,0.22), 0 0 0 1px rgba(30,18,10,0.06); cursor: ew-resize; user-select: none; -webkit-user-select: none; }
+.book-page { flex-shrink: 0; padding: 28px 18px 40px; display: flex; flex-direction: column; gap: 11px; min-width: 0; overflow: hidden; position: relative; }
+.book-page-left { background: #660A43; }
+.book-page-right { background: var(--creme2); flex: 1; }
+.book-spine { width: 14px; flex-shrink: 0; background: linear-gradient(to right, #2e0620 0%, #8B3050 45%, #8B3050 55%, #2e0620 100%); box-shadow: inset -3px 0 8px rgba(0,0,0,0.25), inset 3px 0 8px rgba(0,0,0,0.25); }
+.book-page-title { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
+.book-page-left .book-page-title { color: rgba(255,255,255,0.82); }
 .book-page-right .book-page-title { color: var(--brun2); }
 .book-item { display: flex; align-items: flex-start; gap: 8px; }
-.book-item-icon { width: 18px; height: 18px; min-width: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; margin-top: 2px; flex-shrink: 0; }
-.book-page-left .book-item-icon { background: rgba(255,255,255,0.2); color: white; }
-.book-page-right .book-item-icon { background: rgba(102,10,67,0.12); color: var(--brun2); }
-.book-page-left .book-item-text { font-size: 12.5px; line-height: 1.55; color: rgba(255,255,255,0.88); }
-.book-page-right .book-item-text { font-size: 12.5px; line-height: 1.55; color: var(--brun2); opacity: 0.7; }
+.book-item-icon { width: 17px; height: 17px; min-width: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; margin-top: 2px; flex-shrink: 0; }
+.book-page-left .book-item-icon { background: rgba(255,255,255,0.18); color: white; }
+.book-page-right .book-item-icon { background: rgba(102,10,67,0.1); color: var(--brun2); }
+.book-page-left .book-item-text { font-size: 12.5px; line-height: 1.55; color: rgba(255,255,255,0.87); }
+.book-page-right .book-item-text { font-size: 12.5px; line-height: 1.55; color: var(--brun2); opacity: 0.75; }
+.page-fold { position: absolute; bottom: 0; right: 0; width: 0; height: 0; border-style: solid; border-width: 0 0 26px 26px; }
+.book-page-left .page-fold { border-color: transparent transparent rgba(0,0,0,0.2) transparent; }
+.book-page-right .page-fold { border-color: transparent transparent rgba(102,10,67,0.12) transparent; }
 
 @media (max-width: 480px) {
-  .book-page { padding: 22px 14px 26px; }
+  .book-page { padding: 22px 12px 36px; }
   .book-page-left .book-item-text, .book-page-right .book-item-text { font-size: 12px; }
 }
 
