@@ -421,6 +421,7 @@ export default function AccroPage() {
         <div className="book-section">
           <p className="book-title">Cet e-book est fait pour toi ?</p>
           <p className="book-hint">← Glisse pour explorer →</p>
+          <div className="book-outer">
           <div
             className="book-spread"
             ref={baContainerRef}
@@ -444,7 +445,13 @@ export default function AccroPage() {
               ))}
               <div className="page-fold" />
             </div>
-            <div className="book-spine" />
+            <div className="book-spine">
+              <div className="book-handle">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M6 3l-4 6 4 6M12 3l4 6-4 6" stroke="#660A43" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </div>
             <div className="book-page book-page-right">
               <p className="book-page-title">Pas pour toi si…</p>
               {[
@@ -459,6 +466,7 @@ export default function AccroPage() {
               ))}
               <div className="page-fold" />
             </div>
+          </div>
           </div>
         </div>
 
