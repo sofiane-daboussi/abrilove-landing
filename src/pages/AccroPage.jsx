@@ -52,7 +52,7 @@ export default function AccroPage() {
   const [stripeSkeleton, setStripeSkeleton] = useState(true)
   const [stickyVisible, setStickyVisible] = useState(false)
   const [stickyAnimating, setStickyAnimating] = useState(false)
-  const [flipState, setFlipState] = useState('front') // 'front' | 'flipping-fwd' | 'back' | 'flipping-back'
+  const [flipped, setFlipped] = useState(false)
 
   const narrativeEndRef = useRef(null)
   const paiementRef = useRef(null)
@@ -233,18 +233,6 @@ export default function AccroPage() {
     return () => timers.forEach(clearTimeout)
   }, [])
 
-  function flipForward() {
-    if (flipState !== 'front') return
-    setFlipState('flipping-fwd')
-    setTimeout(() => setFlipState('back'), 1000)
-  }
-
-  function flipBackward() {
-    if (flipState !== 'back') return
-    setFlipState('flipping-back')
-    setTimeout(() => setFlipState('front'), 1000)
-  }
-
   function scrollToPaiement() {
     paiementRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -386,11 +374,11 @@ export default function AccroPage() {
                   <span className="book-item-text">{text}</span>
                 </div>
               ))}
-              <button className="flip-back-btn" onClick={flipBackward}>← Retour</button>
+              <button className="flip-back-btn" onClick={() => setFlipped(false)}>← Retour</button>
             </div>
 
             {/* Page 1 — se retourne */}
-            <div className={`flip-page-front${flipState === 'back' ? ' state-back' : ''}${flipState === 'flipping-fwd' ? ' anim-fwd' : ''}${flipState === 'flipping-back' ? ' anim-back' : ''}`}>
+            <div className={`flip-page-front${flipped ? ' flipped' : ''}`}>
               <div className="flip-page-face-front">
                 <p className="book-page-title">Pour toi si…</p>
                 {[
@@ -406,7 +394,7 @@ export default function AccroPage() {
                     <span className="book-item-text">{text}</span>
                   </div>
                 ))}
-                <button className="flip-next-btn" onClick={flipForward}>
+                <button className="flip-next-btn" onClick={() => setFlipped(true)}>
                   Pas pour toi ? Tourner la page →
                 </button>
               </div>
@@ -414,8 +402,8 @@ export default function AccroPage() {
             </div>
 
             {/* Onglet peek — visible uniquement sur la page 1 */}
-            {flipState === 'front' && (
-              <div className="flip-peek-tab" onClick={flipForward}>
+            {!flipped && (
+              <div className="flip-peek-tab" onClick={() => setFlipped(true)}>
                 <div className="flip-peek-arrow">
                   <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
                     <path d="M3 2l4 5-4 5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
