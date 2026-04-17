@@ -319,7 +319,7 @@ export default function AccroPage() {
           <p>Tu rencontres quelqu'un. Il y a de l'intensité, de la connexion, quelque chose de fort. Tu te dis que cette fois, c'est différent.</p>
           <p>Et puis… quelque chose se répète. Pas exactement la même histoire. Pas exactement le même homme. Mais toujours le même goût à la fin. <strong>Une distance. Un silence. Une blessure familière.</strong></p>
           <p>Alors tu te demandes : est-ce que c'est moi qui choisis mal? Est-ce que j'attire toujours le même type? Ou est-ce que le problème, c'est moi?</p>
-          <p>Le problème, ce n'est pas toi.</p>
+          <p><strong>Le problème, ce n'est pas toi.</strong></p>
           <p>C'est que personne ne t'a jamais montré comment ton système d'attachement fonctionne. Pourquoi tu t'accroches si vite. Pourquoi l'intensité te rassure au lieu de t'alerter. Pourquoi tu confonds <strong>l'espoir d'une relation</strong> avec une relation réelle.</p>
           <p>Une fois que tu comprends ça, vraiment, quelque chose change. Tu ne deviens pas froide. Tu ne te fermes pas. Tu deviens simplement <em>plus libre.</em></p>
           <p>Libre de ne plus courir après quelqu'un qui avance à moitié. Libre de reconnaître très tôt quand tu donnes trop à quelqu'un qui donne trop peu. Libre d'aimer sans te consumer.</p>
