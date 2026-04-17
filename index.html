@@ -653,10 +653,7 @@ body {
     }
     function updateBar() {
       var triggerPassed = trigger.getBoundingClientRect().top < 0;
-      var pr = paiement.getBoundingClientRect();
-      var paiementVisible = pr.top < window.innerHeight && pr.bottom > 0;
-      if (triggerPassed && !paiementVisible) showBar();
-      else if (!triggerPassed || paiementVisible) hideBar();
+      if (triggerPassed) showBar();
     }
     window.addEventListener('scroll', updateBar, { passive: true });
   });
@@ -686,7 +683,17 @@ body {
     const answer = item.querySelector('.faq-a');
     const isOpen = btn.classList.contains('open');
     document.querySelectorAll('.faq-q.open').forEach(b => { b.classList.remove('open'); b.closest('.faq-item').querySelector('.faq-a').classList.remove('open'); });
-    if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.classList.add('open');
+      setTimeout(function() {
+        const bar = document.getElementById('sticky-bar');
+        const barH = bar && bar.classList.contains('animating') ? bar.offsetHeight : 0;
+        const bottom = item.getBoundingClientRect().bottom;
+        const gap = bottom - (window.innerHeight - barH - 16);
+        if (gap > 0) window.scrollBy({ top: gap, behavior: 'smooth' });
+      }, 320);
+    }
   }
 
   function abriToggleEbook() {
