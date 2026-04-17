@@ -53,6 +53,7 @@ export default function AccroPage() {
   const [stickyVisible, setStickyVisible] = useState(false)
   const [stickyAnimating, setStickyAnimating] = useState(false)
   const [flipped, setFlipped] = useState(false)
+  const flipDragRef = useRef({ startX: 0, startY: 0, direction: null, triggered: false })
 
   const narrativeEndRef = useRef(null)
   const paiementRef = useRef(null)
@@ -361,47 +362,66 @@ export default function AccroPage() {
         <div className="book-section">
           <p className="book-title">Cet e-book est fait pour toi ?</p>
           <div className="flip-book">
-            {/* Page 2 — toujours derrière */}
+            {/* Page derrière — Pour toi si (révélée après le retournement) */}
             <div className="flip-page-back">
-              <p className="book-page-title">Pas pour toi si…</p>
+              <p className="book-page-title">Par contre, c'est pour toi si…</p>
               {[
-                "Tu veux « le faire changer » ou trouver la phrase parfaite pour qu'il devienne sérieux.",
-                "Tu n'as aucune envie de regarder tes propres schémas, parce que c'est toujours « la faute des hommes ».",
-                "Tu veux rester dans le doute plutôt qu'apprendre à voir clair, même si ça fait un peu mal au début.",
+                "Tu retombes dans le même schéma, même quand tu te promets « cette fois ce sera différent. »",
+                "Tu t'attaches trop vite, puis tu attends, analyses, espères, et tu t'épuises doucement.",
+                "Tu sur-analyses les messages et les silences parce que tu ne sais plus ce qui est réel.",
+                "Tu veux des repères clairs pour reconnaître un vrai intérêt et arrêter de vivre dans le doute.",
+                "Tu ne veux plus perdre ton temps et ton cœur dans des relations qui n'avancent pas.",
+                "Tu veux revenir à toi : plus de calme, plus de clarté, et savoir ce que tu fais.",
               ].map((text, i) => (
                 <div key={i} className="book-item">
-                  <span className="book-item-icon">✕</span>
+                  <span className="book-item-icon">✓</span>
                   <span className="book-item-text">{text}</span>
                 </div>
               ))}
+              <button className="flip-next-btn flip-cta" onClick={scrollToPaiement}>
+                Je veux mon e-book → 17€
+              </button>
               <button className="flip-back-btn" onClick={() => setFlipped(false)}>← Retour</button>
             </div>
 
-            {/* Page 1 — se retourne */}
-            <div className={`flip-page-front${flipped ? ' flipped' : ''}`}>
+            {/* Page devant — Pas pour toi si (visible en premier) */}
+            <div
+              className={`flip-page-front${flipped ? ' flipped' : ''}`}
+              onTouchStart={e => {
+                if (flipped) return
+                flipDragRef.current = { startX: e.touches[0].clientX, startY: e.touches[0].clientY, direction: null, triggered: false }
+              }}
+              onTouchMove={e => {
+                if (flipped) return
+                const d = flipDragRef.current
+                if (d.triggered || d.direction === 'vertical') return
+                const dx = d.startX - e.touches[0].clientX
+                const dy = Math.abs(e.touches[0].clientY - d.startY)
+                if (Math.abs(dx) < 8 && dy < 8) return
+                if (!d.direction) d.direction = dy > Math.abs(dx) ? 'vertical' : 'horizontal'
+                if (d.direction === 'horizontal' && dx > 25) { d.triggered = true; setFlipped(true) }
+              }}
+            >
               <div className="flip-page-face-front">
-                <p className="book-page-title">Pour toi si…</p>
+                <p className="book-page-title">Ce n'est pas pour toi si…</p>
                 {[
-                  "Tu retombes dans le même schéma, même quand tu te promets « cette fois ce sera différent. »",
-                  "Tu t'attaches trop vite, puis tu attends, analyses, espères, et tu t'épuises doucement.",
-                  "Tu sur-analyses les messages et les silences parce que tu ne sais plus ce qui est réel.",
-                  "Tu veux des repères clairs pour reconnaître un vrai intérêt et arrêter de vivre dans le doute.",
-                  "Tu ne veux plus perdre ton temps et ton cœur dans des relations qui n'avancent pas.",
-                  "Tu veux revenir à toi : plus de calme, plus de clarté, et savoir ce que tu fais.",
+                  "Tu veux « le faire changer » ou trouver la phrase parfaite pour qu'il devienne sérieux.",
+                  "Tu n'as aucune envie de regarder tes propres schémas, parce que c'est toujours « la faute des hommes ».",
+                  "Tu veux rester dans le doute plutôt qu'apprendre à voir clair, même si ça fait un peu mal au début.",
                 ].map((text, i) => (
                   <div key={i} className="book-item">
-                    <span className="book-item-icon">✓</span>
+                    <span className="book-item-icon">✕</span>
                     <span className="book-item-text">{text}</span>
                   </div>
                 ))}
                 <button className="flip-next-btn" onClick={() => setFlipped(true)}>
-                  Pas pour toi ? Tourner la page →
+                  Par contre, c'est pour toi si… →
                 </button>
               </div>
               <div className="flip-page-face-back" />
             </div>
 
-            {/* Onglet peek — visible uniquement sur la page 1 */}
+            {/* Peek tab */}
             {!flipped && (
               <div className="flip-peek-tab" onClick={() => setFlipped(true)}>
                 <div className="flip-peek-arrow">
