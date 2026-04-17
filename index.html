@@ -24,6 +24,7 @@
 
 body {
   background: #660A43;
+      font-family: 'DM Sans', sans-serif;
       color: var(--brun);
       min-height: 100vh;
       padding: 24px 16px 24px;
@@ -55,11 +56,17 @@ body {
       font-size: 30px;
       font-weight: 700;
       line-height: 1.25;
-      color: var(--brun);
+      color: #660A43;
       margin-bottom: 28px;
     }
 
     h1 em { color: var(--rose); font-style: italic; }
+
+    p {
+      font-size: 15px;
+      color: var(--brun2);
+      line-height: 1.75;
+    }
 
     .narrative p {
       font-size: 16px;
@@ -131,7 +138,7 @@ body {
       font-family: 'Playfair Display', serif;
       font-size: 20px;
       font-weight: 700;
-      color: var(--brun);
+      color: #660A43;
       margin-bottom: 4px;
     }
 
@@ -300,7 +307,7 @@ body {
       font-family: 'Playfair Display', serif;
       font-size: 22px;
       font-weight: 700;
-      color: var(--brun);
+      color: #660A43;
       margin-bottom: 10px;
     }
 
@@ -370,8 +377,21 @@ body {
     .iphone .send-btn svg{width:13px;height:13px;fill:#FFF1E7;}
     @keyframes abri-dot{0%,60%,100%{opacity:0.2;transform:scale(0.8);}30%{opacity:1;transform:scale(1);}}
 
+    .underline-wave {
+      position: relative;
+      display: inline;
+    }
+    .wave-svg {
+      position: absolute;
+      left: 0;
+      bottom: 0px;
+      width: 100%;
+      height: 7px;
+      overflow: visible;
+    }
+
     .quiz-section { margin-top:48px; }
-    .quiz-intro { font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--brun);line-height:1.4;margin-bottom:6px; }
+    .quiz-intro { font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#660A43;line-height:1.4;margin-bottom:6px; }
     .quiz-sub { font-size:13px;color:var(--brun2);margin-bottom:20px; }
     .quiz-card { display:flex;align-items:flex-start;gap:12px;background:var(--creme2);border:2px solid transparent;border-radius:12px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:all 0.2s ease;user-select:none; }
     .quiz-card.checked { background:#fde8f0;border-color:#660A43; }
@@ -379,7 +399,7 @@ body {
     .quiz-card.checked .quiz-check { background:#660A43;border-color:#660A43; }
     .quiz-check svg { display:none;width:12px;height:12px;stroke:white;stroke-width:3; }
     .quiz-card.checked .quiz-check svg { display:block; }
-    .quiz-text { font-size:14px;color:var(--brun2);line-height:1.6; }
+    .quiz-text { font-size:14px;line-height:1.6; }
     .quiz-card.checked .quiz-text { color:var(--brun); }
     .quiz-conclusion { display:none;margin-top:32px;background:#660A43;border-radius:14px;padding:20px;text-align:center; }
     .quiz-conclusion.visible { display:block; }
@@ -393,7 +413,7 @@ body {
     .faq-q.open .faq-icon { transform:rotate(45deg); }
     .faq-a { max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease;padding:0 18px; }
     .faq-a.open { max-height:200px;padding:0 18px 16px; }
-    .faq-a p { font-size:14px;color:var(--brun2);line-height:1.7; }
+    .faq-a p { line-height:1.7; }
 
     @media (max-width: 480px) {
       body { padding: 14px 10px 24px; }
@@ -410,13 +430,13 @@ body {
 
   <span class="profil-tag">Résultat du quiz · Ton profil</span>
 
-  <h1>Tu es une <em>Amoureuse Accro.</em><br>Et tu le savais déjà.</h1>
+  <h1>Tu es une <em><span class="underline-wave">Amoureuse Accro<svg class="wave-svg" viewBox="0 0 100 7" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,3 Q50,7 100,3" stroke="#660A43" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span>.</em><br>Et tu le savais déjà.</h1>
 
   <div class="narrative">
     <p>Tu viens de finir ce quiz. Et quelque part, tu n'es pas vraiment surprise par le résultat.</p>
     <p>Parce que tu le vis depuis longtemps.</p>
     <p>Cette façon de t'emballer pour quelqu'un en quelques jours. De commencer à imaginer une histoire avant même qu'elle existe vraiment. De surveiller ton téléphone sans vraiment te l'avouer.</p>
-    <p>Et quand il répond moins vite. Quand le ton change un peu. Quand il y a un silence de trop — <strong>ton cerveau s'allume.</strong> Tu analyses. Tu cherches une explication. Tu espères que c'est rien.</p>
+    <p>Et quand il répond moins vite. Quand le ton change un peu. Quand il y a un silence de trop , <strong>ton cerveau s'allume.</strong> Tu analyses. Tu cherches une explication. Tu espères que c'est rien.</p>
     <p>T'as pas besoin qu'on te l'explique. Tu sais exactement de quoi on parle.</p>
     <p>De l'extérieur, tout a l'air sous contrôle. Tu es intelligente, autonome, tu gères ta vie.</p>
     <p>Mais à l'intérieur, il y a souvent cette pensée qui revient : <em>« Pourquoi ça recommence toujours pareil ? »</em></p>
@@ -425,7 +445,7 @@ body {
     <p>Alors tu te demandes : est-ce que c'est moi qui choisis mal ? Est-ce que j'attire toujours le même type ? Ou est-ce que le problème, c'est moi ?</p>
     <p>Le problème, ce n'est pas toi.</p>
     <p>C'est que personne ne t'a jamais montré comment ton système d'attachement fonctionne. Pourquoi tu t'accroches si vite. Pourquoi l'intensité te rassure au lieu de t'alerter. Pourquoi tu confonds <strong>l'espoir d'une relation</strong> avec une relation réelle.</p>
-    <p>Une fois que tu comprends ça — vraiment — quelque chose change. Tu ne deviens pas froide. Tu ne te fermes pas. Tu deviens simplement <em>plus libre.</em></p>
+    <p>Une fois que tu comprends ça , vraiment , quelque chose change. Tu ne deviens pas froide. Tu ne te fermes pas. Tu deviens simplement <em>plus libre.</em></p>
     <p>Libre de ne plus courir après quelqu'un qui avance à moitié. Libre de reconnaître très tôt quand tu donnes trop à quelqu'un qui donne trop peu. Libre d'aimer sans te consumer.</p>
     <p>C'est exactement ce que j'ai écrit dans cet e-book.</p>
   </div>
@@ -596,32 +616,6 @@ body {
   }
 </style>
 
-<div class="abri-section" id="abri-section-ebook">
-  <div class="abri-left">
-    <h2>Tu as deux choix.</h2>
-  </div>
-
-  <div class="abri-right">
-    <div class="abri-text-wrapper">
-      <div class="abri-text-off">
-        <p>Continuer à <strong>analyser ses messages, attendre, douter…</strong></p>
-        <p class="abri-ou">ou tu peux <strong>actionner l'interrupteur.</strong></p>
-      </div>
-      <div class="abri-text-on">
-        <p>Comprendre enfin pourquoi tu t'accroches — et comment arrêter. C'est exactement ce que cet e-book t'apporte.</p>
-      </div>
-    </div>
-
-    <button class="abri-toggle" id="abri-toggle-ebook" onclick="abriToggleEbook()" aria-label="Activer">
-      <div class="abri-toggle-knob"></div>
-    </button>
-
-    <button class="abri-cta-ebook" onclick="document.getElementById('paiement').scrollIntoView({behavior:'smooth'})">
-      Je veux mon e-book → 17€
-    </button>
-  </div>
-</div>
-
 <script>
   function quizToggle(card) {
     card.classList.toggle('checked');
@@ -659,8 +653,8 @@ body {
 
   <!-- QUIZ CHECKLIST -->
   <div class="quiz-section">
-    <p class="quiz-intro">Fais un petit test : réponds OUI si tu te reconnais dans ces points…</p>
-    <p class="quiz-sub">Clique sur tout ce qui te parle.</p>
+    <p class="quiz-intro">Est-ce que tu te reconnais là-dedans ?</p>
+    <p class="quiz-sub">Coche ce qui te parle.</p>
 
     <div class="quiz-card" onclick="quizToggle(this)">
       <div class="quiz-check"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1"/></svg></div>
@@ -698,6 +692,32 @@ body {
     <div class="quiz-conclusion" id="quiz-conclusion">
       <p>Si tu t'es reconnue ne serait-ce qu'une fois…<br><strong>cet e-book a été écrit pour toi.</strong></p>
       <a href="#paiement" onclick="document.getElementById('paiement').scrollIntoView({behavior:'smooth'});return false;">Je veux mon e-book → 17€</a>
+    </div>
+  </div>
+
+  <div class="abri-section" id="abri-section-ebook">
+    <div class="abri-left">
+      <h2>Tu as deux choix.</h2>
+    </div>
+
+    <div class="abri-right">
+      <div class="abri-text-wrapper">
+        <div class="abri-text-off">
+          <p>Continuer à <strong>analyser ses messages, attendre, douter…</strong></p>
+          <p class="abri-ou">ou tu peux <strong>actionner l'interrupteur.</strong></p>
+        </div>
+        <div class="abri-text-on">
+          <p>Comprendre enfin pourquoi tu t'accroches , et comment arrêter. C'est exactement ce que cet e-book t'apporte.</p>
+        </div>
+      </div>
+
+      <button class="abri-toggle" id="abri-toggle-ebook" onclick="abriToggleEbook()" aria-label="Activer">
+        <div class="abri-toggle-knob"></div>
+      </button>
+
+      <button class="abri-cta-ebook" onclick="document.getElementById('paiement').scrollIntoView({behavior:'smooth'})">
+        Je veux mon e-book → 17€
+      </button>
     </div>
   </div>
 
@@ -741,9 +761,9 @@ body {
   <div style="margin-top:48px;">
     <div style="display:flex;gap:40px;align-items:center;flex-wrap:wrap;">
       <div style="flex:1;min-width:240px;">
-        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--brun);margin-bottom:16px;line-height:1.3;">Tu as une question avant de te décider ?</h3>
-        <p style="font-size:15px;color:var(--brun2);line-height:1.75;margin-bottom:20px;">Tu analyses ses messages depuis des heures. Tu sais pas si tu dois lui écrire. Tu te demandes si tu t'accroches trop ou si c'est lui le problème.</p>
-        <p style="font-size:15px;color:var(--brun2);line-height:1.75;margin-bottom:24px;">Pose ta question — tu reçois une réponse en quelques secondes, maintenant, peu importe l'heure. Des milliers d'heures de coaching en relations amoureuses, disponibles pour toi instantanément.</p>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#660A43;margin-bottom:16px;line-height:1.3;">Tu as une question avant de te décider ?</h3>
+        <p style="margin-bottom:20px;">Tu analyses ses messages depuis des heures. Tu sais pas si tu dois lui écrire. Tu te demandes si tu t'accroches trop ou si c'est lui le problème.</p>
+        <p style="margin-bottom:24px;">Pose ta question , tu reçois une réponse en quelques secondes, maintenant, peu importe l'heure. Des milliers d'heures de coaching en relations amoureuses, disponibles pour toi instantanément.</p>
         <div style="position:relative;display:inline-block;width:100%;">
           <div style="position:absolute;top:-12px;right:12px;background:#FFF1E7;color:#660A43;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;border:1.5px solid #660A43;">7 premiers messages offerts</div>
           <a href="https://ia.abrilove.fr" target="_blank" style="display:block;width:100%;padding:14px;background:#660A43;color:white;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;text-decoration:none;box-sizing:border-box;text-align:center;">Poser ma question maintenant →</a>
@@ -761,7 +781,7 @@ body {
             <span class="back">‹</span>
             <div class="avatar"><img src="https://cdn.prod.website-files.com/686bb5337ed61a425660e143/69b163fc41e69155b8609953_Copie%20de%20Copie%20de%20Copie%20de%20Copie%20de%20Blue%20and%20Pink%20Soft%20Magazine%20Cover%20Mockup%20Instagram%20Post%20(6).avif"></div>
             <div class="info">
-              <div class="name">Sofi & Oli — Abrilove</div>
+              <div class="name">Sofi & Oli , Abrilove</div>
               <div class="online">● En ligne</div>
             </div>
           </div>
@@ -784,7 +804,7 @@ body {
 
   <!-- FAQ -->
   <div style="margin-top:48px;">
-    <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--brun);margin-bottom:20px;text-align:center;">Questions fréquentes</h3>
+    <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#660A43;margin-bottom:20px;text-align:center;">Questions fréquentes</h3>
     <div class="faq-list">
 
       <div class="faq-item">
@@ -823,7 +843,7 @@ body {
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Si tu te retrouves à analyser ses messages en boucle, à attendre qu'il revienne, à t'accrocher même quand ça fait mal — oui, ce livre a été écrit pour toi.</p>
+          <p>Si tu te retrouves à analyser ses messages en boucle, à attendre qu'il revienne, à t'accrocher même quand ça fait mal , oui, ce livre a été écrit pour toi.</p>
         </div>
       </div>
 
@@ -846,7 +866,7 @@ body {
 <div id="popup-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:999;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;">
   <div style="background:#FFF1E7;border-radius:20px;padding:28px 24px;max-width:360px;width:100%;text-align:center;font-family:sans-serif;">
     <div style="font-size:32px;margin-bottom:12px;">🎉</div>
-    <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1E120A;margin:0 0 6px;">Ton e-book est en route !</h2>
+    <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#660A43;margin:0 0 6px;">Ton e-book est en route !</h2>
     <p style="font-size:13px;color:#5C3D2A;margin:0 0 20px;line-height:1.5;">Vérifie ta boîte mail, pense à checker tes spams.</p>
     <div style="background:#fdf0f7;border-radius:14px;padding:16px;margin-bottom:20px;text-align:left;">
       <p style="font-size:13px;font-weight:700;color:#1E120A;margin:0 0 6px;font-family:'Playfair Display',serif;">Et si tu voulais aller plus loin ?</p>
