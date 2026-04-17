@@ -667,11 +667,11 @@ body {
     var lastY = window.scrollY;
     function updateBar() {
       var currentY = window.scrollY;
-      var scrollingUp = currentY < lastY - 5;
+      var diff = currentY - lastY;
       lastY = currentY;
       var triggerPassed = trigger.getBoundingClientRect().top < 0;
-      if (scrollingUp) hideBar();
-      else if (triggerPassed) showBar();
+      if (diff < -5) hideBar();
+      else if (diff > 5 && triggerPassed) showBar();
     }
     window.addEventListener('scroll', updateBar, { passive: true });
   });
