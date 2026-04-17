@@ -667,7 +667,7 @@ body {
     var lastY = window.scrollY;
     function updateBar() {
       var currentY = window.scrollY;
-      var scrollingUp = currentY < lastY;
+      var scrollingUp = currentY < lastY - 5;
       lastY = currentY;
       var triggerPassed = trigger.getBoundingClientRect().top < 0;
       if (scrollingUp) hideBar();
