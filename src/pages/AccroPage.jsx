@@ -54,6 +54,7 @@ export default function AccroPage() {
   const [stickyAnimating, setStickyAnimating] = useState(false)
   const [flipped, setFlipped] = useState(false)
   const flipDragRef = useRef({ startX: 0, startY: 0, direction: null, triggered: false })
+  const flipBackDragRef = useRef({ startX: 0, startY: 0, direction: null, triggered: false })
 
   const narrativeEndRef = useRef(null)
   const paiementRef = useRef(null)
@@ -362,8 +363,27 @@ export default function AccroPage() {
         <div className="book-section">
           <p className="book-title">Cet e-book est fait pour toi ?</p>
           <div className="flip-book">
+            <div className="flip-page-stack flip-page-stack-2" />
+            <div className="flip-page-stack flip-page-stack-1" />
+
             {/* Page derrière — Pour toi si (révélée après le retournement) */}
-            <div className="flip-page-back">
+            <div
+              className="flip-page-back"
+              onTouchStart={e => {
+                if (!flipped) return
+                flipBackDragRef.current = { startX: e.touches[0].clientX, startY: e.touches[0].clientY, direction: null, triggered: false }
+              }}
+              onTouchMove={e => {
+                if (!flipped) return
+                const d = flipBackDragRef.current
+                if (d.triggered || d.direction === 'vertical') return
+                const dx = e.touches[0].clientX - d.startX
+                const dy = Math.abs(e.touches[0].clientY - d.startY)
+                if (Math.abs(dx) < 8 && dy < 8) return
+                if (!d.direction) d.direction = dy > Math.abs(dx) ? 'vertical' : 'horizontal'
+                if (d.direction === 'horizontal' && dx > 25) { d.triggered = true; setFlipped(false) }
+              }}
+            >
               <button className="flip-back-btn" onClick={() => setFlipped(false)}>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -408,7 +428,7 @@ export default function AccroPage() {
               }}
             >
               <div className="flip-page-face-front">
-                <p className="book-page-title">Ce n'est pas pour toi si…</p>
+                <p className="book-page-title">Pardon, cet e-book n'est pas fait pour toi si…</p>
                 {[
                   "Tu veux « le faire changer » ou trouver la phrase parfaite pour qu'il devienne sérieux.",
                   "Tu n'as aucune envie de regarder tes propres schémas, parce que c'est toujours « la faute des hommes ».",
