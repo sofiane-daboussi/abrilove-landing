@@ -419,6 +419,19 @@ body {
     .quiz-conclusion p { font-family:'Playfair Display',serif;font-size:16px;color:white;line-height:1.5;margin:0;text-align:center; }
     .quiz-conclusion p strong { color:white; }
     .quiz-conclusion a { display:inline-block;background:white;color:#660A43;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;padding:12px 24px;border-radius:10px;text-decoration:none; }
+    .pour-toi-section { margin-top:48px; }
+    .pour-toi-title { font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#660A43;margin-bottom:20px; }
+    .pour-toi-item { display:flex;gap:12px;align-items:flex-start;opacity:0;transform:translateY(12px);transition:opacity 0.4s ease,transform 0.4s ease;margin-bottom:12px; }
+    .pour-toi-item.revealed { opacity:1;transform:translateY(0); }
+    .pour-toi-item .pt-icon { width:22px;height:22px;min-width:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px; }
+    .pour-toi-item.oui .pt-icon { background:#660A43;color:white; }
+    .pour-toi-item.non .pt-icon { background:#e8ddd6;color:#9b7b6a; }
+    .pour-toi-item.oui .pt-text { font-size:14px;color:var(--brun);line-height:1.6; }
+    .pour-toi-item.non .pt-text { font-size:14px;color:#9b7b6a;line-height:1.6; }
+    .pour-toi-separator { height:1px;background:var(--creme2);margin:20px 0;opacity:0;transition:opacity 0.4s ease; }
+    .pour-toi-separator.revealed { opacity:1; }
+    .pour-toi-subtitle { font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#9b7b6a;margin-bottom:16px;opacity:0;transform:translateY(8px);transition:opacity 0.4s ease,transform 0.4s ease; }
+    .pour-toi-subtitle.revealed { opacity:1;transform:translateY(0); }
 
     .faq-list { display:flex;flex-direction:column;gap:10px; }
     .faq-item { border:1.5px solid var(--creme2);border-radius:12px;overflow:hidden; }
@@ -658,6 +671,22 @@ body {
     window.addEventListener('scroll', updateBar, { passive: true });
   });
 
+  document.addEventListener('DOMContentLoaded', function() {
+    var section = document.getElementById('pour-toi-section');
+    if (!section) return;
+    var triggered = false;
+    function reveal() {
+      if (triggered) return;
+      triggered = true;
+      var items = section.querySelectorAll('.pour-toi-item, .pour-toi-separator, .pour-toi-subtitle');
+      items.forEach(function(el, i) { setTimeout(function() { el.classList.add('revealed'); }, i * 120); });
+    }
+    var io = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) reveal();
+    }, { threshold: 0 });
+    io.observe(section);
+  });
+
   function quizToggle(card) {
     card.classList.toggle('checked');
     const n = document.querySelectorAll('.quiz-card.checked').length;
@@ -744,6 +773,22 @@ body {
       <p>Si tu t'es reconnue ne serait-ce qu'une fois…<br><strong>cet e-book a été écrit pour toi.</strong></p>
       <a href="#paiement" onclick="document.getElementById('paiement').scrollIntoView({behavior:'smooth'});return false;">Je veux mon e-book → 17€</a>
     </div>
+  </div>
+
+  <!-- POUR TOI / PAS POUR TOI -->
+  <div class="pour-toi-section" id="pour-toi-section">
+    <p class="pour-toi-title">Cet e-book est pour toi si…</p>
+    <div class="pour-toi-item oui"><div class="pt-icon">✓</div><p class="pt-text">Tu retombes dans le même schéma, même quand tu te promets "cette fois ce sera différent."</p></div>
+    <div class="pour-toi-item oui"><div class="pt-icon">✓</div><p class="pt-text">Tu t'attaches trop vite, puis tu attends, analyses, espères, et tu t'épuises doucement.</p></div>
+    <div class="pour-toi-item oui"><div class="pt-icon">✓</div><p class="pt-text">Tu sur-analyses les messages et les silences parce que tu ne sais plus ce qui est réel.</p></div>
+    <div class="pour-toi-item oui"><div class="pt-icon">✓</div><p class="pt-text">Tu veux des repères clairs pour reconnaître un vrai intérêt et arrêter de vivre dans le doute.</p></div>
+    <div class="pour-toi-item oui"><div class="pt-icon">✓</div><p class="pt-text">Tu ne veux plus perdre ton temps et ton cœur dans des relations qui n'avancent pas.</p></div>
+    <div class="pour-toi-item oui"><div class="pt-icon">✓</div><p class="pt-text">Tu veux revenir à toi : plus de calme, plus de clarté, et savoir ce que tu fais.</p></div>
+    <div class="pour-toi-separator" id="pt-sep"></div>
+    <p class="pour-toi-subtitle" id="pt-subtitle">Ce n'est pas pour toi si…</p>
+    <div class="pour-toi-item non"><div class="pt-icon">✕</div><p class="pt-text">Tu veux "le faire changer" ou trouver la phrase parfaite pour qu'il devienne sérieux.</p></div>
+    <div class="pour-toi-item non"><div class="pt-icon">✕</div><p class="pt-text">Tu n'as aucune envie de regarder tes propres schémas, parce que c'est toujours "la faute des hommes."</p></div>
+    <div class="pour-toi-item non"><div class="pt-icon">✕</div><p class="pt-text">Tu veux rester dans le doute plutôt qu'apprendre à voir clair, même si ça fait un peu mal au début.</p></div>
   </div>
 
   <div class="abri-section" id="abri-section-ebook">
