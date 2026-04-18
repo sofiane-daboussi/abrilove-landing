@@ -424,18 +424,26 @@ p strong, p em { color: #660A43; }
 .quiz-conclusion p strong { color: white; }
 .quiz-conclusion a { display: inline-block; background: white; color: #660A43; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; padding: 12px 24px; border-radius: 10px; text-decoration: none; }
 
-.book-section { margin-top: 48px; }
+.book-section { margin-top: 48px; padding-right: 12px; }
 
 /* Conteneur livre complet */
 .book-wrap {
   display: flex;
   filter: drop-shadow(0 22px 55px rgba(20,8,3,0.52));
 }
+
+@media (min-width: 601px) {
+  .book-section { display: flex; justify-content: center; }
+  .book-wrap { width: 370px; }
+  .book-pg-front, .book-pg-back { min-height: 520px; }
+  .book-pg-back { justify-content: space-between; }
+  .book-pg-front .book-face-front { justify-content: space-between; }
+}
 /* Reliure gauche */
 .book-spine {
   width: 24px;
   flex-shrink: 0;
-  background: linear-gradient(to right, #3a0620 0%, #5c0e3c 30%, #7a1655 55%, #5c0e3c 75%, #3a0620 100%);
+  background: linear-gradient(to right, #3a1020 0%, #5c2038 30%, #722840 55%, #5c2038 75%, #3a1020 100%);
   border-radius: 6px 0 0 6px;
   position: relative;
   z-index: 5;
@@ -483,7 +491,7 @@ p strong, p em { color: #660A43; }
   z-index: 2;
   position: relative;
   width: calc(100% - 36px);
-  background: linear-gradient(155deg, #3d0828 0%, #660A43 55%, #7d1454 100%);
+  background: linear-gradient(155deg, #722840 0%, #8B3050 55%, #9a3858 100%);
   border-radius: 0 6px 6px 0;
   padding: 22px 18px 24px;
   display: flex;
@@ -541,6 +549,30 @@ p strong, p em { color: #660A43; }
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 42px 24px 20px;
+  box-sizing: border-box;
+}
+.book-face-back-content {
+  text-align: center;
+}
+.book-testimonial-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(60,30,20,0.75);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+.book-testimonial-author {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(102,10,67,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 /* Ligne décorative haut de page */
 .book-page-rule {
@@ -579,7 +611,7 @@ p strong, p em { color: #660A43; }
 /* Couverture livre */
 .book-cover-top {
   text-align: center;
-  padding: 6px 4px 8px;
+  padding: 2px 4px 0;
 }
 .book-cover-series {
   font-family: 'DM Sans', sans-serif;
@@ -587,36 +619,47 @@ p strong, p em { color: #660A43; }
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: rgba(255,200,170,0.5);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 .book-cover-main-title {
   font-family: 'Playfair Display', serif;
-  font-size: 27px;
+  font-size: 24px;
   font-weight: 700;
   font-style: italic;
   color: rgba(255, 238, 220, 0.97);
-  line-height: 1.2;
-  margin-bottom: 10px;
+  line-height: 1.15;
+  margin-bottom: 0;
   text-shadow: 0 2px 14px rgba(0,0,0,0.35);
-}
-.book-cover-ornament {
-  font-size: 13px;
-  color: rgba(255,200,170,0.45);
-  margin: 0;
 }
 .book-cover-divider {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255,200,170,0.3) 30%, rgba(255,200,170,0.3) 70%, transparent);
-  margin: 10px 0 12px;
+  background: linear-gradient(to right, transparent, rgba(255,200,220,0.3) 30%, rgba(255,200,220,0.3) 70%, transparent);
+  margin: 8px 0 8px;
   flex-shrink: 0;
 }
 .book-cover-subtitle {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
   font-style: italic;
-  color: rgba(255,210,190,0.65);
+  font-weight: 600;
+  color: rgba(255,220,205,0.85);
   text-align: center;
   margin-bottom: 8px;
+}
+.book-back-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.book-cover-subtitle--back {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 600;
+  color: #660A43;
+  margin: 0;
 }
 /* Page 1 — items sur couverture */
 .book-face-front .book-item-icon { background: rgba(255,210,190,0.15); color: rgba(255,210,190,0.55); }

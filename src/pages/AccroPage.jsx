@@ -388,13 +388,16 @@ export default function AccroPage() {
                 }}
               >
                 <div className="book-page-rule" />
-                <button className="book-btn-back" onClick={() => setFlipped(false)}>
-                  <div className="book-peek-arrow">
-                    <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
-                      <path d="M7 2l-4 5 4 5" stroke="#660A43" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                </button>
+                <div className="book-back-header" style={{ visibility: flipped ? 'visible' : 'hidden' }}>
+                  <p className="book-cover-subtitle book-cover-subtitle--back">Ce livre est fait pour toi si…</p>
+                  <button className="book-btn-back" onClick={() => setFlipped(false)}>
+                    <div className="book-peek-arrow">
+                      <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
+                        <path d="M7 2l-4 5 4 5" stroke="#660A43" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
                 {[
                   "Tu retombes dans le même schéma, même quand tu te promets « cette fois ce sera différent. »",
                   "Tu t'attaches trop vite, puis tu attends, analyses, espères, et tu t'épuises doucement.",
@@ -435,7 +438,6 @@ export default function AccroPage() {
                   <div className="book-cover-top">
                     <p className="book-cover-series">Abrilove · E-book</p>
                     <h3 className="book-cover-main-title">Accro aux<br/>mauvais hommes</h3>
-                    <p className="book-cover-ornament">✦</p>
                   </div>
                   <div className="book-cover-divider" />
                   <p className="book-cover-subtitle">Ce livre n'est pas fait pour toi si…</p>
@@ -453,7 +455,12 @@ export default function AccroPage() {
                     Par contre, c'est pour toi si… →
                   </button>
                 </div>
-                <div className="book-face-back" />
+                <div className="book-face-back">
+                  <div className="book-face-back-content">
+                    <p className="book-testimonial-text">"Premier livre qui m'explique vraiment pourquoi je m'accroche. J'ai pleuré au chapitre 3 mais c'était libérateur."</p>
+                    <p className="book-testimonial-author">Inès, 29 ans</p>
+                  </div>
+                </div>
               </div>
 
               {/* Peek tab droite */}
