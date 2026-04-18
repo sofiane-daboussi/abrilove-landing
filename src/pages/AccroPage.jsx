@@ -432,8 +432,13 @@ export default function AccroPage() {
                 }}
               >
                 <div className="book-face-front">
-                  <h3 className="book-cover-title">Pardon, cet e-book n'est pas fait pour toi si…</h3>
+                  <div className="book-cover-top">
+                    <p className="book-cover-series">Abrilove · E-book</p>
+                    <h3 className="book-cover-main-title">Accro aux<br/>mauvais hommes</h3>
+                    <p className="book-cover-ornament">✦</p>
+                  </div>
                   <div className="book-cover-divider" />
+                  <p className="book-cover-subtitle">Ce livre n'est pas fait pour toi si…</p>
                   {[
                     "Tu veux « le faire changer » ou trouver la phrase parfaite pour qu'il devienne sérieux.",
                     "Tu n'as aucune envie de regarder tes propres schémas, parce que c'est toujours « la faute des hommes ».",
