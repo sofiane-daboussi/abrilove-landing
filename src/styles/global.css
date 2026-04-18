@@ -425,7 +425,6 @@ p strong, p em { color: #660A43; }
 .quiz-conclusion a { display: inline-block; background: white; color: #660A43; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; padding: 12px 24px; border-radius: 10px; text-decoration: none; }
 
 .book-section { margin-top: 48px; }
-.book-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #660A43; margin-bottom: 16px; }
 
 /* Conteneur livre complet */
 .book-wrap {
@@ -478,15 +477,15 @@ p strong, p em { color: #660A43; }
   gap: 11px;
   position: relative;
 }
-/* Page devant (Pas pour toi) */
+/* Page devant (couverture) */
 .book-pg-front {
   grid-area: 1 / 1;
   z-index: 2;
   position: relative;
   width: calc(100% - 36px);
-  background: linear-gradient(135deg, #f5ead8 0%, #ede0cb 40%, #f8eedf 100%);
+  background: linear-gradient(155deg, #3d0828 0%, #660A43 55%, #7d1454 100%);
   border-radius: 0 6px 6px 0;
-  padding: 20px 18px 26px;
+  padding: 22px 18px 24px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -496,7 +495,15 @@ p strong, p em { color: #660A43; }
   transition: transform 0.85s cubic-bezier(0.7, 0, 0.3, 1);
 }
 /* Ombre de reliure sur les pages */
-.book-pg-front::before, .book-pg-back::before {
+.book-pg-front::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 32px;
+  background: linear-gradient(to right, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.08) 60%, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+.book-pg-back::before {
   content: '';
   position: absolute;
   left: 0; top: 0; bottom: 0; width: 32px;
@@ -512,7 +519,7 @@ p strong, p em { color: #660A43; }
   width: 0; height: 0;
   border-style: solid;
   border-width: 0 0 28px 28px;
-  border-color: transparent transparent rgba(100,70,45,0.18) transparent;
+  border-color: transparent transparent rgba(255,255,255,0.08) transparent;
   z-index: 3;
 }
 .book-pg-front.flipped { transform: rotateY(-180deg); }
@@ -569,19 +576,34 @@ p strong, p em { color: #660A43; }
 /* Contenu pages */
 .book-item { display: flex; align-items: flex-start; gap: 8px; }
 .book-item-icon { width: 16px; height: 16px; min-width: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; margin-top: 2px; flex-shrink: 0; }
-/* Page 1 — muted */
-.book-face-front .book-item-icon { background: rgba(80,50,60,0.12); color: rgba(80,50,60,0.45); }
-.book-face-front .book-item-text { font-size: 12.5px; line-height: 1.55; color: rgba(70,45,55,0.65); }
+/* Titre couverture */
+.book-cover-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 230, 210, 0.95);
+  line-height: 1.45;
+  margin: 0 0 10px;
+}
+.book-cover-divider {
+  height: 1px;
+  background: linear-gradient(to right, rgba(255,200,170,0.35), transparent);
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+/* Page 1 — items sur couverture */
+.book-face-front .book-item-icon { background: rgba(255,210,190,0.15); color: rgba(255,210,190,0.55); }
+.book-face-front .book-item-text { font-size: 12.5px; line-height: 1.55; color: rgba(255, 225, 210, 0.75); }
 /* Page 2 — lisible rose */
 .book-pg-back .book-item-icon { background: rgba(102,10,67,0.12); color: #660A43; }
 .book-pg-back .book-item-text { font-size: 12.5px; line-height: 1.55; color: #3d1a10; }
-/* Bouton flip page 1 */
+/* Bouton flip couverture */
 .book-btn-flip {
-  margin-top: 12px;
+  margin-top: 14px;
   padding: 11px 14px;
   background: transparent;
-  color: #660A43;
-  border: 1.5px solid rgba(102,10,67,0.4);
+  color: rgba(255, 225, 210, 0.9);
+  border: 1.5px solid rgba(255, 210, 190, 0.35);
   border-radius: 8px;
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;

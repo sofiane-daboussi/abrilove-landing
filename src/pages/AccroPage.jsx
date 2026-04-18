@@ -361,7 +361,6 @@ export default function AccroPage() {
 
         {/* LIVRE POUR TOI / PAS POUR TOI */}
         <div className="book-section">
-          <p className="book-title">Pardon, cet e-book n'est pas fait pour toi si…</p>
           <div className="book-wrap">
             <div className="book-spine" />
             <div className="book-pages">
@@ -433,7 +432,8 @@ export default function AccroPage() {
                 }}
               >
                 <div className="book-face-front">
-                  <div className="book-page-rule" />
+                  <h3 className="book-cover-title">Pardon, cet e-book n'est pas fait pour toi si…</h3>
+                  <div className="book-cover-divider" />
                   {[
                     "Tu veux « le faire changer » ou trouver la phrase parfaite pour qu'il devienne sérieux.",
                     "Tu n'as aucune envie de regarder tes propres schémas, parce que c'est toujours « la faute des hommes ».",
