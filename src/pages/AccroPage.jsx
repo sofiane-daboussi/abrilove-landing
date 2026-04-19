@@ -615,11 +615,11 @@ export default function AccroPage() {
         {/* PAIEMENT */}
         <div className="payment-block" ref={paiementRef} id="paiement">
           <span className="offer-label">✦ Offre réservée · résultats du quiz</span>
-          <h2>Accro aux mauvais hommes</h2>
-          <p className="offer-sub">~200 pages · PDF envoyé immédiatement par mail · Mises à jour à vie</p>
+          <h2>{addBump ? 'Accro aux mauvais hommes + Applis de rencontre' : 'Accro aux mauvais hommes'}</h2>
+          <p className="offer-sub">{addBump ? '2 e-books · PDF envoyés immédiatement par mail · Mises à jour à vie' : '~200 pages · PDF envoyé immédiatement par mail · Mises à jour à vie'}</p>
           <div className="price-row">
-            <span className="price-current">17€</span>
-            <span className="price-old">34€</span>
+            <span className="price-current">{addBump ? '26€' : '17€'}</span>
+            <span className="price-old">{addBump ? '68€' : '34€'}</span>
           </div>
           <p className="price-note">Paiement unique · Accès à vie</p>
           <div className="timer-row">
@@ -650,7 +650,7 @@ export default function AccroPage() {
 
               {payError && <div className="payment-errors">{payError}</div>}
               <button className="btn-pay" disabled={paying} onClick={handlePay}>
-                <span>{paying ? 'Traitement...' : 'Obtenir mon e-book →'}</span>
+                <span>{paying ? 'Traitement...' : (addBump ? 'Obtenir mes 2 e-books →' : 'Obtenir mon e-book →')}</span>
                 {paying && <div className="spinner" />}
               </button>
               <div className="secure-note">
