@@ -365,6 +365,10 @@ export default function AccroPage() {
         </div>
         <div ref={narrativeEndRef} id="narrative-end" />
 
+        <button className="cta-scroll" onClick={scrollToPaiement}>
+          Je choisis de comprendre → 17€
+        </button>
+
         {/* QUIZ */}
         <div className="quiz-section">
           <p className="quiz-intro">Est-ce que tu te reconnais là-dedans?</p>
