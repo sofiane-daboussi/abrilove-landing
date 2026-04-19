@@ -1,5 +1,24 @@
 import { useState, useEffect, useRef } from 'react'
 
+const OBJECTIONS = [
+  {
+    front: "C'est trop cher.",
+    back: "17€, c'est le prix d'un déjeuner. Le temps perdu à attendre quelqu'un qui ne s'engage pas, lui, il a un prix."
+  },
+  {
+    front: "J'ai déjà tout essayé.",
+    back: "T'as peut-être essayé de changer lui, ou de mieux te comporter. Pas de comprendre pourquoi tu retombes toujours dans le même schéma. C'est ça que ce livre t'apporte."
+  },
+  {
+    front: "Je n'ai pas le temps.",
+    back: "« Pas le temps » en relation, ça veut souvent dire suranalyse et charge mentale permanente. Ce livre ne te prend pas du temps, il t'en rend."
+  },
+  {
+    front: "Je connais déjà mes schémas.",
+    back: "Connaître ses schémas et comprendre pourquoi ils existent, c'est pas la même chose. La deuxième, c'est ce qui change vraiment quelque chose."
+  },
+]
+
 const WORKER_URL = 'https://abrilove-oto-worker.sofiane-daboussi.workers.dev'
 const PK = 'pk_live_51Rm9dBI8ilInoMaXKDs2hp5pR1Fq3fcK60MlclXizEDZZxFAUN92E6jpKjILZX0dHtO7gUa3KMfQZKchX6qaPIi8003ZsII2e7'
 
@@ -53,6 +72,8 @@ export default function AccroPage() {
   const [stickyVisible, setStickyVisible] = useState(false)
   const [stickyAnimating, setStickyAnimating] = useState(false)
   const [flipped, setFlipped] = useState(false)
+  const [objFlipped, setObjFlipped] = useState(OBJECTIONS.map(() => false))
+  const objSectionRef = useRef(null)
   const flipDragRef = useRef({ startX: 0, startY: 0, direction: null, triggered: false })
   const flipBackDragRef = useRef({ startX: 0, startY: 0, direction: null, triggered: false })
 
@@ -166,6 +187,23 @@ export default function AccroPage() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+
+  // Auto-flip première carte objection
+  useEffect(() => {
+    if (!objSectionRef.current) return
+    const observer = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return
+      observer.disconnect()
+      setTimeout(() => {
+        setObjFlipped(prev => { const n = [...prev]; n[0] = true; return n })
+        setTimeout(() => {
+          setObjFlipped(prev => { const n = [...prev]; n[0] = false; return n })
+        }, 1400)
+      }, 500)
+    }, { threshold: 0.4 })
+    observer.observe(objSectionRef.current)
+    return () => observer.disconnect()
+  }, [])
 
   // Carousel
   useEffect(() => {
@@ -327,10 +365,6 @@ export default function AccroPage() {
         </div>
         <div ref={narrativeEndRef} id="narrative-end" />
 
-        <button className="cta-scroll" onClick={scrollToPaiement}>
-          Je veux mon e-book → 17€
-        </button>
-
         <div className="abri-track-wrap" ref={carouselRef}>
           <div className="abri-track" ref={trackRef} />
         </div>
@@ -357,6 +391,26 @@ export default function AccroPage() {
               <a href="#paiement" onClick={e => { e.preventDefault(); scrollToPaiement() }}>Je veux mon e-book → 17€</a>
             </div>
           )}
+        </div>
+
+        {/* SI TU NE CHANGES RIEN */}
+        <div className="inaction-section">
+          <p className="inaction-title">Si tu ne changes rien…</p>
+          <div className="inaction-list">
+            {[
+              "Tu continueras à perdre des heures dans des conversations qui se terminent en silence.",
+              "Tu continueras à te demander : « Est-ce que le problème, c'est moi ? »",
+              "Tu continueras à sur-analyser des messages qui n'ont aucune vraie intention.",
+              "Tu continueras à baisser tes standards en espérant que cette fois, ça sera différent.",
+            ].map((item, i) => (
+              <div key={i} className="inaction-item">
+                <span className="inaction-dot">💔</span>
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
+          <p className="inaction-conclusion">Pas parce qu'il y a quelque chose qui cloche chez toi. Parce que tu avances sans carte.</p>
+          <button className="cta-scroll" onClick={scrollToPaiement}>Je veux comprendre → 17€</button>
         </div>
 
         {/* LIVRE POUR TOI / PAS POUR TOI */}
@@ -477,6 +531,54 @@ export default function AccroPage() {
           </div>
         </div>
 
+        {/* OBJECTIONS */}
+        <div className="obj-section" ref={objSectionRef}>
+          <p className="obj-title">Tu te demandes peut-être…</p>
+          <p className="obj-hint"><span>👇</span> Touche une carte pour voir la réponse</p>
+          <div className="obj-grid">
+            {OBJECTIONS.map((obj, i) => (
+              <div
+                key={i}
+                className={`obj-card${objFlipped[i] ? ' flipped' : ''}`}
+                onClick={() => setObjFlipped(prev => { const n = prev.map(() => false); n[i] = !prev[i]; return n })}
+              >
+                <div className="obj-front">
+                  <p><span className="obj-q">«</span> {obj.front}&nbsp;<span className="obj-q">»</span></p>
+                  <div className="obj-flip-hint">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#660A43" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>
+                    </svg>
+                  </div>
+                </div>
+                <div className="obj-back">
+                  <p>{obj.back}</p>
+                  <div className="obj-flip-hint obj-flip-hint--back">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* BÉNÉFICES */}
+        <div className="benefits-section">
+          <p className="benefits-title">Concrètement, après ce livre…</p>
+          {[
+            "Tu arrêtes de perdre des heures à analyser ses messages, tu lis les intentions, pas les mots.",
+            "Tu reconnais très tôt quand tu donnes trop à quelqu'un qui donne trop peu.",
+            "Tu dates avec plus de calme, moins de doute, et sans cette tension permanente.",
+            "Tu n'attends plus d'être choisie. Tu choisis.",
+          ].map((text, i) => (
+            <div key={i} className="benefits-item">
+              <span className="benefits-check">✓</span>
+              <p>{text}</p>
+            </div>
+          ))}
+        </div>
+
         {/* INTERRUPTEUR */}
         <div className={`abri-section${toggleOn ? ' active' : ''}`}>
           <div className="abri-left">
@@ -540,7 +642,7 @@ export default function AccroPage() {
         </div>
 
         {/* BLOC IA */}
-        <div style={{ marginTop: '48px' }}>
+        <div style={{ marginTop: '72px' }}>
           <div style={{ display: 'flex', gap: '40px', alignItems: 'center', flexWrap: 'wrap' }}>
             <div style={{ flex: 1, minWidth: '240px' }}>
               <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, color: '#660A43', marginBottom: '16px', lineHeight: 1.3 }}>Tu as une question avant de te décider?</h3>
@@ -585,7 +687,7 @@ export default function AccroPage() {
         </div>
 
         {/* FAQ */}
-        <div style={{ marginTop: '48px' }}>
+        <div style={{ marginTop: '72px' }}>
           <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', fontWeight: 700, color: '#660A43', marginBottom: '20px', textAlign: 'center' }}>Questions fréquentes</h3>
           <div className="faq-list">
             {FAQ_ITEMS.map((item, i) => (
