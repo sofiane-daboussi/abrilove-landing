@@ -576,7 +576,8 @@ export default function AccroPage() {
         </div>
 
         {/* CAROUSEL */}
-        <div className="abri-track-wrap" style={{ marginTop: '72px' }} ref={carouselRef}>
+        <p className="carousel-title">Elles aussi étaient à ta place.</p>
+        <div className="abri-track-wrap" ref={carouselRef}>
           <div className="abri-track" ref={trackRef} />
         </div>
 

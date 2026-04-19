@@ -309,6 +309,8 @@ p strong, p em { color: #660A43; }
   line-height: 1.6;
 }
 
+.carousel-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #660A43; margin-top: 72px; margin-bottom: 20px; }
+
 .abri-track-wrap {
   overflow: hidden;
   mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
