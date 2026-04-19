@@ -194,7 +194,10 @@ export default function AccroPage() {
   useEffect(() => {
     if (!elementsRef.current) return
     const total = 1700 + (addBump ? 900 : 0) + (addBump2 ? 900 : 0)
+    const el = document.getElementById('payment-element')
+    if (el) el.style.pointerEvents = 'none'
     elementsRef.current.update({ amount: total })
+    setTimeout(() => { if (el) el.style.pointerEvents = '' }, 800)
   }, [addBump, addBump2])
 
   // Auto-flip première carte objection
