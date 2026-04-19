@@ -641,6 +641,7 @@ export default function AccroPage() {
                 <div className="order-bump-check">
                   {addBump && <svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4.5,8.5 11,1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                 </div>
+                <img src="/images/dating.png" alt="Applis de rencontre" className="order-bump-img" />
                 <div className="order-bump-content">
                   <p className="order-bump-title">Ajoute <strong>« Applis de rencontre »</strong></p>
                   <p className="order-bump-sub">Comment utiliser les applis pour rencontrer quelqu'un de bien — sans y perdre ton énergie.</p>
