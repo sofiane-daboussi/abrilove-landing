@@ -828,7 +828,6 @@ p strong, p em { color: #660A43; }
   width: 100%;
   border-radius: 20px;
   padding: 36px 28px;
-  margin-top: 96px;
   display: flex;
   align-items: center;
   gap: 32px;
@@ -838,7 +837,7 @@ p strong, p em { color: #660A43; }
   overflow: hidden;
   border: 3px solid #FFF1E7;
   box-sizing: border-box;
-  margin-top: 56px;
+  margin-top: 96px;
 }
 .abri-section.active { background: #660A43; }
 .abri-left { flex: 1; min-width: 180px; }
