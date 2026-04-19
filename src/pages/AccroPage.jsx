@@ -74,6 +74,7 @@ export default function AccroPage() {
   const [flipped, setFlipped] = useState(false)
   const [addBump, setAddBump] = useState(false)
   const [addBump2, setAddBump2] = useState(false)
+  const [updatingAmount, setUpdatingAmount] = useState(false)
   const [objFlipped, setObjFlipped] = useState(OBJECTIONS.map(() => false))
   const objSectionRef = useRef(null)
   const flipDragRef = useRef({ startX: 0, startY: 0, direction: null, triggered: false })
@@ -194,7 +195,10 @@ export default function AccroPage() {
   useEffect(() => {
     if (!elementsRef.current) return
     const total = 1700 + (addBump ? 900 : 0) + (addBump2 ? 900 : 0)
+    setUpdatingAmount(true)
     elementsRef.current.update({ amount: total })
+      .then(() => setUpdatingAmount(false))
+      .catch(() => setUpdatingAmount(false))
   }, [addBump, addBump2])
 
   // Auto-flip première carte objection
@@ -638,7 +642,10 @@ export default function AccroPage() {
                   <div className="stripe-skeleton-bar" />
                 </div>
               )}
-              <div id="payment-element" />
+              <div style={{ position: 'relative' }}>
+                <div id="payment-element" />
+                {updatingAmount && <div style={{ position: 'absolute', inset: 0, background: 'rgba(255,241,231,0.7)', borderRadius: '8px', zIndex: 10 }} />}
+              </div>
               <div className={`order-bump${addBump ? ' selected' : ''}`} onClick={() => setAddBump(v => !v)}>
                 <p className="order-bump-title">Ajoute <strong>« Comment trouver l'amour sur les applications de rencontre »</strong></p>
                 <div className="order-bump-row">
