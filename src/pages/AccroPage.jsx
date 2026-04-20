@@ -44,6 +44,19 @@ const QUIZ_MESSAGES = {
   8: "Tu as coché les 8 cases. Ce livre a été écrit pour exactement là où tu en es. Tu mérites de comprendre et d'avancer.",
 }
 
+const TOC_ITEMS = [
+  "Quand ton corps s'attache plus vite que ton cœur n'a le temps de choisir",
+  "Pourquoi la proximité te bouleverse plus que les autres",
+  "Ce que tu protèges réellement quand tu t'accroches",
+  "Ton vrai rythme d'attachement (et pourquoi tu le trahis)",
+  "Les hommes que tu attires… et surtout ceux que tu choisis",
+  "Le schéma que tu répètes (et comment tu t'y enfermes)",
+  "Les hommes qui respectent ton rythme (et pourquoi, au début, ils peuvent te faire peur)",
+  "Comment créer un lien sans te perdre",
+  "Apprendre à rester ouverte sans te contracter",
+  "Aimer sans te perdre",
+]
+
 const FAQ_ITEMS = [
   { q: "C'est quoi exactement cet e-book?", a: "Un guide de ~200 pages qui décrypte le profil \"Amoureuse Accro\" : pourquoi tu t'attaches à des hommes qui ne sont pas disponibles, comment sortir de ce schéma, et ce que tu mérites vraiment. Envoyé en PDF immédiatement après paiement." },
   { q: "Comment je reçois mon e-book?", a: "Tu entres ton email dans le formulaire de paiement, et tu reçois le PDF directement dans ta boîte mail dans les minutes qui suivent. Pense à vérifier tes spams si tu ne le vois pas." },
@@ -603,8 +616,26 @@ export default function AccroPage() {
           <div className="abri-track" ref={trackRef} />
         </div>
 
+        {/* TABLE DES MATIÈRES */}
+        <div className="toc-section fade-section">
+          <p className="toc-eyebrow">À l'intérieur du livre</p>
+          <h2 className="toc-heading">10 chapitres pour comprendre<br/>et te libérer.</h2>
+          <div className="toc-list">
+            {TOC_ITEMS.map((title, i) => (
+              <div key={i} className="toc-item">
+                <span className="toc-num">{String(i + 1).padStart(2, '0')}</span>
+                <p className="toc-chapter">{title}</p>
+              </div>
+            ))}
+          </div>
+          <button className="cta-scroll toc-cta" onClick={scrollToPaiement}>
+            Je veux mes 10 chapitres → 17€
+          </button>
+        </div>
+
         {/* INTERRUPTEUR */}
-        <div className={`abri-section fade-section${toggleOn ? ' active' : ''}`}>
+        <div className="fade-section" style={{ marginTop: '64px' }}>
+        <div className={`abri-section${toggleOn ? ' active' : ''}`} style={{ marginTop: 0 }}>
           <div className="abri-left">
             <h2>Tu as deux choix :</h2>
           </div>
@@ -625,6 +656,7 @@ export default function AccroPage() {
               Je veux mon e-book → 17€
             </button>
           </div>
+        </div>
         </div>
 
         {/* PAIEMENT */}
