@@ -382,6 +382,10 @@ export default function AccroPage() {
           <br />Et tu le savais déjà.
         </h1>
 
+        <div className="hero-book-wrap">
+          <img src="/images/accro-cover.png" alt="Accro aux mauvais hommes" className="hero-book-img" />
+        </div>
+
         <div className="narrative fade-section">
           <p>Tu viens de finir ce quiz. Et quelque part, tu n'es pas vraiment surprise par le résultat.</p>
           <p>Parce que tu le vis depuis longtemps.</p>
@@ -623,8 +627,9 @@ export default function AccroPage() {
             <div className="toc-header-left">
               <span className="toc-eyebrow">Sommaire</span>
               <h2 className="toc-heading">Ce que tu vas découvrir.</h2>
+              <span className="toc-badge">10 chapitres</span>
             </div>
-            <span className="toc-badge">10 chapitres</span>
+            <img src="/images/accro-cover.png" alt="" className="toc-book-img" />
           </div>
           <div className="toc-list">
             {TOC_ITEMS.slice(0, 3).map((title, i) => (
@@ -688,8 +693,13 @@ export default function AccroPage() {
         {/* PAIEMENT */}
         <div className="payment-block fade-section" ref={paiementRef} id="paiement">
           <span className="offer-label">✦ Offre réservée · résultats du quiz</span>
-          <h2>{addBump && addBump2 ? 'Pack 3 e-books' : addBump ? 'Accro aux mauvais hommes + Applis de rencontre' : addBump2 ? 'Accro aux mauvais hommes + Tu t\'es encore fait ghoster' : 'Accro aux mauvais hommes'}</h2>
-          <p className="offer-sub">{(addBump || addBump2) ? `${1 + (addBump ? 1 : 0) + (addBump2 ? 1 : 0)} e-books · PDF envoyés immédiatement par mail · Mises à jour à vie` : '~200 pages · PDF envoyé immédiatement par mail · Mises à jour à vie'}</p>
+          <div className="payment-book-row">
+            <img src="/images/accro-cover.png" alt="Accro aux mauvais hommes" className="payment-book-img" />
+            <div className="payment-book-details">
+              <h2>{addBump && addBump2 ? 'Pack 3 e-books' : addBump ? 'Accro aux mauvais hommes + Applis de rencontre' : addBump2 ? 'Accro aux mauvais hommes + Tu t\'es encore fait ghoster' : 'Accro aux mauvais hommes'}</h2>
+              <p className="offer-sub">{(addBump || addBump2) ? `${1 + (addBump ? 1 : 0) + (addBump2 ? 1 : 0)} e-books · PDF envoyés immédiatement par mail · Mises à jour à vie` : '~200 pages · PDF envoyé immédiatement par mail · Mises à jour à vie'}</p>
+            </div>
+          </div>
           <div className="price-row">
             <span className="price-current">{17 + (addBump ? 9 : 0) + (addBump2 ? 9 : 0)}€</span>
             <span className="price-old">{34 + (addBump ? 34 : 0) + (addBump2 ? 18 : 0)}€</span>
