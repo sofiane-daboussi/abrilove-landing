@@ -46,16 +46,16 @@ const QUIZ_MESSAGES = {
 }
 
 const TOC_ITEMS = [
-  "Pourquoi tu t'accroches au « peut-être » avant même qu'il t'ait vraiment choisi",
-  "La fatigue de l'espoir : ce que ton corps et ton cœur essaient de te dire",
-  "Comment tu confonds espoir et engagement sans t'en rendre compte",
-  "Lire la clarté (ou l'absence de clarté) sans t'épuiser à analyser",
-  "Sortir du mode « j'attends le signe » : revenir aux faits, pas aux histoires",
-  "Aimer sans te réduire ni attendre que ça devienne sérieux",
-  "Poser de la clarté sans avoir peur de mettre la pression",
-  "Reconnaître un homme intentionné — et pourquoi il peut te sembler différent au début",
-  "Comment créer un lien réel sans écrire l'histoire à sa place",
-  "Choisir l'amour clair : présent, intentionné, et qui te choisit toi",
+  "Quand ton esprit écrit l'histoire avant la relation",
+  "Pourquoi le flou t'attache plus que la clarté",
+  "Ce que tu protèges vraiment en attendant",
+  "Ton faux rythme : quand tu avances sans bouger",
+  "Les hommes que tu choisis quand tu espères",
+  "Le cycle de l'attente (et comment tu t'y enfermes)",
+  "Les hommes clairs (et pourquoi ils te font peur)",
+  "Créer un lien sans attendre qu'il change",
+  "Rester ouverte sans vivre dans l'espoir",
+  "Aimer sans te perdre dans le futur",
 ]
 
 const FAQ_ITEMS = [
