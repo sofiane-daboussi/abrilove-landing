@@ -8,7 +8,7 @@ const OBJECTIONS = [
   },
   {
     front: "J'ai déjà tout essayé.",
-    back: "T'as peut-être essayé d'attendre encore. Pas de comprendre pourquoi tu confonds espoir et engagement. C'est ça que ce livre t'apporte — une méthode concrète, pas un texte motivationnel."
+    back: "T'as peut-être essayé d'attendre encore. Pas de comprendre pourquoi tu confonds espoir et engagement. C'est ça que ce livre t'apporte, une méthode concrète, pas un texte motivationnel."
   },
   {
     front: "Je n'ai pas le temps.",
@@ -570,7 +570,7 @@ export default function ReveusePage() {
           {[
             "Tu sortiras du mode « j'attends le signe » et tu apprendras à te recentrer quand tu t'emballes, sans t'accrocher à la prochaine preuve.",
             "Tu comprendras pourquoi tu t'accroches au potentiel et comment revenir aux faits : ce qu'il fait, ce qu'il choisit, pas ce que tu espères.",
-            "Tu repéreras la clarté — ou l'absence de clarté — sans décoder chaque silence ni lui trouver des excuses.",
+            "Tu repéreras la clarté, ou l'absence de clarté, sans décoder chaque silence ni lui trouver des excuses.",
             "Tu apprendras à demander de la clarté, poser tes limites, et choisir les hommes présents et intentionnés.",
           ].map((text, i) => (
             <div key={i} className="benefits-item">
