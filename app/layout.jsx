@@ -25,6 +25,7 @@ const poppins = Poppins({
 
 export const metadata = {
   title: 'Abrilove',
+  icons: { icon: '/images/favicon.png' },
 }
 
 export default function RootLayout({ children }) {
