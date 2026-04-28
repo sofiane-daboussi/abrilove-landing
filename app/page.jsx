@@ -1,5 +1,11 @@
-import AccroPage from '../src/views/AccroPage'
+import AccroHero from '../src/views/AccroHero'
+import AccroInteractiveLoader from '../src/views/AccroInteractiveLoader'
 
 export default function Home() {
-  return <AccroPage />
+  return (
+    <div className="card">
+      <AccroHero />
+      <AccroInteractiveLoader />
+    </div>
+  )
 }
