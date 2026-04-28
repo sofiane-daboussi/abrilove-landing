@@ -16,7 +16,7 @@ export default function AccroHero() {
         <br />Et tu le savais déjà.
       </h1>
 
-      <div className="narrative fade-section">
+      <div className="narrative fade-section visible">
         <p>Tu viens de finir ce quiz. Et quelque part, tu n'es pas vraiment surprise par le résultat.</p>
         <p>Parce que tu le vis depuis longtemps.</p>
         <p>Cette façon de t'emballer pour quelqu'un en quelques jours. De commencer à imaginer une histoire avant même qu'elle existe vraiment. De surveiller ton téléphone sans vraiment te l'avouer.</p>
