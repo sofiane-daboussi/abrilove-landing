@@ -1,11 +1,8 @@
-import AccroHero from '../../src/views/AccroHero'
-import AccroInteractiveLoader from '../../src/views/AccroInteractiveLoader'
+'use client'
+import dynamic from 'next/dynamic'
+
+const AccroPage = dynamic(() => import('../../src/views/AccroPage'), { ssr: false })
 
 export default function AccroRoute() {
-  return (
-    <div className="card">
-      <AccroHero />
-      <AccroInteractiveLoader />
-    </div>
-  )
+  return <AccroPage />
 }
