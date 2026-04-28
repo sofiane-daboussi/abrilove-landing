@@ -8,11 +8,11 @@ const OBJECTIONS = [
   },
   {
     front: "J'ai déjà tout essayé.",
-    back: "T'as peut-être essayé d'analyser ou d'attendre encore. Pas de comprendre pourquoi tu confonds espoir et engagement. C'est ça que ce livre t'apporte."
+    back: "Si tu t'es déjà dit : « Je fais des efforts, j'essaie vraiment… et pourtant je retombe toujours dans les mêmes schémas. » Le problème, ce n'est pas toi. C'est que personne ne t'a jamais montré une méthode vraiment adaptée à toi. Ce n'est pas un énième texte motivationnel. C'est une méthode concrète, applicable immédiatement."
   },
   {
     front: "Je n'ai pas le temps.",
-    back: "Chaque chapitre se lit séparément, à ton rythme. Ce livre ne te prend pas du temps, il t'en rend."
+    back: "Chez une Rêveuse, « je n'ai pas le temps » veut souvent dire : trop d'énergie donnée au flou, trop de « on verra », trop de signes à interpréter, trop d'attente. 10 minutes suffisent pour retrouver un cadre clair. Cet e-book ne te prend pas du temps. Il t'en rend."
   },
   {
     front: "Je connais déjà mes schémas.",
@@ -24,14 +24,14 @@ const WORKER_URL = 'https://abrilove-oto-worker.sofiane-daboussi.workers.dev'
 const PK = 'pk_live_51Rm9dBI8ilInoMaXKDs2hp5pR1Fq3fcK60MlclXizEDZZxFAUN92E6jpKjILZX0dHtO7gUa3KMfQZKchX6qaPIi8003ZsII2e7'
 
 const QUIZ_ITEMS = [
-  "Tu t'accroches vite à un « peut-être » — un bon rendez-vous, un message chaleureux — et ton cœur commence déjà à écrire la suite de l'histoire.",
-  "Tu commences à imaginer la relation dans ta tête bien avant qu'elle existe vraiment. Tu anticipes, tu espères, tu projettes.",
-  "Tu excuses le flou et tu restes en espérant que ça va changer — parce que tu vois le potentiel, même quand les actes ne suivent pas.",
-  "Tu as du mal à demander de la clarté. Tu as peur de passer pour quelqu'un d'exigeant ou de « mettre la pression », alors tu attends en silence.",
-  "Tu doutes en silence. Tu analyses ses messages, tu cherches un signe qu'il est vraiment là, et tu n'oses pas dire ce que tu ressens.",
-  "Tu t'adaptes constamment pour que ça marche — plus souple, plus compréhensive, moins exigeante — mais tu ne sais plus comment sortir de l'attente.",
-  "Tu regardes d'autres couples et tu te demandes comment ils font pour que ce soit si simple. Sans tout ce flou, sans toute cette attente.",
-  "Parfois tu te dis : « Et si le problème, c'était moi ? » Il ne te reste que de la culpabilité et un sentiment d'égarement.",
+  "Tu es sensible et romantique… mais tu t'accroches vite à un « peut-être », parce que ton cœur veut croire que « ça va finir par devenir clair ».",
+  "Quand quelqu'un te plaît, tu ne vois pas seulement qui il est aujourd'hui : tu imagines ce que ça pourrait devenir, et tu commences à écrire l'histoire dans ta tête.",
+  "Tu excuses le flou : « il est occupé », « il traverse une période », « il a peur », « il lui faut du temps »… et tu restes, en espérant.",
+  "Tu as du mal à demander de la clarté, parce que tu as peur d'être « trop », de « mettre la pression » ou de faire fuir.",
+  "Quand il y a des silences ou des messages irréguliers, ton mental cherche des signes, et ton cœur attend la prochaine preuve.",
+  "Quand ça n'avance pas, tu ne fais pas de drame : tu doutes en silence et tu te demandes si tu n'en demandes pas trop, alors que tu demandes juste du clair.",
+  "Tu t'adaptes pour que ça marche : tu es compréhensive, légère, « facile », en espérant que ça se transforme enfin en quelque chose de vrai.",
+  "Il t'arrive de penser : « Pourquoi je finis toujours dans des histoires 'presque' ? » et tu sens que tu mérites mieux, mais tu ne sais plus comment sortir de l'attente.",
 ]
 
 const QUIZ_MESSAGES = {
@@ -59,11 +59,12 @@ const TOC_ITEMS = [
 ]
 
 const FAQ_ITEMS = [
-  { q: "C'est quoi exactement cet e-book?", a: "Un guide de ~200 pages qui décrypte le profil « Rêveuse en attente » : pourquoi tu confonds espoir et engagement, comment sortir de l'attente, et ce que tu mérites vraiment. Envoyé en PDF immédiatement après paiement." },
-  { q: "Comment je reçois mon e-book?", a: "Tu entres ton email dans le formulaire de paiement, et tu reçois le PDF directement dans ta boîte mail dans les minutes qui suivent. Pense à vérifier tes spams si tu ne le vois pas." },
-  { q: "C'est sécurisé de payer ici?", a: "Oui. Le paiement est géré par Stripe, la référence mondiale en matière de sécurité des paiements en ligne. Tes données bancaires ne passent jamais par nos serveurs." },
-  { q: "Est-ce que ça correspond à ma situation?", a: "Si tu te retrouves à attendre un signe, à excuser le flou, à espérer que ça va changer, oui, ce livre a été écrit pour toi." },
-  { q: "C'est un achat unique?", a: "Oui, 17€ une seule fois. Pas d'abonnement, pas de frais cachés. Tu gardes l'accès à vie, et toutes les mises à jour futures sont incluses." },
+  { q: "L'accès aux contenus est-il permanent ?", a: "L'accès aux contenus est à vie." },
+  { q: "Puis-je lire l'e-book à mon rythme ?", a: "Oui. Chaque chapitre peut être lu séparément, à ton propre rythme. Ce n'est pas un livre « à lire de A à Z », mais un guide pratique auquel tu peux revenir quand tu en as besoin." },
+  { q: "Comment je reçois mon e-book ?", a: "Après le paiement, le fichier PDF sera envoyé automatiquement à ton adresse e-mail. Pense à vérifier ton dossier « Spam » ou « Promotions » si tu ne le vois pas tout de suite." },
+  { q: "Sur quels appareils puis-je le lire ?", a: "L'e-book est au format PDF, tu peux donc le lire sur ordinateur, tablette et téléphone, où que ce soit, comme c'est le plus pratique pour toi." },
+  { q: "C'est juste de la théorie ?", a: "C'est avant tout de la pratique. Dans l'e-book, tu trouveras non seulement de la connaissance, mais aussi des exemples concrets de conversations, de stratégies, de messages, et même des exercices pour travailler par toi-même." },
+  { q: "Le paiement est-il sécurisé ?", a: "En toute sécurité, par carte bancaire ou par virement en ligne rapide. Tout est chiffré et géré par un opérateur de paiement de confiance." },
 ]
 
 function isValidEmail(e) {
@@ -430,10 +431,12 @@ export default function ReveusePage() {
           <p className="inaction-title">Si tu ne changes rien…</p>
           <div className="inaction-list">
             {[
-              "Tu continueras à t'accrocher à un « peut-être » qui n'a jamais été un vrai choix.",
-              "Tu continueras à excuser le flou en espérant que ça va changer d'ici la prochaine fois.",
-              "Tu continueras à attendre la clarté au lieu d'aller vers quelqu'un qui te choisit vraiment.",
-              "Tu continueras à douter de toi en silence, sans comprendre pourquoi tu retombes toujours dans cette attente.",
+              "Tu continueras à t'accrocher à des signes (un message, un « tu me manques », une soirée intense) et à en faire une histoire entière.",
+              "Tu continueras à attendre que ça devienne clair, au lieu d'exiger une clarté dès le départ.",
+              "Tu continueras à excuser le flou (« il a peur », « il traverse un truc », « il lui faut du temps »), et à rester.",
+              "Tu continueras à te rendre plus facile, plus compréhensive, moins exigeante, en espérant que ça te « mérite » enfin.",
+              "Tu continueras à douter de toi en silence : « Je demande trop ? Je suis trop ? », alors que tu demandes juste du simple : une intention, une présence, un vrai mouvement.",
+              "Et ton cœur restera ouvert, mais aussi fatigué, parce qu'à force d'aimer sans être choisie clairement, tu t'épuises.",
             ].map((item, i) => (
               <div key={i} className="inaction-item">
                 <span className="inaction-dot">💔</span>
@@ -441,7 +444,7 @@ export default function ReveusePage() {
               </div>
             ))}
           </div>
-          <p className="inaction-conclusion">Pas parce qu'il y a quelque chose qui cloche chez toi. Parce que tu avances sans carte.</p>
+          <p className="inaction-conclusion">Tu t'habitues à espérer, à patienter, à « ne pas mettre la pression », et tu finis par confondre attachement et engagement. Pas parce que tu es naïve. Mais parce que personne ne t'a appris à reconnaître le flou, et à choisir la clarté sans culpabiliser.</p>
           <button className="cta-scroll" onClick={scrollToPaiement}>Je veux comprendre → 17€</button>
         </div>
 
@@ -484,12 +487,12 @@ export default function ReveusePage() {
                   </button>
                 </div>
                 {[
-                  "Tu retombes dans le même schéma — attendre, espérer, excuser — même quand tu sais que quelque chose ne va pas.",
-                  "Tu t'accroches à un « peut-être » et tu écris l'histoire dans ta tête avant même qu'elle existe.",
-                  "Tu veux comprendre pourquoi tu restes dans l'attente et comment en sortir vraiment.",
-                  "Tu veux des repères clairs pour reconnaître quelqu'un qui te choisit, sans avoir à deviner.",
-                  "Tu veux arrêter de douter en silence et apprendre à demander de la clarté sans culpabilité.",
-                  "Tu veux aimer sans t'effacer et sans attendre que ça devienne clair.",
+                  "Tu as l'impression de retomber dans le même schéma… même quand tu te promets : « cette fois, ce sera différent. »",
+                  "Tu t'attaches vite parce que tu t'accroches à l'espoir et au potentiel : un « tu me manques », un bon rendez-vous… et ton cœur écrit la suite de l'histoire.",
+                  "Tu restes trop longtemps dans le « peut-être », parce que tu sais aimer, tu sais croire, et tu veux donner une chance, même quand ce n'est pas clair.",
+                  "Quand c'est flou, tu trouves presque toujours une explication : « il traverse une période difficile », « il a peur », « il lui faut du temps », et tu mets tes besoins en attente.",
+                  "Tu fais attention à ne pas être « trop » : tu n'oses pas demander clairement, tu t'adaptes, tu deviens « facile », en espérant que ça finira par devenir réel.",
+                  "Tu veux une relation où tu n'as plus besoin de deviner, où tu es choisie clairement, et où ça avance vers quelque chose de concret.",
                 ].map((text, i) => (
                   <div key={i} className="book-item">
                     <span className="book-item-icon">✓</span>
@@ -526,9 +529,10 @@ export default function ReveusePage() {
                   <div className="book-cover-divider" />
                   <p className="book-cover-subtitle">Ce livre n'est pas fait pour toi si…</p>
                   {[
-                    "Tu veux analyser ses messages encore une fois pour trouver la « bonne » interprétation.",
-                    "Tu penses que si tu attends juste un peu plus longtemps, il va choisir clairement.",
-                    "Tu veux rester dans le flou plutôt qu'apprendre à demander de la clarté, même si ça fait peur.",
+                    "Tu veux seulement comprendre et analyser, sans pratiquer, sans changer tes réflexes.",
+                    "Tu veux juste te rassurer que « ça va finir par venir » en attendant, sans changer tes choix, tes limites, ni ta façon d'agir.",
+                    "Tu cherches des « phrases pour le garder » et pour capter son attention, au lieu d'outils pour voir les faits et te choisir.",
+                    "Tu ne veux pas apprendre à poser des questions, à demander de la clarté et à mettre des limites, parce que tu as peur de « mettre la pression », même si tu t'oublies.",
                   ].map((text, i) => (
                     <div key={i} className="book-item">
                       <span className="book-item-icon">✕</span>
@@ -564,10 +568,10 @@ export default function ReveusePage() {
         <div className="benefits-section fade-section">
           <p className="benefits-title">Concrètement, après ce livre…</p>
           {[
-            "Tu sortiras du mode « j'attends le signe » et tu sauras lire les intentions réelles, pas les mots.",
-            "Tu comprendras pourquoi tu t'accroches au potentiel et comment revenir aux faits, sans t'épuiser à analyser.",
-            "Tu repéreras la clarté dès le début — et l'absence de clarté — sans te raconter d'histoires.",
-            "Tu apprendras à aimer sans te réduire ni attendre qu'il devienne ce que tu espères.",
+            "Tu sortiras du mode « j'attends le signe » — Tu ne vivras plus tes débuts d'histoire dans l'attente d'un « peut-être ». Tu apprendras à te recentrer quand tu t'emballes, à couper l'illusion doucement, et à retrouver ton calme sans t'accrocher à la prochaine preuve.",
+            "Tu comprendras pourquoi tu t'accroches au potentiel et comment revenir au réel — Tu verras ce qui se passe quand ton cœur commence à écrire une histoire à partir de quelques mots, d'un regard, d'une promesse floue. Et surtout, tu apprendras à revenir aux faits : ce qu'il fait, ce qu'il choisit, ce qu'il construit, pas ce que tu espères.",
+            "Tu repéreras la clarté (ou l'absence de clarté) sans t'épuiser à analyser — Tu n'auras plus besoin de décoder chaque silence ou de lui trouver des excuses. Tu sauras quoi observer : régularité, initiative, cohérence, capacité à avancer. Moins de « il a besoin de temps », plus de réalité.",
+            "Tu apprendras à aimer sans te réduire ni attendre « que ça devienne sérieux » — Tu sauras demander de la clarté, poser tes limites, et choisir les hommes qui sont présents et intentionnés, pour construire une relation où tu n'as plus besoin de deviner.",
           ].map((text, i) => (
             <div key={i} className="benefits-item">
               <span className="benefits-check">✓</span>
