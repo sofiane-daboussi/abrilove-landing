@@ -1,13 +1,8 @@
 'use client'
-import { useEffect } from 'react'
+import dynamic from 'next/dynamic'
+
+const AccroPage = dynamic(() => import('../src/views/AccroPage'), { ssr: false })
 
 export default function Home() {
-  useEffect(() => {
-    if (window.location.hostname === 'accro.abrilove.fr') {
-      window.location.replace('/accro')
-    } else {
-      window.location.replace('https://www.abrilove.fr')
-    }
-  }, [])
-  return null
+  return <AccroPage />
 }
