@@ -673,7 +673,7 @@ export default function ReveusePage() {
                   <p className="abri-ou">ou tu peux <strong>actionner l'interrupteur…</strong></p>
                 </div>
                 <div className="abri-text-on">
-                  <p>et comprendre enfin pourquoi tu restes dans l'attente, et comment en sortir. C'est exactement ce que cet e-book t'apporte.</p>
+                  <p>et comprendre pourquoi tu restes dans l'attente, et comment en sortir vraiment.</p>
                 </div>
               </div>
               <button className={`abri-toggle${toggleOn ? ' on' : ''}`} onClick={() => setToggleOn(v => !v)} aria-label="Activer">

@@ -669,7 +669,7 @@ export default function CerebalePage() {
                   <p className="abri-ou">ou tu peux <strong>actionner l'interrupteur…</strong></p>
                 </div>
                 <div className="abri-text-on">
-                  <p>et comprendre enfin pourquoi ton cerveau prend toujours la première place, et comment lui apprendre à se reposer. C'est exactement ce que cet e-book t'apporte.</p>
+                  <p>et comprendre pourquoi ton cerveau prend la première place, et comment lâcher sans te perdre.</p>
                 </div>
               </div>
               <button className={`abri-toggle${toggleOn ? ' on' : ''}`} onClick={() => setToggleOn(v => !v)} aria-label="Activer">

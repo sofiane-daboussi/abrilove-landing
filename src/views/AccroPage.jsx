@@ -675,7 +675,7 @@ export default function AccroPage() {
                 <p className="abri-ou">ou tu peux <strong>actionner l'interrupteur…</strong></p>
               </div>
               <div className="abri-text-on">
-                <p>et comprendre enfin pourquoi tu t'accroches, et comment arrêter. C'est exactement ce que cet e-book t'apporte.</p>
+                <p>et comprendre pourquoi tu t'accroches, et comment arrêter vraiment.</p>
               </div>
             </div>
             <button className={`abri-toggle${toggleOn ? ' on' : ''}`} onClick={() => setToggleOn(v => !v)} aria-label="Activer">
