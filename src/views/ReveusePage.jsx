@@ -59,7 +59,7 @@ const TOC_ITEMS = [
 ]
 
 const FAQ_ITEMS = [
-  { q: "C'est quoi exactement cet e-book?", a: "Un guide de ~200 pages qui décrypte le profil « Rêveuse » : pourquoi tu confonds espoir et engagement, comment sortir de l'attente, et ce que tu mérites vraiment. Envoyé en PDF immédiatement après paiement." },
+  { q: "C'est quoi exactement cet e-book?", a: "Un guide de ~200 pages qui décrypte le profil « Rêveuse en attente » : pourquoi tu confonds espoir et engagement, comment sortir de l'attente, et ce que tu mérites vraiment. Envoyé en PDF immédiatement après paiement." },
   { q: "Comment je reçois mon e-book?", a: "Tu entres ton email dans le formulaire de paiement, et tu reçois le PDF directement dans ta boîte mail dans les minutes qui suivent. Pense à vérifier tes spams si tu ne le vois pas." },
   { q: "C'est sécurisé de payer ici?", a: "Oui. Le paiement est géré par Stripe, la référence mondiale en matière de sécurité des paiements en ligne. Tes données bancaires ne passent jamais par nos serveurs." },
   { q: "Est-ce que ça correspond à ma situation?", a: "Si tu te retrouves à attendre un signe, à excuser le flou, à espérer que ça va changer, oui, ce livre a été écrit pour toi." },
@@ -372,7 +372,7 @@ export default function ReveusePage() {
           Tu es une{' '}
           <em>
             <span className="underline-wave">
-              Rêveuse
+              Rêveuse en attente
               <svg className="wave-svg" viewBox="0 0 100 7" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0,3 Q50,7 100,3" stroke="#660A43" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
               </svg>
