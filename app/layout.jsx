@@ -34,6 +34,13 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#660A43" />
         <link rel="dns-prefetch" href="https://js.stripe.com" />
         <link rel="dns-prefetch" href="https://api.stripe.com" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MT07XFRPSM" />
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-MT07XFRPSM');
+        `}} />
       </head>
       <body>{children}</body>
     </html>
