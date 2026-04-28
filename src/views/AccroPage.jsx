@@ -251,17 +251,11 @@ export default function AccroPage() {
       const img = document.createElement('img'); img.src = src; img.draggable = false
       card.appendChild(img); track.appendChild(card)
     })
-    let pos = 0, paused = false, halfWidth = 0, rafId
-    function calcWidths() { let w = 0; track.querySelectorAll('.abri-screen-card').forEach(c => { w += c.offsetWidth + 20 }); halfWidth = w / 2 }
+    const CARD_W = 220 + 20
+    let pos = 0, paused = false, rafId
+    const halfWidth = imgs.length * CARD_W
     function step() { if (!paused) { pos += 0.7; if (pos >= halfWidth) pos -= halfWidth; track.style.transform = 'translateX(-' + pos + 'px)' } rafId = requestAnimationFrame(step) }
-    function tryStart() {
-      requestAnimationFrame(() => {
-        calcWidths()
-        if (halfWidth > 0) rafId = requestAnimationFrame(step)
-        else setTimeout(tryStart, 100)
-      })
-    }
-    tryStart()
+    rafId = requestAnimationFrame(step)
     const wrap = carouselRef.current
     if (!wrap) return
     wrap.addEventListener('mousedown', () => { paused = true })
