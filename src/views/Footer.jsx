@@ -95,7 +95,7 @@ export default function Footer() {
           <p style={{ color: '#fff', fontSize: 18 }}>Bienvenue dans la communauté ! ✓</p>
         ) : (
           <form onSubmit={handleNewsletter} style={{ maxWidth: 560, margin: '0 auto' }}>
-            <div style={{
+            <div className="nl-form-row" style={{
               display: 'flex',
               borderRadius: 12,
               overflow: 'hidden',
@@ -123,6 +123,7 @@ export default function Footer() {
               <button
                 type="submit"
                 disabled={nlStatus === 'sending'}
+                className="nl-btn"
                 style={{
                   background: 'linear-gradient(135deg, #c85d82, #d97090)',
                   border: 'none',
@@ -247,7 +248,13 @@ export default function Footer() {
       </div>
 
       <style>{`
+        .nl-input { -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.1) !important; color: #fff !important; }
         .nl-input::placeholder { color: rgba(255,255,255,0.45); }
+        @media (max-width: 540px) {
+          .nl-form-row { flex-direction: column !important; border-radius: 12px !important; overflow: visible !important; border: none !important; gap: 10px; }
+          .nl-input { border-radius: 12px !important; border: 1.5px solid rgba(255,255,255,0.25) !important; }
+          .nl-btn { border-radius: 12px !important; width: 100%; }
+        }
         .social-icon {
           display: flex;
           align-items: center;
