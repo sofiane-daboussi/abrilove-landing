@@ -104,15 +104,15 @@ export default function Header() {
           className="burger"
           style={{
             display: 'none',
-            background: 'rgba(80,5,50,0.88)',
-            backdropFilter: 'blur(16px)',
+            background: 'rgba(255,255,255,0.12)',
             border: '1px solid rgba(255,255,255,0.1)',
             borderRadius: 999,
             cursor: 'pointer',
             color: '#fff',
-            fontSize: 20,
-            padding: '8px 14px',
+            fontSize: 16,
+            padding: '5px 10px',
             pointerEvents: 'auto',
+            lineHeight: 1,
           }}
           aria-label="Menu"
         >
