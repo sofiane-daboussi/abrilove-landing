@@ -46,10 +46,13 @@ export default function Footer() {
   const [email, setEmail] = useState('')
   const [consent, setConsent] = useState(false)
   const [nlStatus, setNlStatus] = useState(null)
+  const [consentError, setConsentError] = useState(false)
 
   async function handleNewsletter(e) {
     e.preventDefault()
-    if (!email || !consent) return
+    if (!consent) { setConsentError(true); return }
+    setConsentError(false)
+    if (!email) return
     setNlStatus('sending')
     try {
       const res = await fetch('/api/newsletter', {
@@ -150,7 +153,7 @@ export default function Footer() {
               <input
                 type="checkbox"
                 checked={consent}
-                onChange={e => setConsent(e.target.checked)}
+                onChange={e => { setConsent(e.target.checked); setConsentError(false) }}
                 style={{ marginTop: 3, accentColor: '#c85d82', flexShrink: 0 }}
               />
               <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, textAlign: 'left', lineHeight: 1.5 }}>
@@ -158,6 +161,11 @@ export default function Footer() {
                 <a href="/confidentialite" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'underline' }}>Politique</a>
               </span>
             </label>
+            {consentError && (
+              <p style={{ color: '#ffb3c8', fontSize: 13, marginTop: 8 }}>
+                Coche la case pour t'inscrire 🩷
+              </p>
+            )}
           </form>
         )}
       </div>
