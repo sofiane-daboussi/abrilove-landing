@@ -93,7 +93,7 @@ export default function Footer() {
         </div>
 
         {nlStatus === 'sent' ? (
-          <p style={{ color: '#fff', fontSize: 18 }}>Bienvenue dans la communauté ! ✓</p>
+          <p style={{ color: '#fff', fontSize: 18 }}>Bienvenue dans l'Abri, une surprise t'attend dans tes mails 🩷</p>
         ) : (
           <form onSubmit={handleNewsletter} style={{ maxWidth: 560, margin: '0 auto' }}>
             <div className="nl-form-row" style={{
