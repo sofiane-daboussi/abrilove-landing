@@ -41,7 +41,7 @@ export default function Header() {
         padding: '0 20px',
         borderRadius: 999,
         pointerEvents: 'none',
-        transform: visible ? 'translateY(0)' : 'translateY(-120%)',
+        transform: visible ? 'translateY(0)' : 'translateY(calc(-100% - 40px))',
         transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
       }}>
 
