@@ -24,7 +24,7 @@ export default function ContactPage() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: '#1a0011',
+      background: '#fff1e7',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -36,7 +36,7 @@ export default function ContactPage() {
       <div style={{ maxWidth: 560, width: '100%' }}>
 
         <p style={{
-          color: '#c97aaa',
+          color: '#660A43',
           fontSize: 13,
           letterSpacing: '0.15em',
           textTransform: 'uppercase',
@@ -48,7 +48,7 @@ export default function ContactPage() {
 
         <h1 style={{
           fontFamily: 'var(--font-playfair, serif)',
-          color: '#fff',
+          color: '#1a0011',
           fontSize: 'clamp(28px, 6vw, 44px)',
           fontWeight: 700,
           textAlign: 'center',
@@ -56,11 +56,11 @@ export default function ContactPage() {
           lineHeight: 1.2,
         }}>
           Une question ?<br />
-          <em style={{ color: '#e8a0c8', fontStyle: 'italic' }}>On te répond.</em>
+          <em style={{ color: '#660A43', fontStyle: 'italic' }}>On te répond.</em>
         </h1>
 
         <p style={{
-          color: '#b08090',
+          color: '#8a5060',
           textAlign: 'center',
           fontSize: 15,
           marginBottom: 48,
@@ -85,12 +85,7 @@ export default function ContactPage() {
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} style={{
-            display: 'flex', flexDirection: 'column', gap: 20,
-            background: '#fff1e7',
-            borderRadius: 20,
-            padding: '36px 32px',
-          }}>
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
 
             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               <div style={{ flex: 1, minWidth: 200 }}>
@@ -163,7 +158,7 @@ export default function ContactPage() {
           </form>
         )}
 
-        <p style={{ color: '#6a4058', fontSize: 12, textAlign: 'center', marginTop: 40 }}>
+        <p style={{ color: '#8a5060', fontSize: 12, textAlign: 'center', marginTop: 40 }}>
           Ou par email directement : <a href="mailto:contact@abrilove.fr" style={{ color: '#c97aaa' }}>contact@abrilove.fr</a>
         </p>
 
