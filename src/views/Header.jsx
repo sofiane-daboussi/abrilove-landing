@@ -25,9 +25,9 @@ export default function Header() {
         maxWidth: 860,
       }}>
         <div style={{
-          background: 'rgba(26,0,17,0.88)',
-          backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255,255,255,0.08)',
+          background: 'transparent',
+          backdropFilter: 'none',
+          border: '1px solid rgba(255,255,255,0.15)',
           borderRadius: 999,
           padding: '0 28px',
           height: 52,

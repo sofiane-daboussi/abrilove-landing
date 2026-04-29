@@ -72,21 +72,25 @@ export default function ContactPage() {
 
         {status === 'sent' ? (
           <div style={{
-            background: 'rgba(102,10,67,0.3)',
-            border: '1px solid #660A43',
-            borderRadius: 12,
+            background: '#fff1e7',
+            borderRadius: 20,
             padding: '40px 32px',
             textAlign: 'center',
           }}>
-            <p style={{ color: '#e8a0c8', fontSize: 20, fontFamily: 'var(--font-playfair, serif)', marginBottom: 8 }}>
+            <p style={{ color: '#660A43', fontSize: 20, fontFamily: 'var(--font-playfair, serif)', marginBottom: 8 }}>
               Message envoyé ✓
             </p>
-            <p style={{ color: '#b08090', fontSize: 14 }}>
+            <p style={{ color: '#8a5060', fontSize: 14 }}>
               On te répond dans les 24h.
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <form onSubmit={handleSubmit} style={{
+            display: 'flex', flexDirection: 'column', gap: 20,
+            background: '#fff1e7',
+            borderRadius: 20,
+            padding: '36px 32px',
+          }}>
 
             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               <div style={{ flex: 1, minWidth: 200 }}>
@@ -99,7 +103,7 @@ export default function ContactPage() {
                   onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                   style={inputStyle}
                   onFocus={e => e.target.style.borderColor = '#660A43'}
-                  onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
+                  onBlur={e => e.target.style.borderColor = 'rgba(102,10,67,0.2)'}
                 />
               </div>
               <div style={{ flex: 1, minWidth: 200 }}>
@@ -112,7 +116,7 @@ export default function ContactPage() {
                   onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                   style={inputStyle}
                   onFocus={e => e.target.style.borderColor = '#660A43'}
-                  onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
+                  onBlur={e => e.target.style.borderColor = 'rgba(102,10,67,0.2)'}
                 />
               </div>
             </div>
@@ -127,7 +131,7 @@ export default function ContactPage() {
                 onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
                 style={{ ...inputStyle, resize: 'vertical', minHeight: 130 }}
                 onFocus={e => e.target.style.borderColor = '#660A43'}
-                onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
+                onBlur={e => e.target.style.borderColor = 'rgba(102,10,67,0.2)'}
               />
             </div>
 
@@ -170,7 +174,7 @@ export default function ContactPage() {
 
 const labelStyle = {
   display: 'block',
-  color: '#b08090',
+  color: '#8a5060',
   fontSize: 12,
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
@@ -179,11 +183,11 @@ const labelStyle = {
 
 const inputStyle = {
   width: '100%',
-  background: 'rgba(255,255,255,0.04)',
-  border: '1px solid rgba(255,255,255,0.1)',
+  background: '#fff',
+  border: '1px solid rgba(102,10,67,0.2)',
   borderRadius: 8,
   padding: '14px 16px',
-  color: '#fff',
+  color: '#2a0a1a',
   fontSize: 15,
   outline: 'none',
   transition: 'border-color 0.2s',
