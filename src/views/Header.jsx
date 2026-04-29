@@ -30,6 +30,15 @@ export default function Header() {
 
   return (
     <>
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: 'env(safe-area-inset-top)',
+        background: '#660A43',
+        zIndex: 101,
+      }} />
       <header className="mobile-pill" style={{
         position: 'fixed',
         top: 24,
