@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import Header from './Header'
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -28,9 +29,10 @@ export default function ContactPage() {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '60px 24px',
+      padding: '100px 24px 60px',
       fontFamily: 'var(--font-dm-sans, sans-serif)',
     }}>
+      <Header />
       <div style={{ maxWidth: 560, width: '100%' }}>
 
         <p style={{
