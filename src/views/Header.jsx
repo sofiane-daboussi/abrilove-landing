@@ -15,11 +15,11 @@ export default function Header() {
 
   return (
     <>
-      <header style={{
+      <header className="mobile-pill" style={{
         position: 'fixed',
         top: 16,
-        left: 0,
-        right: 0,
+        left: 16,
+        right: 16,
         zIndex: 100,
         display: 'flex',
         alignItems: 'center',
@@ -153,6 +153,14 @@ export default function Header() {
           .desktop-nav { display: none !important; }
           .desktop-cta { display: none !important; }
           .burger { display: block !important; }
+          .mobile-pill {
+            background: rgba(80,5,50,0.88) !important;
+            backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            border-radius: 999px !important;
+            padding: 0 16px !important;
+            height: 48px !important;
+          }
         }
       `}</style>
     </>
