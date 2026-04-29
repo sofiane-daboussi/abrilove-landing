@@ -84,8 +84,8 @@ export default function Header() {
           Fais notre quiz gratuit 🩷
         </a>
 
-        {/* CTA mobile — centré entre logo et burger */}
-        <div className="mobile-cta" style={{ display: 'none', flex: 1, justifyContent: 'center' }}>
+        {/* CTA mobile — centré en absolu dans le pill */}
+        <div className="mobile-cta" style={{ display: 'none', position: 'absolute', left: '50%', transform: 'translateX(-50%)', pointerEvents: 'auto' }}>
           <a href="/quiz-gratuit" style={{
             background: '#fff',
             color: '#660A43',
@@ -166,7 +166,7 @@ export default function Header() {
           .desktop-nav { display: none !important; }
           .desktop-cta { display: none !important; }
           .burger { display: block !important; }
-          .mobile-cta { display: flex !important; }
+          .mobile-cta { display: flex !important; position: absolute !important; left: 50% !important; transform: translateX(-50%) !important; }
           .mobile-pill {
             background: rgba(80,5,50,0.88) !important;
             backdrop-filter: blur(16px) !important;
