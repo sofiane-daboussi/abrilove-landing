@@ -172,7 +172,7 @@ export default function Footer() {
             <div style={{ display: 'flex', gap: 10 }}>
               {[
                 { href: 'https://instagram.com/abrilove.fr', icon: <IgIcon /> },
-                { href: 'https://facebook.com/abrilove', icon: <FbIcon /> },
+                { href: 'https://www.facebook.com/abrilove.fr', icon: <FbIcon /> },
                 { href: 'https://tiktok.com/@abrilove.fr', icon: <TkIcon /> },
               ].map(s => (
                 <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" className="social-icon">
