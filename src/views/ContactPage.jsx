@@ -25,21 +25,17 @@ export default function ContactPage() {
     <div style={{
       minHeight: '100vh',
       background: '#660A43',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      padding: '80px 8px 40px',
+      padding: '84px 16px 24px',
       fontFamily: 'var(--font-dm-sans, sans-serif)',
     }}>
       <Header />
 
       <div style={{
-        background: '#fff1e7',
-        borderRadius: 24,
-        padding: '40px 28px',
-        width: '100%',
+        background: '#FFF1E7',
+        borderRadius: 20,
         maxWidth: 680,
-        marginTop: 8,
+        margin: '0 auto',
+        padding: '36px 28px 48px',
       }}>
 
         <p style={{
