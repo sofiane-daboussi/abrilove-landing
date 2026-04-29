@@ -33,8 +33,11 @@ export default function Header() {
           <img src="/images/logo-header.png" alt="Abrilove" className="logo-img" style={{ height: 36, objectFit: 'contain' }} />
         </a>
 
-        {/* Nav pill centre */}
+        {/* Nav pill — centré en absolu sur desktop */}
         <nav className="desktop-nav" style={{
+          position: 'absolute',
+          left: '50%',
+          transform: 'translateX(-50%)',
           display: 'flex',
           alignItems: 'center',
           background: 'rgba(80,5,50,0.88)',
@@ -64,7 +67,7 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* CTA droite */}
+        {/* CTA droite desktop */}
         <a href="/quiz-gratuit" className="desktop-cta desktop-cta-btn" style={{
           background: '#fff',
           color: '#660A43',
@@ -77,27 +80,27 @@ export default function Header() {
           whiteSpace: 'nowrap',
           flexShrink: 0,
           pointerEvents: 'auto',
-          marginLeft: 16,
         }}>
           Fais notre quiz gratuit 🩷
         </a>
 
-        {/* CTA mobile — visible entre logo et burger */}
-        <a href="/quiz-gratuit" className="mobile-cta" style={{
-          display: 'none',
-          background: '#fff',
-          color: '#660A43',
-          fontSize: 11,
-          fontWeight: 600,
-          textDecoration: 'none',
-          padding: '4px 10px',
-          borderRadius: 999,
-          fontFamily: 'var(--font-dm-sans, sans-serif)',
-          whiteSpace: 'nowrap',
-          pointerEvents: 'auto',
-        }}>
-          Fais notre quiz gratuit 🩷
-        </a>
+        {/* CTA mobile — centré entre logo et burger */}
+        <div className="mobile-cta" style={{ display: 'none', flex: 1, justifyContent: 'center' }}>
+          <a href="/quiz-gratuit" style={{
+            background: '#fff',
+            color: '#660A43',
+            fontSize: 11,
+            fontWeight: 600,
+            textDecoration: 'none',
+            padding: '4px 10px',
+            borderRadius: 999,
+            fontFamily: 'var(--font-dm-sans, sans-serif)',
+            whiteSpace: 'nowrap',
+            pointerEvents: 'auto',
+          }}>
+            Fais notre quiz gratuit 🩷
+          </a>
+        </div>
 
         {/* Burger mobile */}
         <button
@@ -114,6 +117,7 @@ export default function Header() {
             padding: '5px 10px',
             pointerEvents: 'auto',
             lineHeight: 1,
+            flexShrink: 0,
           }}
           aria-label="Menu"
         >
@@ -125,7 +129,7 @@ export default function Header() {
       {open && (
         <div style={{
           position: 'fixed',
-          top: 72,
+          top: 80,
           left: 16,
           right: 16,
           zIndex: 99,
@@ -155,14 +159,14 @@ export default function Header() {
       <style>{`
         @media (min-width: 781px) {
           .logo-img { height: 48px !important; }
-          .desktop-cta-btn { padding: 12px 20px !important; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease !important; }
-          .desktop-cta-btn:hover { background: #660A43 !important; color: #fff !important; transform: scale(1.04) !important; box-shadow: 0 4px 20px rgba(102,10,67,0.35) !important; }
+          .desktop-cta-btn { padding: 12px 20px !important; transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease !important; }
+          .desktop-cta-btn:hover { transform: scale(1.07) !important; box-shadow: 0 6px 24px rgba(0,0,0,0.18) !important; }
         }
         @media (max-width: 780px) {
           .desktop-nav { display: none !important; }
           .desktop-cta { display: none !important; }
           .burger { display: block !important; }
-          .mobile-cta { display: block !important; }
+          .mobile-cta { display: flex !important; }
           .mobile-pill {
             background: rgba(80,5,50,0.88) !important;
             backdrop-filter: blur(16px) !important;
