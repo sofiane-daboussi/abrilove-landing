@@ -95,7 +95,7 @@ export default function Header() {
           whiteSpace: 'nowrap',
           pointerEvents: 'auto',
         }}>
-          Quiz gratuit 🩷
+          Fais notre quiz gratuit 🩷
         </a>
 
         {/* Burger mobile */}
