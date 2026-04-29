@@ -155,7 +155,8 @@ export default function Header() {
       <style>{`
         @media (min-width: 781px) {
           .logo-img { height: 48px !important; }
-          .desktop-cta-btn { padding: 12px 20px !important; }
+          .desktop-cta-btn { padding: 12px 20px !important; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease !important; }
+          .desktop-cta-btn:hover { background: #660A43 !important; color: #fff !important; transform: scale(1.04) !important; box-shadow: 0 4px 20px rgba(102,10,67,0.35) !important; }
         }
         @media (max-width: 780px) {
           .desktop-nav { display: none !important; }
