@@ -24,8 +24,7 @@ export default function ContactPage() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: '#660A43',
-      padding: '84px 16px 24px',
+      padding: '84px 0 0',
       fontFamily: 'var(--font-dm-sans, sans-serif)',
     }}>
       <Header />
