@@ -39,7 +39,7 @@ export default function Header() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 20px',
+        padding: '10px 20px',
         borderRadius: 999,
         pointerEvents: 'none',
         opacity: visible ? 1 : 0,
@@ -63,7 +63,7 @@ export default function Header() {
           backdropFilter: 'blur(20px)',
           border: '1px solid rgba(255,255,255,0.15)',
           borderRadius: 999,
-          padding: '6px 8px',
+          padding: '8px 10px',
           gap: 2,
           pointerEvents: 'auto',
         }}>
@@ -72,7 +72,7 @@ export default function Header() {
               color: 'rgba(255,255,255,0.8)',
               fontSize: 13,
               textDecoration: 'none',
-              padding: '7px 13px',
+              padding: '9px 15px',
               borderRadius: 999,
               fontFamily: 'var(--font-dm-sans, sans-serif)',
               transition: 'background 0.2s, color 0.2s',
@@ -93,7 +93,7 @@ export default function Header() {
           fontSize: 12,
           fontWeight: 600,
           textDecoration: 'none',
-          padding: '7px 14px',
+          padding: '10px 18px',
           borderRadius: 999,
           fontFamily: 'var(--font-dm-sans, sans-serif)',
           whiteSpace: 'nowrap',
@@ -111,7 +111,7 @@ export default function Header() {
             fontSize: 11,
             fontWeight: 600,
             textDecoration: 'none',
-            padding: '4px 10px',
+            padding: '7px 14px',
             borderRadius: 999,
             fontFamily: 'var(--font-dm-sans, sans-serif)',
             whiteSpace: 'nowrap',
@@ -133,7 +133,7 @@ export default function Header() {
             cursor: 'pointer',
             color: '#fff',
             fontSize: 16,
-            padding: '5px 10px',
+            padding: '8px 14px',
             pointerEvents: 'auto',
             lineHeight: 1,
             flexShrink: 0,
@@ -178,7 +178,7 @@ export default function Header() {
       <style>{`
         @media (min-width: 781px) {
           .logo-img { height: 48px !important; }
-          .desktop-cta-btn { padding: 12px 20px !important; transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease !important; }
+          .desktop-cta-btn { padding: 14px 24px !important; transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease !important; }
           .desktop-cta-btn:hover { transform: scale(1.07) !important; box-shadow: 0 6px 24px rgba(0,0,0,0.18) !important; }
         }
         @media (max-width: 780px) {
