@@ -87,7 +87,7 @@ export default function Header() {
 
         {/* CTA droite desktop */}
         <a href="/quiz-gratuit" className="desktop-cta desktop-cta-btn" style={{
-          background: '#fff',
+          background: '#FFF4F7',
           color: '#660A43',
           fontSize: 12,
           fontWeight: 600,
