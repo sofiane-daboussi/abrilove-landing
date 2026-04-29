@@ -187,8 +187,7 @@ export default function Header() {
           .burger { display: block !important; }
           .mobile-cta { display: flex !important; position: absolute !important; left: 50% !important; transform: translateX(-50%) !important; }
           .mobile-pill {
-            background: linear-gradient(135deg, rgba(80,5,50,0.9) 0%, rgba(130,15,80,0.9) 50%, rgba(80,5,50,0.9) 100%) !important;
-            backdrop-filter: blur(20px) !important;
+            background: linear-gradient(135deg, rgb(80,5,50) 0%, rgb(130,15,80) 50%, rgb(80,5,50) 100%) !important;
             border: 1px solid rgba(255,255,255,0.15) !important;
             border-radius: 999px !important;
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
