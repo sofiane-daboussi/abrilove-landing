@@ -182,7 +182,7 @@ export default function Header() {
           .desktop-cta-btn:hover { transform: scale(1.07) !important; box-shadow: 0 6px 24px rgba(0,0,0,0.18) !important; }
         }
         @media (max-width: 780px) {
-          .mobile-pill { top: calc(env(safe-area-inset-top) + 12px) !important; transform: none !important; transition: opacity 0.35s ease !important; }
+          .mobile-pill { top: calc(env(safe-area-inset-top) + 20px) !important; transform: none !important; transition: opacity 0.35s ease !important; }
           .desktop-nav { display: none !important; }
           .desktop-cta { display: none !important; }
           .burger { display: block !important; }
