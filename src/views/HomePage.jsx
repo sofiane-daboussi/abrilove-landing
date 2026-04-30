@@ -205,6 +205,8 @@ export default function HomePage() {
           .hp-hero-stats { gap:16px !important; flex-wrap:nowrap !important; }
           .hp-hero-stats > div > div:first-child { font-size:20px !important; }
           .hp-hero-stats > div > div:last-child { font-size:10px !important; }
+          .hp-quiz-text { flex: 0 0 auto !important; }
+          .hp-quiz-cols { gap: 16px !important; }
         }
         .hp-quiz-embed .qz-wrap { padding: 0 !important; max-width: 100% !important; }
         .hp-quiz-embed .qz-progress-bar { display: none !important; }
@@ -301,8 +303,8 @@ export default function HomePage() {
           <div style={{ position: 'absolute', width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle, rgba(210,40,120,0.5) 0%, transparent 65%)', top: '50%', left: '30%', filter: 'blur(50px)', animation: 'blob3 7s ease-in-out infinite' }} />
         </div>
         <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <div className="hp-2cols" style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
-            <div style={{ flex: '0 0 400px' }}>
+          <div className="hp-2cols hp-quiz-cols" style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
+            <div style={{ flex: '0 0 400px' }} className="hp-quiz-text">
               <p style={{ color: 'rgba(255,241,231,0.55)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Quiz gratuit</p>
               <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(26px,3.5vw,42px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 20 }}>
                 Tu veux aller plus loin qu'une simple réponse ?
