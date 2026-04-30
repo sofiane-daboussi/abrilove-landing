@@ -478,7 +478,7 @@ export default function HomePage() {
         </div>
         <div style={{ position: 'absolute', bottom: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2 }}>
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
-            <path d="M0,80 L0,50 Q720,0 1440,50 L1440,80 Z" fill="#FFF4F7" />
+            <path d="M0,30 Q720,70 1440,30 L1440,80 L0,80 Z" fill="#FFF4F7" />
           </svg>
         </div>
       </section>
