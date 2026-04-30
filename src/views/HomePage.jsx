@@ -302,7 +302,7 @@ export default function HomePage() {
         </div>
         <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div className="hp-2cols" style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: '0 0 400px' }}>
               <p style={{ color: 'rgba(255,241,231,0.55)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Quiz gratuit</p>
               <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(26px,3.5vw,42px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 20 }}>
                 Tu veux aller plus loin qu'une simple réponse ?
@@ -312,7 +312,7 @@ export default function HomePage() {
                 Fais le <strong>test gratuit</strong> et découvre ton profil amoureux, pour mieux comprendre ce que tu vis, en profondeur.
               </p>
             </div>
-            <div style={{ flex: 1.4 }} className="hp-quiz-embed">
+            <div style={{ flex: 1 }} className="hp-quiz-embed">
               <QuizPage />
             </div>
           </div>
