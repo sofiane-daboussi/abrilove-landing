@@ -357,15 +357,12 @@ p strong, p em { color: #660A43; }
   border-radius: 18px;
   overflow: hidden;
   height: 340px;
-  width: 220px;
   opacity: 0.92;
   transition: opacity 0.3s;
 }
 .abri-screen-card img {
   height: 100%;
-  width: 100%;
-  object-fit: contain;
-  background: white;
+  width: auto;
   display: block;
   -webkit-touch-callout: none;
   pointer-events: none;
