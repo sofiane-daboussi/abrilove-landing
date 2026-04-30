@@ -930,32 +930,21 @@ export default function HomePage() {
       {/* ── DEUX CHOIX ── */}
       <ToggleSection />
 
-      {/* ── SOFI & OLI + PRODUITS ── */}
+      {/* ── SOFI & OLI ── */}
       <section style={{ background: '#FFF4F7', padding: 'clamp(20px,3vw,48px) clamp(32px,5vw,80px) clamp(60px,8vw,120px)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div className="hp-about" style={{ display: 'flex', gap: 24 }}>
-            <div style={{ flex: 1.3, background: 'linear-gradient(135deg, #fdf5f8, #f5e5f0)', borderRadius: 24, padding: '36px 32px' }}>
-              <h3 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#1a0011', fontSize: 'clamp(22px,2.5vw,28px)', fontWeight: 700, marginBottom: 20 }}>
+          <div className="hp-2cols" style={{ display: 'flex', alignItems: 'center', gap: 60 }}>
+            <div style={{ flex: 1 }}>
+              <img src="/images/section-img-2.avif" alt="Sofi et Oli" style={{ width: '100%', borderRadius: 24, objectFit: 'cover', maxHeight: 500 }} />
+            </div>
+            <div style={{ flex: 1 }}>
+              <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#1a0011', fontSize: 'clamp(26px,3.5vw,42px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 20 }}>
                 Hey, nous sommes <em style={{ color: '#660A43' }}>Sofi & Oli</em>
-              </h3>
-              <p style={{ color: '#5a3040', fontSize: 15, lineHeight: 1.85, marginBottom: 24 }}>
+              </h2>
+              <p style={{ color: '#5a3040', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.85, marginBottom: 32 }}>
                 Chaque jour, nous accompagnons des femmes dans leurs relations, leurs doutes, leurs schémas et ce qu'elles traversent intérieurement. Au fil de milliers d'heures de coaching, de conversations et de situations réelles, nous avons appris à voir ce qui se joue vraiment derrière les mots, les silences et les comportements.
               </p>
-              <img src="/images/section-img-2.avif" alt="Sofi et Oli" style={{ width: '100%', borderRadius: 16, objectFit: 'cover', maxHeight: 280 }} />
-            </div>
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {[
-                { badge: 'Accompagnement personnalisé', title: 'Coaching individuel', desc: 'Un espace pour toi seule. On travaille ensemble sur tes schémas, tes blocages, ce qui se répète…', href: '/coaching', cta: 'Découvrir le coaching →' },
-                { badge: 'En live ou en replay', title: 'Ateliers & cours', desc: 'Des sessions thématiques pour comprendre la psychologie masculine, décoder les dynamiques et agir autrement.', href: '/amour', cta: 'Voir les ateliers →' },
-                { badge: 'À ton rythme', title: 'Guides & ebooks', desc: 'Des ressources concrètes à parcourir chez toi — avec des exercices pour avancer à ton rythme.', href: '/amour', cta: 'Explorer les ressources →' },
-              ].map(c => (
-                <div key={c.title} style={{ background: '#fdf5f8', border: '1px solid rgba(102,10,67,0.1)', borderRadius: 20, padding: '22px 20px', flex: 1 }}>
-                  <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(102,10,67,0.45)', display: 'block', marginBottom: 8 }}>{c.badge}</span>
-                  <h3 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#1a0011', fontSize: 17, fontWeight: 700, marginBottom: 8 }}>{c.title}</h3>
-                  <p style={{ color: '#5a3040', fontSize: 13, lineHeight: 1.65, marginBottom: 12 }}>{c.desc}</p>
-                  <a href={c.href} style={{ color: '#660A43', fontSize: 13, fontWeight: 600, textDecoration: 'none' }}>{c.cta}</a>
-                </div>
-              ))}
+              <a href="https://ia.abrilove.fr" target="_blank" rel="noopener noreferrer" className="hp-btn-dark">Parle-nous de ta situation →</a>
             </div>
           </div>
         </div>
