@@ -505,7 +505,12 @@ export default function HomePage() {
       </section>
 
       {/* ── QUIZ TEASER ── */}
-      <section className="hp-quiz-section" style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: 'clamp(60px,8vw,120px) clamp(32px,5vw,80px)', position: 'relative' }}>
+      <section className="hp-quiz-section" style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: 'calc(clamp(60px,8vw,120px) + 80px) clamp(32px,5vw,80px)', position: 'relative' }}>
+        <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+            <path d="M0,0 L0,50 Q720,10 1440,50 L1440,0 Z" fill="#FFF4F7" />
+          </svg>
+        </div>
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden' }}>
           <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(190,25,105,0.6) 0%, transparent 65%)', top: '-10%', right: '-10%', filter: 'blur(50px)', animation: 'blob1 6s ease-in-out infinite' }} />
           <div style={{ position: 'absolute', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(160,15,85,0.55) 0%, transparent 65%)', bottom: '-10%', left: '-10%', filter: 'blur(45px)', animation: 'blob2 8s ease-in-out infinite' }} />
@@ -527,6 +532,11 @@ export default function HomePage() {
               <QuizPage />
             </div>
           </div>
+        </div>
+        <div style={{ position: 'absolute', bottom: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+            <path d="M0,30 Q720,70 1440,30 L1440,80 L0,80 Z" fill="#FFF4F7" />
+          </svg>
         </div>
       </section>
 
