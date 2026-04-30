@@ -537,7 +537,7 @@ function StepsSection() {
 function BentoSection() {
   return (
     <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) 0' }}>
-      <div data-fade style={{ padding: '0 clamp(16px,3vw,32px)', maxWidth: 1080, margin: '0 auto' }}>
+      <div data-fade style={{ padding: '0 clamp(32px,5vw,80px)', maxWidth: 1080, margin: '0 auto' }}>
         <h2 style={{ fontFamily: 'var(--font-playfair,serif)', fontSize: 'clamp(24px,3.5vw,40px)', color: '#660A43', lineHeight: 1.2, marginBottom: 60, fontWeight: 700 }}>
           Tout ce dont tu as besoin pour <em>avancer</em>
         </h2>
