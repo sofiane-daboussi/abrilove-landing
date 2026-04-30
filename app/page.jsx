@@ -1,7 +1,4 @@
-'use client'
-import dynamic from 'next/dynamic'
-
-const HomePage = dynamic(() => import('../src/views/HomePage'), { ssr: false })
+import HomePage from '../src/views/HomePage'
 
 export default function Home() {
   return <HomePage />

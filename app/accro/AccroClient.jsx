@@ -1,4 +1,3 @@
 'use client'
-import dynamic from 'next/dynamic'
-const AccroPage = dynamic(() => import('../../src/views/AccroPage'), { ssr: false })
+import AccroPage from '../../src/views/AccroPage'
 export default function AccroClient() { return <AccroPage /> }

@@ -1,4 +1,3 @@
 'use client'
-import dynamic from 'next/dynamic'
-const ReveusePage = dynamic(() => import('../../src/views/ReveusePage'), { ssr: false })
+import ReveusePage from '../../src/views/ReveusePage'
 export default function ReveuseClient() { return <ReveusePage /> }
