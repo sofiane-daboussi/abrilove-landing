@@ -207,6 +207,7 @@ export default function HomePage() {
           .hp-hero-stats > div > div:last-child { font-size:10px !important; }
         }
         .hp-quiz-embed .qz-wrap { padding: 0 !important; max-width: 100% !important; }
+        .hp-quiz-embed .qz-progress-bar { display: none !important; }
         .hp-quiz-section p strong, .hp-quiz-section p em { color: #FFF1E7 !important; }
       `}</style>
 
