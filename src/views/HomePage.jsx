@@ -1030,7 +1030,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Footer />
+      <Footer topArc />
     </div>
   )
 }
