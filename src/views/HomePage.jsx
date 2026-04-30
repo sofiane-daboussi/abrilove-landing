@@ -29,6 +29,91 @@ const FAQ_DATA = [
   { q: 'Est-ce que ça va vraiment m\'aider ?', a: 'L\'objectif : t\'offrir un regard plus juste pour prendre de meilleures décisions. C\'est à toi d\'essayer.' },
 ]
 
+function TemuSection() {
+  const trackRef = useRef(null)
+  const wrapRef = useRef(null)
+  const posRef = useRef(0)
+  const pausedRef = useRef(false)
+  const rafRef = useRef(null)
+
+  useEffect(() => {
+    const track = trackRef.current
+    const wrap = wrapRef.current
+    if (!track || !wrap) return
+
+    let halfWidth = 0
+
+    function calcWidths() {
+      const cards = track.querySelectorAll('.abri-screen-card')
+      let total = 0
+      cards.forEach(c => { total += c.offsetWidth + 20 })
+      halfWidth = total / 2
+    }
+
+    function step() {
+      if (!pausedRef.current) {
+        posRef.current += 0.7
+        if (posRef.current >= halfWidth) posRef.current -= halfWidth
+        track.style.transform = 'translateX(-' + posRef.current + 'px)'
+      }
+      rafRef.current = requestAnimationFrame(step)
+    }
+
+    function onLoad() { calcWidths(); rafRef.current = requestAnimationFrame(step) }
+
+    if (document.readyState === 'complete') { onLoad() }
+    else { window.addEventListener('load', onLoad) }
+
+    const pause = () => { pausedRef.current = true }
+    const resume = () => { pausedRef.current = false }
+    let timer = null
+    const touchStart = () => { timer = setTimeout(pause, 150) }
+    const touchMove = () => { clearTimeout(timer); resume() }
+    const touchEnd = () => { clearTimeout(timer); resume() }
+
+    wrap.addEventListener('mousedown', pause)
+    wrap.addEventListener('mouseup', resume)
+    wrap.addEventListener('mouseleave', resume)
+    wrap.addEventListener('touchstart', touchStart, { passive: true })
+    wrap.addEventListener('touchmove', touchMove, { passive: true })
+    wrap.addEventListener('touchend', touchEnd, { passive: true })
+    wrap.addEventListener('touchcancel', touchEnd, { passive: true })
+
+    return () => {
+      cancelAnimationFrame(rafRef.current)
+      window.removeEventListener('load', onLoad)
+      wrap.removeEventListener('mousedown', pause)
+      wrap.removeEventListener('mouseup', resume)
+      wrap.removeEventListener('mouseleave', resume)
+      wrap.removeEventListener('touchstart', touchStart)
+      wrap.removeEventListener('touchmove', touchMove)
+      wrap.removeEventListener('touchend', touchEnd)
+      wrap.removeEventListener('touchcancel', touchEnd)
+    }
+  }, [])
+
+  const allImgs = [...TEMOS, ...TEMOS]
+
+  return (
+    <section style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: 'clamp(40px,6vw,80px) 0', position: 'relative' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}>
+        <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, textAlign: 'center', marginBottom: 40 }}>
+          Elles ont osé écrire. Voilà ce qui s'est passé.
+        </h2>
+      </div>
+      <div className="abri-track-wrap" ref={wrapRef}>
+        <div className="abri-track" ref={trackRef}>
+          {allImgs.map((src, i) => (
+            <div key={i} className="abri-screen-card">
+              <img src={src} alt="témoignage" draggable={false} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function StatCounter({ target, suffix = '', label, color = '#FFF1E7', labelColor = 'rgba(255,241,231,0.55)' }) {
   const [count, setCount] = useState(0)
   const ref = useRef(null)
@@ -186,7 +271,10 @@ export default function HomePage() {
         @keyframes blob1 { 0%,100% { transform:translate(0,0) scale(1); } 33% { transform:translate(80px,-60px) scale(1.15); } 66% { transform:translate(-50px,40px) scale(0.88); } }
         @keyframes blob2 { 0%,100% { transform:translate(0,0) scale(1); } 33% { transform:translate(-70px,50px) scale(1.12); } 66% { transform:translate(60px,-40px) scale(0.9); } }
         @keyframes blob3 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(60px,-70px) scale(1.1); } }
-        @keyframes temo-scroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+        .abri-track-wrap { overflow:hidden; mask-image:linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%); -webkit-mask-image:linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%); user-select:none; -webkit-user-select:none; }
+        .abri-track { display:flex; gap:20px; width:max-content; will-change:transform; }
+        .abri-screen-card { flex-shrink:0; border-radius:18px; overflow:hidden; height:340px; opacity:0.92; transition:opacity 0.3s; }
+        .abri-screen-card img { height:100%; width:auto; display:block; -webkit-touch-callout:none; pointer-events:none; user-select:none; -webkit-user-select:none; }
         .hp-btn-light { display:inline-flex; align-items:center; background:#FFF1E7; color:#660A43; text-decoration:none; padding:16px 28px; border-radius:999px; font-weight:700; font-size:15px; transition:transform 0.2s,box-shadow 0.2s; box-shadow:0 8px 24px rgba(0,0,0,0.25); font-family:var(--font-dm-sans,sans-serif); }
         .hp-btn-light:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,0.3); }
         .hp-btn-dark { display:inline-flex; align-items:center; background:#660A43; color:#fff; text-decoration:none; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; transition:transform 0.2s,box-shadow 0.2s; box-shadow:0 6px 20px rgba(102,10,67,0.4); font-family:var(--font-dm-sans,sans-serif); }
@@ -346,20 +434,7 @@ export default function HomePage() {
       </section>
 
       {/* ── TÉMOIGNAGES ── */}
-      <section style={{ padding: 'clamp(40px,6vw,80px) 0', overflow: 'hidden' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}>
-          <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#1a0011', fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, textAlign: 'center', marginBottom: 40 }}>
-            Elles ont osé écrire. Voilà ce qui s'est passé.
-          </h2>
-        </div>
-        <div style={{ overflow: 'hidden' }}>
-          <div style={{ display: 'flex', gap: 16, animation: 'temo-scroll 30s linear infinite', width: 'max-content' }}>
-            {[...TEMOS, ...TEMOS].map((src, i) => (
-              <img key={i} src={src} alt="témoignage" style={{ height: 280, width: 'auto', borderRadius: 16, objectFit: 'cover', flexShrink: 0 }} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <TemuSection />
 
       {/* ── CE QUE TU VIS ── */}
       <section style={{ background: 'linear-gradient(135deg, #fdf5f8 0%, #f5e5f0 50%, #fdf8fa 100%)', padding: 'clamp(60px,8vw,100px) clamp(32px,5vw,80px)', textAlign: 'center' }}>
