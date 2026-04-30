@@ -323,6 +323,209 @@ const IPhoneChat = memo(function IPhoneChat() {
   )
 })
 
+function StepsSection() {
+  useEffect(() => {
+    let mounted = true
+    const dPaths = {
+      girl1: "M 100 144 C 100 280, 380 300, 527 300",
+      girl2: "M 580 353 C 520 450, 280 460, 100 458",
+      couple: null
+    }
+    const mPaths = {
+      girl1: "M 80 114 C 80 220, 310 180, 310 258",
+      girl2: "M 310 342 C 310 430, 80 400, 80 458",
+      couple: null
+    }
+    function samplePath(svgEl, pathStr, steps) {
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+      path.setAttribute('d', pathStr)
+      svgEl.appendChild(path)
+      const len = path.getTotalLength()
+      const pts = []
+      for (let i = 0; i <= steps; i++) {
+        const p = path.getPointAtLength((i / steps) * len)
+        pts.push({ x: p.x, y: p.y })
+      }
+      svgEl.removeChild(path)
+      return pts
+    }
+    function animateEmoji(el, svgEl, pathStr, dur, onEnd) {
+      const pts = samplePath(svgEl, pathStr, 80)
+      let start = null
+      el.setAttribute('opacity', '1')
+      function step(ts) {
+        if (!mounted) return
+        if (!start) start = ts
+        const prog = Math.min((ts - start) / dur, 1)
+        const pt = pts[Math.round(prog * 80)]
+        el.setAttribute('transform', 'translate(' + pt.x + ',' + pt.y + ')')
+        if (prog < 1) requestAnimationFrame(step)
+        else if (onEnd) onEnd()
+      }
+      requestAnimationFrame(step)
+    }
+    function runCycle(prefix, paths) {
+      if (!mounted) return
+      const g1 = document.getElementById('abri-' + prefix + '-girl1')
+      const g2 = document.getElementById('abri-' + prefix + '-girl2')
+      const cp = document.getElementById('abri-' + prefix + '-couple')
+      if (!g1 || !g2 || !cp) return
+      const svgEl = g1.closest('svg')
+      ;[g1, g2, cp].forEach(e => { e.setAttribute('opacity', '0'); e.setAttribute('transform', 'translate(0,0)') })
+      const pts2 = samplePath(svgEl, paths.girl2, 80)
+      g2.setAttribute('transform', 'translate(' + pts2[0].x + ',' + pts2[0].y + ')')
+      animateEmoji(g1, svgEl, paths.girl1, 5000, () => {
+        if (!mounted) return
+        g1.setAttribute('opacity', '0')
+        animateEmoji(g2, svgEl, paths.girl2, 4500, () => {
+          if (!mounted) return
+          g2.setAttribute('opacity', '0')
+          const lastTransform = g2.getAttribute('transform')
+          cp.setAttribute('transform', lastTransform)
+          cp.setAttribute('opacity', '1')
+          const match = lastTransform.match(/translate\(([^,]+),([^)]+)\)/)
+          const tx = match ? parseFloat(match[1]) : 0
+          const ty = match ? parseFloat(match[2]) : 0
+          let startTime = null
+          const duration = 2800
+          function heartbeat(ts) {
+            if (!mounted) return
+            if (!startTime) startTime = ts
+            const elapsed = ts - startTime
+            let scale
+            if (elapsed < 300) { scale = elapsed / 300 }
+            else { const t = (elapsed - 300) / 1000; const beat = Math.sin(t * Math.PI * 2.5); scale = 1 + Math.max(0, beat) * 0.35 }
+            cp.setAttribute('transform', 'translate(' + tx + ',' + ty + ') scale(' + scale + ')')
+            if (elapsed < duration) { requestAnimationFrame(heartbeat) }
+            else {
+              let fadeStart = null
+              function fadeOut(ts2) {
+                if (!mounted) return
+                if (!fadeStart) fadeStart = ts2
+                const p = Math.min((ts2 - fadeStart) / 400, 1)
+                cp.setAttribute('opacity', 1 - p)
+                if (p < 1) requestAnimationFrame(fadeOut)
+                else { cp.setAttribute('opacity', '0'); setTimeout(() => { if (mounted) runCycle(prefix, paths) }, 300) }
+              }
+              requestAnimationFrame(fadeOut)
+            }
+          }
+          requestAnimationFrame(heartbeat)
+        })
+      })
+    }
+    const section = document.getElementById('abri-steps-section')
+    if (!section) return
+    let started = false
+    function startAnimations() {
+      if (started) return
+      started = true
+      setTimeout(() => { if (mounted) runCycle('d', dPaths) }, 300)
+      setTimeout(() => { if (mounted) runCycle('m', mPaths) }, 300)
+    }
+    let observer
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) { startAnimations(); observer.disconnect() } })
+      }, { threshold: 0.3 })
+      observer.observe(section)
+    } else { startAnimations() }
+    return () => { mounted = false; if (observer) observer.disconnect() }
+  }, [])
+
+  return (
+    <section id="abri-steps-section" style={{ padding: '80px 20px 80px', background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', position: 'relative' }}>
+      <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+          <path d="M0,0 L0,45 Q720,22 1440,45 L1440,0 Z" fill="#FFF4F7" />
+        </svg>
+      </div>
+      <div style={{ textAlign: 'center', marginBottom: 60 }}>
+        <p style={{ fontSize: 'clamp(16px,2.5vw,22px)', fontWeight: 300, color: 'rgba(255,255,255,.8)', marginBottom: 6 }}>Comment on t'aide</p>
+        <p style={{ fontFamily: 'var(--font-playfair,serif)', fontStyle: 'italic', fontSize: 'clamp(32px,5vw,58px)', color: '#E8637A', fontWeight: 500, lineHeight: 1.1 }}>concrètement</p>
+      </div>
+
+      <svg className="steps-svg-d" viewBox="0 0 900 600" style={{ display: 'block', width: '100%', maxWidth: 900, margin: '0 auto' }}>
+        <path d="M 100 144 C 100 280, 380 300, 527 300" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="2.5" strokeDasharray="8 12" strokeLinecap="round"/>
+        <path d="M 580 353 C 520 450, 280 460, 100 458" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="2.5" strokeDasharray="8 12" strokeLinecap="round"/>
+        <circle cx="100" cy="90" r="52" fill="#E8637A" style={{ filter: 'drop-shadow(0 6px 20px rgba(232,99,122,0.6))' }}/>
+        <text x="100" y="80" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="9" fontWeight="500" letterSpacing="2.5" fill="rgba(255,255,255,0.75)">ÉTAPE</text>
+        <text x="100" y="108" textAnchor="middle" fontFamily="Playfair Display,serif" fontSize="30" fontWeight="700" fill="white">01</text>
+        <circle cx="580" cy="300" r="52" fill="#E8637A" style={{ filter: 'drop-shadow(0 6px 20px rgba(232,99,122,0.6))' }}/>
+        <text x="580" y="290" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="9" fontWeight="500" letterSpacing="2.5" fill="rgba(255,255,255,0.75)">ÉTAPE</text>
+        <text x="580" y="318" textAnchor="middle" fontFamily="Playfair Display,serif" fontSize="30" fontWeight="700" fill="white">02</text>
+        <circle cx="100" cy="510" r="52" fill="#E8637A" style={{ filter: 'drop-shadow(0 6px 20px rgba(232,99,122,0.6))' }}/>
+        <text x="100" y="500" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="9" fontWeight="500" letterSpacing="2.5" fill="rgba(255,255,255,0.75)">ÉTAPE</text>
+        <text x="100" y="528" textAnchor="middle" fontFamily="Playfair Display,serif" fontSize="30" fontWeight="700" fill="white">03</text>
+        <text id="abri-d-girl1" fontSize="30" textAnchor="middle" opacity="0">👩</text>
+        <text id="abri-d-girl2" fontSize="30" textAnchor="middle" opacity="0">👩</text>
+        <text id="abri-d-couple" fontSize="30" textAnchor="middle" opacity="0">💑</text>
+        <foreignObject x="168" y="48" width="340" height="160">
+          <div xmlns="http://www.w3.org/1999/xhtml" className="fo-text">
+            <h3>Tu poses ta situation</h3>
+            <p>Tu écris ce que tu vis, tel que c'est, sans réfléchir.</p>
+          </div>
+        </foreignObject>
+        <foreignObject x="648" y="258" width="245" height="160">
+          <div xmlns="http://www.w3.org/1999/xhtml" className="fo-text">
+            <h3>On t'aide à comprendre</h3>
+            <p>Tu reçois une réponse claire sur ce qui se passe vraiment.</p>
+          </div>
+        </foreignObject>
+        <foreignObject x="168" y="490" width="340" height="140">
+          <div xmlns="http://www.w3.org/1999/xhtml" className="fo-text">
+            <h3>Tu avances différemment</h3>
+            <p>Tu prends des décisions plus justes et tu arrêtes de répéter les mêmes schémas.</p>
+          </div>
+        </foreignObject>
+      </svg>
+
+      <div className="steps-svg-m">
+        <svg viewBox="0 0 400 600" style={{ display: 'block', width: '100%' }}>
+          <path d="M 80 114 C 80 220, 310 180, 310 258" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="2.5" strokeDasharray="7 11" strokeLinecap="round"/>
+          <path d="M 310 343 C 310 430, 80 400, 80 458" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="2.5" strokeDasharray="7 11" strokeLinecap="round"/>
+          <circle cx="80" cy="70" r="42" fill="#E8637A" style={{ filter: 'drop-shadow(0 5px 15px rgba(232,99,122,0.6))' }}/>
+          <text x="80" y="62" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="8" fontWeight="500" letterSpacing="2" fill="rgba(255,255,255,0.75)">ÉTAPE</text>
+          <text x="80" y="86" textAnchor="middle" fontFamily="Playfair Display,serif" fontSize="24" fontWeight="700" fill="white">01</text>
+          <circle cx="310" cy="300" r="42" fill="#E8637A" style={{ filter: 'drop-shadow(0 5px 15px rgba(232,99,122,0.6))' }}/>
+          <text x="310" y="292" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="8" fontWeight="500" letterSpacing="2" fill="rgba(255,255,255,0.75)">ÉTAPE</text>
+          <text x="310" y="316" textAnchor="middle" fontFamily="Playfair Display,serif" fontSize="24" fontWeight="700" fill="white">02</text>
+          <circle cx="80" cy="500" r="42" fill="#E8637A" style={{ filter: 'drop-shadow(0 5px 15px rgba(232,99,122,0.6))' }}/>
+          <text x="80" y="492" textAnchor="middle" fontFamily="DM Sans,sans-serif" fontSize="8" fontWeight="500" letterSpacing="2" fill="rgba(255,255,255,0.75)">ÉTAPE</text>
+          <text x="80" y="516" textAnchor="middle" fontFamily="Playfair Display,serif" fontSize="24" fontWeight="700" fill="white">03</text>
+          <text id="abri-m-girl1" fontSize="26" textAnchor="middle" opacity="0">👩</text>
+          <text id="abri-m-girl2" fontSize="26" textAnchor="middle" opacity="0">👩</text>
+          <text id="abri-m-couple" fontSize="26" textAnchor="middle" opacity="0">💑</text>
+          <foreignObject x="134" y="30" width="255" height="110">
+            <div xmlns="http://www.w3.org/1999/xhtml" className="fo-text">
+              <h3>Tu poses ta situation</h3>
+              <p>Tu écris ce que tu vis, tel que c'est, sans réfléchir.</p>
+            </div>
+          </foreignObject>
+          <foreignObject x="14" y="248" width="240" height="120">
+            <div xmlns="http://www.w3.org/1999/xhtml" className="fo-text">
+              <h3>On t'aide à comprendre</h3>
+              <p>Tu reçois une réponse claire sur ce qui se passe vraiment.</p>
+            </div>
+          </foreignObject>
+          <foreignObject x="134" y="458" width="255" height="110">
+            <div xmlns="http://www.w3.org/1999/xhtml" className="fo-text">
+              <h3>Tu avances différemment</h3>
+              <p>Tu prends des décisions plus justes et tu arrêtes de répéter les mêmes schémas.</p>
+            </div>
+          </foreignObject>
+        </svg>
+      </div>
+
+      <div style={{ textAlign: 'center', marginTop: 50 }}>
+        <a href="https://ia.abrilove.fr" target="_blank" rel="noopener noreferrer" className="steps-btn">
+          Pose ta première question →
+        </a>
+      </div>
+    </section>
+  )
+}
+
 function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false)
   return (
@@ -425,6 +628,12 @@ export default function HomePage() {
         .hp-quiz-embed .qz-progress-bar { display: none !important; }
         .hp-quiz-embed .qz-resume-overlay { background: rgba(20,0,10,0.75) !important; }
         .hp-quiz-section p strong, .hp-quiz-section p em { color: #FFF1E7 !important; }
+        .fo-text h3 { font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#E8637A; margin-bottom:8px; }
+        .fo-text p { font-size:14px; line-height:1.7; color:rgba(255,255,255,.85); font-weight:300; }
+        .steps-btn { display:inline-flex; align-items:center; gap:10px; background:#E8637A; color:#fff; font-size:14px; font-weight:500; letter-spacing:.07em; padding:18px 44px; border-radius:50px; text-decoration:none; box-shadow:0 8px 28px rgba(232,99,122,.5); transition:background .2s,transform .2s; }
+        .steps-btn:hover { background:#c94d63; transform:translateY(-2px); }
+        @media (max-width:640px) { .steps-svg-d { display:none !important; } }
+        @media (min-width:641px) { .steps-svg-m { display:none !important; } }
       `}</style>
 
       <Header />
@@ -579,42 +788,7 @@ export default function HomePage() {
       <HeartsSection />
 
       {/* ── COMMENT ON T'AIDE ── */}
-      <section style={{ padding: 'clamp(60px,8vw,120px) clamp(32px,5vw,80px)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(24px,6vw,80px)', marginBottom: 72, flexWrap: 'wrap' }}>
-            {[
-              { num: '11 400+', label: 'femmes accompagnées' },
-              { num: '89 300+', label: 'questions répondues' },
-              { num: '100%', label: 'nous recommandent' },
-            ].map(s => (
-              <div key={s.label} style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-playfair,serif)', fontSize: 'clamp(32px,4vw,48px)', fontWeight: 700, color: '#660A43', lineHeight: 1 }}>{s.num}</div>
-                <div style={{ fontSize: 14, color: '#8a5060', marginTop: 8 }}>{s.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <p style={{ textAlign: 'center', color: '#660A43', fontSize: 12, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 40 }}>Comment on t'aide / concrètement</p>
-
-          <div className="hp-steps" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 24, marginBottom: 48 }}>
-            {[
-              { num: '01', title: 'Tu poses ta situation', desc: 'Tu écris ce que tu vis, tel que c\'est, sans réfléchir.' },
-              { num: '02', title: 'On t\'aide à comprendre', desc: 'Tu reçois une réponse claire sur ce qui se passe vraiment.' },
-              { num: '03', title: 'Tu avances différemment', desc: 'Tu prends des décisions plus justes et tu arrêtes de répéter les mêmes schémas.' },
-            ].map(s => (
-              <div key={s.num} style={{ background: '#fff', border: '1px solid rgba(102,10,67,0.1)', borderRadius: 20, padding: 28 }}>
-                <div style={{ fontFamily: 'var(--font-playfair,serif)', fontSize: 48, fontWeight: 700, color: 'rgba(102,10,67,0.08)', lineHeight: 1, marginBottom: 16 }}>{s.num}</div>
-                <h3 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#1a0011', fontSize: 20, fontWeight: 700, marginBottom: 12 }}>{s.title}</h3>
-                <p style={{ color: '#5a3040', fontSize: 15, lineHeight: 1.7, margin: 0 }}>{s.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ textAlign: 'center' }}>
-            <a href="https://ia.abrilove.fr" target="_blank" rel="noopener noreferrer" className="hp-btn-dark">Pose ta première question →</a>
-          </div>
-        </div>
-      </section>
+      <StepsSection />
 
       {/* ── BENTO OFFRES ── */}
       <section style={{ background: 'linear-gradient(135deg, #1a0011 0%, #3d0228 55%, #660A43 100%)', padding: 'clamp(60px,8vw,120px) clamp(32px,5vw,80px)' }}>
