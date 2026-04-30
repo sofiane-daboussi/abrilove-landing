@@ -590,6 +590,48 @@ function BentoSection() {
   )
 }
 
+function ToggleSection() {
+  const [active, setActive] = useState(false)
+  return (
+    <section style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: '80px clamp(32px,5vw,80px) calc(clamp(40px,5vw,60px) + 80px)', position: 'relative' }}>
+      <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+          <path d="M0,0 L0,45 Q720,22 1440,45 L1440,0 Z" fill="#FFF4F7" />
+        </svg>
+      </div>
+      <div style={{ position: 'absolute', bottom: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+          <path d="M0,35 Q720,58 1440,35 L1440,80 L0,80 Z" fill="#FFF4F7" />
+        </svg>
+      </div>
+      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <div className={`abri-section${active ? ' active' : ''}`} style={{ marginTop: 0 }}>
+          <div className="abri-left">
+            <h2>Maintenant, tu as deux choix :</h2>
+          </div>
+          <div className="abri-right">
+            <div className="abri-text-wrapper">
+              <div className="abri-text-off">
+                <p>Continuer à <strong>douter, analyser, attendre…</strong></p>
+                <p className="abri-ou">ou tu peux <strong>actionner l'interrupteur...</strong></p>
+              </div>
+              <div className="abri-text-on">
+                <p>et passer à l'action : poser ta situation et comprendre enfin ce qui se passe vraiment.</p>
+              </div>
+            </div>
+            <button className={`abri-toggle${active ? ' on' : ''}`} onClick={() => setActive(a => !a)} aria-label="Activer">
+              <div className="abri-toggle-knob" />
+            </button>
+            <a href="https://ia.abrilove.fr/" className="abri-cta-ebook" target="_blank" rel="noopener noreferrer">
+              Je vous écris gratuitement →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false)
   return (
@@ -886,22 +928,7 @@ export default function HomePage() {
       <BentoSection />
 
       {/* ── DEUX CHOIX ── */}
-      <section style={{ padding: 'clamp(40px,6vw,80px) clamp(32px,5vw,80px)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ background: 'linear-gradient(135deg, #1a0011 0%, #3d0228 60%, #660A43 100%)', borderRadius: 24, padding: 'clamp(40px,6vw,80px) clamp(32px,5vw,80px)', textAlign: 'center' }}>
-            <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(26px,3.5vw,42px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 24 }}>
-              Maintenant, tu as deux choix :
-            </h2>
-            <p style={{ color: 'rgba(255,241,231,0.75)', fontSize: 'clamp(15px,1.8vw,18px)', lineHeight: 1.8, marginBottom: 10 }}>
-              Continuer à <strong style={{ color: '#FFF1E7' }}>douter, analyser, attendre…</strong>
-            </p>
-            <p style={{ color: 'rgba(255,241,231,0.75)', fontSize: 'clamp(15px,1.8vw,18px)', lineHeight: 1.8, marginBottom: 36 }}>
-              ou tu peux <strong style={{ color: '#FFF1E7' }}>actionner l'interrupteur…</strong> et passer à l'action : poser ta situation et comprendre enfin ce qui se passe vraiment.
-            </p>
-            <a href="https://ia.abrilove.fr" target="_blank" rel="noopener noreferrer" className="hp-btn-light">Je vous écris gratuitement →</a>
-          </div>
-        </div>
-      </section>
+      <ToggleSection />
 
       {/* ── SOFI & OLI + PRODUITS ── */}
       <section style={{ padding: 'clamp(40px,6vw,80px) clamp(32px,5vw,80px)' }}>
