@@ -559,7 +559,7 @@ export default function CerebalePage() {
                     Par contre, c'est pour toi si… →
                   </button>
                 </div>
-                <div className="book-face-back">
+                <div className="book-face-back" style={{ background: 'linear-gradient(135deg, #f5e5f0 0%, #edd8e8 50%, #f8edf5 100%)' }}>
                   <div className="book-face-back-content">
                     <p className="book-testimonial-text">"J'ai compris pourquoi je fuyais dès que c'était bien. Ce livre m'a permis de rester sans me blinder."</p>
                     <p className="book-testimonial-author">Camille, 31 ans</p>
