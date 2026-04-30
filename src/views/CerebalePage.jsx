@@ -371,6 +371,15 @@ export default function CerebalePage() {
 
   return (
     <>
+      <style>{`
+        .quiz-card { background: #F2E0EC !important; }
+        .obj-front { background: #F2E0EC !important; }
+        .book-pg-back { background: linear-gradient(135deg, #fdf5f8 0%, #f5e5f0 40%, #fdf8fa 100%) !important; }
+        .book-pg-stack-1 { background: linear-gradient(to bottom, #f2dce9, #ebd3e0) !important; }
+        .book-pg-stack-2 { background: linear-gradient(to bottom, #ebd3e0, #e0c8d5) !important; }
+        .book-pg-stack-3 { background: linear-gradient(to bottom, #e0c8d5, #d5bdca) !important; }
+        .book-pg-stack-4 { background: linear-gradient(to bottom, #d5bdca, #c9b2bf) !important; }
+      `}</style>
       <div className="card">
         <span className="profil-tag">Résultat du quiz · Ton profil</span>
 
