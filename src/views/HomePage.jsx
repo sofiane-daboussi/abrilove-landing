@@ -420,7 +420,7 @@ export default function HomePage() {
       <Header />
 
       {/* ── HERO ── */}
-      <section style={{ minHeight: '100vh', padding: 'clamp(110px,12vw,170px) clamp(32px,5vw,80px) clamp(60px,8vw,100px)', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)' }}>
+      <section style={{ minHeight: '100vh', padding: 'clamp(110px,12vw,170px) clamp(32px,5vw,80px) clamp(60px,8vw,100px)', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', borderBottomLeftRadius: 40, borderBottomRightRadius: 40 }}>
         <div style={{ position:'absolute', inset:0, pointerEvents:'none', zIndex:0 }}>
           <div style={{ position:'absolute', width:500, height:500, borderRadius:'50%', background:'radial-gradient(circle, rgba(190,25,105,0.6) 0%, transparent 65%)', top:'20%', right:'-10%', filter:'blur(50px)', animation:'blob1 6s ease-in-out infinite' }} />
           <div style={{ position:'absolute', width:400, height:400, borderRadius:'50%', background:'radial-gradient(circle, rgba(160,15,85,0.55) 0%, transparent 65%)', bottom:'0%', left:'-10%', filter:'blur(45px)', animation:'blob2 8s ease-in-out infinite' }} />
