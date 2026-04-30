@@ -537,10 +537,13 @@ function StepsSection() {
 function BentoSection() {
   return (
     <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) 0' }}>
-      <div data-fade style={{ padding: '0 clamp(32px,5vw,80px)', maxWidth: 1080, margin: '0 auto' }}>
-        <h2 style={{ fontFamily: 'var(--font-playfair,serif)', fontSize: 'clamp(24px,3.5vw,40px)', color: '#660A43', lineHeight: 1.2, marginBottom: 60, fontWeight: 700 }}>
-          Tout ce dont tu as besoin pour <em>avancer</em>
-        </h2>
+      <div data-fade>
+        <div style={{ padding: '0 clamp(32px,5vw,80px)', maxWidth: 1080, margin: '0 auto', marginBottom: 60 }}>
+          <h2 style={{ fontFamily: 'var(--font-playfair,serif)', fontSize: 'clamp(24px,3.5vw,40px)', color: '#660A43', lineHeight: 1.2, fontWeight: 700 }}>
+            Tout ce dont tu as besoin pour <em>avancer</em>
+          </h2>
+        </div>
+        <div className="bento-grid-wrap" style={{ padding: '0 clamp(32px,5vw,80px)', maxWidth: 1080, margin: '0 auto' }}>
         <div className="bento-grid">
 
           <div className="bento-c bento-coaching" onClick={() => { window.location.href = 'https://abrilove.fr/coaching' }}>
@@ -586,6 +589,7 @@ function BentoSection() {
             </div>
           </div>
 
+        </div>
         </div>
       </div>
     </section>
@@ -743,6 +747,10 @@ export default function HomePage() {
           .hp-quiz-text { flex: 0 0 auto !important; }
           .hp-quiz-cols { gap: 32px !important; }
           .hp-quiz-embed { margin-left: -10px; margin-right: -10px; }
+          .hp-ia-img { display: none !important; }
+        }
+        @media (max-width:680px) {
+          .bento-grid-wrap { padding: 0 !important; max-width: 100% !important; }
         }
         .hp-quiz-embed .qz-wrap { padding: 0 !important; max-width: 100% !important; }
         .hp-quiz-embed .qz-progress-bar { display: none !important; }
@@ -864,7 +872,7 @@ export default function HomePage() {
               </p>
               <a href="https://ia.abrilove.fr" target="_blank" rel="noopener noreferrer" className="hp-btn-dark">Commence maintenant</a>
             </div>
-            <div style={{ flex: 1 }}>
+            <div className="hp-ia-img" style={{ flex: 1 }}>
               <img src="/images/sofi-oli.avif" alt="Sofi et Oli" style={{ width: '100%', borderRadius: 24, objectFit: 'cover', maxHeight: 500 }} />
             </div>
           </div>
