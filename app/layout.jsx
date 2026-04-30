@@ -43,6 +43,28 @@ export default function RootLayout({ children }) {
           gtag('js', new Date());
           gtag('config', 'G-MT07XFRPSM');
         `}} />
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.addEventListener('error', function(e) {
+            var msg = e && e.message ? e.message : '';
+            if (msg.indexOf('chunk') !== -1 || msg.indexOf('Loading') !== -1 || msg.indexOf('ChunkLoad') !== -1) {
+              var key = '__chunk_reload__';
+              if (!sessionStorage.getItem(key)) {
+                sessionStorage.setItem(key, '1');
+                window.location.reload();
+              }
+            }
+          });
+          window.addEventListener('unhandledrejection', function(e) {
+            var msg = e && e.reason && e.reason.message ? e.reason.message : '';
+            if (msg.indexOf('chunk') !== -1 || msg.indexOf('Loading') !== -1 || msg.indexOf('ChunkLoad') !== -1) {
+              var key = '__chunk_reload__';
+              if (!sessionStorage.getItem(key)) {
+                sessionStorage.setItem(key, '1');
+                window.location.reload();
+              }
+            }
+          });
+        `}} />
       </head>
       <body>{children}</body>
     </html>
