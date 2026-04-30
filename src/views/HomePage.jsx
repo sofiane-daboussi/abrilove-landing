@@ -237,7 +237,7 @@ export default function HomePage() {
                 C'est quoi ton plus grand problème amoureux ?
               </h1>
 
-              <p style={{ color: 'rgba(255,241,231,0.75)', fontSize: 'clamp(15px,1.8vw,18px)', lineHeight: 1.7, marginBottom: 36, maxWidth: 520 }}>
+              <p style={{ color: 'rgba(255,241,231,0.9)', fontSize: 'clamp(15px,1.8vw,18px)', lineHeight: 1.7, marginBottom: 36, maxWidth: 520 }}>
                 Pose ta question à L'Abri IA et reçois une réponse claire, personnalisée et sans jugement. Que tu sois en plein dating, dans une relation floue, célibataire, en rupture ou simplement en train d'essayer de mieux te comprendre.
               </p>
 
@@ -294,7 +294,7 @@ export default function HomePage() {
       </section>
 
       {/* ── QUIZ TEASER ── */}
-      <section className="hp-quiz-section" style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: 'clamp(60px,8vw,120px) clamp(16px,2vw,40px)', position: 'relative', overflow: 'hidden' }}>
+      <section className="hp-quiz-section" style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: 'clamp(60px,8vw,120px) clamp(32px,5vw,80px)', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0 }}>
           <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(190,25,105,0.6) 0%, transparent 65%)', top: '-10%', right: '-10%', filter: 'blur(50px)', animation: 'blob1 6s ease-in-out infinite' }} />
           <div style={{ position: 'absolute', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(160,15,85,0.55) 0%, transparent 65%)', bottom: '-10%', left: '-10%', filter: 'blur(45px)', animation: 'blob2 8s ease-in-out infinite' }} />
