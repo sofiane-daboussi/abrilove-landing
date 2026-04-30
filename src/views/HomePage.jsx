@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, memo } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -28,7 +28,39 @@ const FAQ_DATA = [
   { q: 'Est-ce que ça va vraiment m\'aider ?', a: 'L\'objectif : t\'offrir un regard plus juste pour prendre de meilleures décisions. C\'est à toi d\'essayer.' },
 ]
 
-function IPhoneChat() {
+function StatCounter({ target, suffix = '', label, color = '#FFF1E7', labelColor = 'rgba(255,241,231,0.55)' }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      obs.disconnect()
+      const start = performance.now()
+      const duration = 1600
+      function tick(now) {
+        const p = Math.min((now - start) / duration, 1)
+        const eased = 1 - Math.pow(1 - p, 3)
+        const val = Math.round(eased * target)
+        setCount(val)
+        if (p < 1) requestAnimationFrame(tick)
+      }
+      requestAnimationFrame(tick)
+    }, { threshold: 0.3 })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [target])
+  const formatted = count >= 1000 ? Math.floor(count / 1000) + ' ' + String(count % 1000).padStart(3, '0') : String(count)
+  return (
+    <div ref={ref}>
+      <div style={{ fontFamily: 'var(--font-playfair,serif)', fontSize: 'clamp(26px,3.5vw,40px)', fontWeight: 700, color, lineHeight: 1 }}>{formatted}{suffix}</div>
+      <div style={{ fontSize: 12, color: labelColor, letterSpacing: '0.05em', marginTop: 4 }}>{label}</div>
+    </div>
+  )
+}
+
+const IPhoneChat = memo(function IPhoneChat() {
   const msgsRef = useRef(null)
 
   useEffect(() => {
@@ -149,7 +181,7 @@ function IPhoneChat() {
       </div>
     </div>
   )
-}
+})
 
 function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false)
@@ -250,16 +282,9 @@ export default function HomePage() {
               </a>
 
               <div className="hp-hero-stats" style={{ display: 'flex', gap: 48, marginTop: 52 }}>
-                {[
-                  { num: '11 400', label: 'femmes accompagnées' },
-                  { num: '89 300', label: 'questions répondues' },
-                  { num: '100%', label: 'femmes satisfaites' },
-                ].map(s => (
-                  <div key={s.label}>
-                    <div style={{ fontFamily: 'var(--font-playfair,serif)', fontSize: 'clamp(26px,3.5vw,40px)', fontWeight: 700, color: '#FFF1E7', lineHeight: 1 }}>{s.num}</div>
-                    <div style={{ fontSize: 12, color: 'rgba(255,241,231,0.55)', letterSpacing: '0.05em', marginTop: 4 }}>{s.label}</div>
-                  </div>
-                ))}
+                <StatCounter target={11400} label="femmes accompagnées" />
+                <StatCounter target={89300} label="questions répondues" />
+                <StatCounter target={100} suffix="%" label="femmes satisfaites" />
               </div>
             </div>
 
