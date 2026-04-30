@@ -29,78 +29,125 @@ const FAQ_DATA = [
 ]
 
 function IPhoneChat() {
-  const containerRef = useRef(null)
+  const msgsRef = useRef(null)
 
   useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    const script = el.querySelector('script')
-    if (!script) return
-    const s = document.createElement('script')
-    s.textContent = script.textContent
-    el.appendChild(s)
+    const msgs = msgsRef.current
+    if (!msgs) return
+
+    const IDS = ['abri-m1','abri-m2','abri-m3','abri-m4','abri-t1','abri-t2']
+    const steps = [
+      {show:'abri-m1', delay:600},
+      {show:'abri-t1', delay:2000},
+      {hide:'abri-t1', show:'abri-m2', delay:4500},
+      {show:'abri-m3', delay:7000},
+      {show:'abri-t2', delay:8800},
+      {hide:'abri-t2', show:'abri-m4', delay:12000},
+      {restart:true, delay:17000},
+    ]
+
+    const timers = []
+
+    function get(id) { return msgs.querySelector('#'+id) }
+
+    function reset() {
+      IDS.forEach(id => {
+        const el = get(id)
+        if (!el) return
+        el.style.display = 'none'
+        const b = el.querySelector('.iphone-bubble')
+        const t = el.querySelector('.iphone-typing')
+        if (b) b.classList.remove('show')
+        if (t) t.classList.remove('show')
+      })
+      msgs.scrollTop = 0
+      timers.push(setTimeout(run, 800))
+    }
+
+    function run() {
+      steps.forEach(s => {
+        timers.push(setTimeout(() => {
+          if (s.restart) { reset(); return }
+          if (s.hide) {
+            const el = get(s.hide)
+            if (el) {
+              el.style.display = 'none'
+              const t = el.querySelector('.iphone-typing')
+              if (t) t.classList.remove('show')
+            }
+          }
+          if (s.show) {
+            const el = get(s.show)
+            if (el) {
+              el.style.display = 'flex'
+              el.style.flexDirection = 'column'
+              setTimeout(() => {
+                const b = el.querySelector('.iphone-bubble')
+                const t = el.querySelector('.iphone-typing')
+                if (b) b.classList.add('show')
+                if (t) t.classList.add('show')
+                msgs.scrollTop = 9999
+              }, 30)
+            }
+          }
+        }, s.delay))
+      })
+    }
+
+    run()
+    return () => timers.forEach(clearTimeout)
   }, [])
 
   return (
-    <div ref={containerRef} dangerouslySetInnerHTML={{ __html: `
-<style>
-.iphone { width:260px; background:#FFF1E7; border-radius:44px; border:11px solid #1a0812; box-shadow:0 0 0 1px #3a1020,0 30px 70px rgba(0,0,0,0.4); overflow:hidden; margin:0 auto; font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif; }
-.iphone .status-bar { background:#FFF1E7; display:flex; align-items:center; justify-content:space-between; padding:10px 22px 8px; font-size:13px; font-weight:700; color:#2a0a1a; position:relative; }
-.iphone .dynamic-island { position:absolute; top:6px; left:50%; transform:translateX(-50%); width:95px; height:30px; background:#1a0812; border-radius:20px; }
-.iphone .chat-header { display:flex; align-items:center; gap:8px; padding:4px 14px 10px; border-bottom:1px solid rgba(102,10,67,0.1); }
-.iphone .back { color:#660A43; font-size:22px; font-weight:300; }
-.iphone .avatar { width:34px; height:34px; border-radius:50%; overflow:hidden; flex-shrink:0; }
-.iphone .avatar img { width:100%; height:100%; object-fit:cover; }
-.iphone .info { flex:1; }
-.iphone .name { font-size:12px; font-weight:700; color:#2a0a1a; }
-.iphone .online { font-size:10px; color:#4caf50; font-weight:500; }
-.iphone .messages { padding:12px; display:flex; flex-direction:column; gap:7px; min-height:340px; background:#FFF1E7; }
-.iphone .row { display:flex; flex-direction:column; }
-.iphone .bubble { max-width:80%; padding:9px 13px; border-radius:18px; font-size:12.5px; line-height:1.45; opacity:0; transform:translateY(6px); transition:opacity 0.4s,transform 0.4s; }
-.iphone .bubble.show { opacity:1; transform:translateY(0); }
-.iphone .bubble-u { background:#660A43; color:#fff; align-self:flex-end; border-radius:18px 18px 4px 18px; }
-.iphone .bubble-a { background:rgba(102,10,67,0.1); color:#2a0a1a; align-self:flex-start; border-radius:18px 18px 18px 4px; }
-.iphone .sender { font-size:9.5px; font-weight:700; color:#660A43; margin-bottom:3px; padding-left:2px; }
-.iphone .typing { display:flex; gap:4px; padding:10px 14px; background:rgba(102,10,67,0.1); border-radius:18px 18px 18px 4px; width:fit-content; opacity:0; transition:opacity 0.3s; }
-.iphone .typing.show { opacity:1; }
-.iphone .typing span { width:6px; height:6px; border-radius:50%; background:#660A43; opacity:0.35; animation:abri-dot 1.2s infinite; }
-.iphone .typing span:nth-child(2) { animation-delay:0.2s; }
-.iphone .typing span:nth-child(3) { animation-delay:0.4s; }
-.iphone .input-bar { display:flex; align-items:center; gap:8px; padding:8px 12px 18px; background:#FFF1E7; border-top:1px solid rgba(102,10,67,0.08); }
-.iphone .input-field { flex:1; background:rgba(102,10,67,0.07); border:none; border-radius:20px; padding:9px 13px; font-size:12px; color:rgba(42,10,26,0.35); }
-.iphone .send-btn { width:30px; height:30px; background:#660A43; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.iphone .send-btn svg { width:13px; height:13px; fill:#FFF1E7; }
-@keyframes abri-dot { 0%,60%,100% { opacity:0.2; transform:scale(0.8); } 30% { opacity:1; transform:scale(1); } }
-</style>
-<div class="iphone">
-  <div class="status-bar"><span>9:41</span><div class="dynamic-island"></div><span>●●●</span></div>
-  <div class="chat-header">
-    <span class="back">‹</span>
-    <div class="avatar"><img src="${AVATAR}" /></div>
-    <div class="info"><div class="name">Sofi &amp; Oli — Abrilove</div><div class="online">● En ligne</div></div>
-  </div>
-  <div class="messages" id="abri-msgs">
-    <div class="row" id="abri-m1" style="align-items:flex-end;display:none"><div class="bubble bubble-u">Il me laisse en vu depuis 2 jours… 😞</div></div>
-    <div class="row" id="abri-t1" style="display:none"><div class="typing"><span></span><span></span><span></span></div></div>
-    <div class="row" id="abri-m2" style="align-items:flex-start;display:none"><div class="sender">Sofi &amp; Oli 💛</div><div class="bubble bubble-a">C'est nouveau chez lui ou il l'a déjà fait avant ?</div></div>
-    <div class="row" id="abri-m3" style="align-items:flex-end;display:none"><div class="bubble bubble-u">Jamais… 😔</div></div>
-    <div class="row" id="abri-t2" style="display:none"><div class="typing"><span></span><span></span><span></span></div></div>
-    <div class="row" id="abri-m4" style="align-items:flex-start;display:none"><div class="sender">Sofi &amp; Oli 💛</div><div class="bubble bubble-a">Les hommes se retirent rarement par indifférence. Voilà quoi faire 👇</div></div>
-  </div>
-  <div class="input-bar">
-    <div class="input-field">Écris ta situation…</div>
-    <div class="send-btn"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg></div>
-  </div>
-</div>
-<script>
-(function(){
-  const steps=[{show:'abri-m1',bubble:true,delay:600},{show:'abri-t1',typing:true,delay:2000},{hide:'abri-t1',show:'abri-m2',bubble:true,delay:4500},{show:'abri-m3',bubble:true,delay:7000},{show:'abri-t2',typing:true,delay:8800},{hide:'abri-t2',show:'abri-m4',bubble:true,delay:12000},{restart:true,delay:17000}];
-  function run(arr){arr.forEach(s=>setTimeout(()=>{if(s.restart){reset();return;}if(s.hide){const el=document.getElementById(s.hide);el.style.display='none';const t=el.querySelector('.typing');if(t)t.classList.remove('show');}if(s.show){const el=document.getElementById(s.show);el.style.display='flex';el.style.flexDirection='column';setTimeout(()=>{const b=el.querySelector('.bubble');const t=el.querySelector('.typing');if(b)b.classList.add('show');if(t)t.classList.add('show');document.getElementById('abri-msgs').scrollTop=9999;},30);}},s.delay));}
-  function reset(){['abri-m1','abri-m2','abri-m3','abri-m4','abri-t1','abri-t2'].forEach(id=>{const el=document.getElementById(id);el.style.display='none';const b=el.querySelector('.bubble');const t=el.querySelector('.typing');if(b)b.classList.remove('show');if(t)t.classList.remove('show');});document.getElementById('abri-msgs').scrollTop=0;setTimeout(()=>run(steps),800);}
-  run(steps);
-})();
-</script>
-` }} />
+    <div style={{ width:260, background:'#FFF1E7', borderRadius:44, border:'11px solid #1a0812', boxShadow:'0 0 0 1px #3a1020,0 30px 70px rgba(0,0,0,0.4)', overflow:'hidden', margin:'0 auto', fontFamily:'-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif' }}>
+      {/* status bar */}
+      <div style={{ background:'#FFF1E7', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'10px 22px 8px', fontSize:13, fontWeight:700, color:'#2a0a1a', position:'relative' }}>
+        <span>9:41</span>
+        <div style={{ position:'absolute', top:6, left:'50%', transform:'translateX(-50%)', width:95, height:30, background:'#1a0812', borderRadius:20 }} />
+        <span>●●●</span>
+      </div>
+      {/* chat header */}
+      <div style={{ display:'flex', alignItems:'center', gap:8, padding:'4px 14px 10px', borderBottom:'1px solid rgba(102,10,67,0.1)' }}>
+        <span style={{ color:'#660A43', fontSize:22, fontWeight:300 }}>‹</span>
+        <div style={{ width:34, height:34, borderRadius:'50%', overflow:'hidden', flexShrink:0 }}>
+          <img src={AVATAR} style={{ width:'100%', height:'100%', objectFit:'cover' }} alt="" />
+        </div>
+        <div style={{ flex:1 }}>
+          <div style={{ fontSize:12, fontWeight:700, color:'#2a0a1a' }}>Sofi & Oli — Abrilove</div>
+          <div style={{ fontSize:10, color:'#4caf50', fontWeight:500 }}>● En ligne</div>
+        </div>
+      </div>
+      {/* messages */}
+      <div ref={msgsRef} style={{ padding:12, display:'flex', flexDirection:'column', gap:7, minHeight:340, background:'#FFF1E7', overflow:'hidden' }}>
+        <div id="abri-m1" style={{ display:'none', flexDirection:'column', alignItems:'flex-end' }}>
+          <div className="iphone-bubble iphone-bubble-u">Il me laisse en vu depuis 2 jours… 😞</div>
+        </div>
+        <div id="abri-t1" style={{ display:'none', flexDirection:'column' }}>
+          <div className="iphone-typing"><span/><span/><span/></div>
+        </div>
+        <div id="abri-m2" style={{ display:'none', flexDirection:'column', alignItems:'flex-start' }}>
+          <div className="iphone-sender">Sofi & Oli 💛</div>
+          <div className="iphone-bubble iphone-bubble-a">C'est nouveau chez lui ou il l'a déjà fait avant ?</div>
+        </div>
+        <div id="abri-m3" style={{ display:'none', flexDirection:'column', alignItems:'flex-end' }}>
+          <div className="iphone-bubble iphone-bubble-u">Jamais… 😔</div>
+        </div>
+        <div id="abri-t2" style={{ display:'none', flexDirection:'column' }}>
+          <div className="iphone-typing"><span/><span/><span/></div>
+        </div>
+        <div id="abri-m4" style={{ display:'none', flexDirection:'column', alignItems:'flex-start' }}>
+          <div className="iphone-sender">Sofi & Oli 💛</div>
+          <div className="iphone-bubble iphone-bubble-a">Les hommes se retirent rarement par indifférence. Voilà quoi faire 👇</div>
+        </div>
+      </div>
+      {/* input bar */}
+      <div style={{ display:'flex', alignItems:'center', gap:8, padding:'8px 12px 18px', background:'#FFF1E7', borderTop:'1px solid rgba(102,10,67,0.08)' }}>
+        <div style={{ flex:1, background:'rgba(102,10,67,0.07)', borderRadius:20, padding:'9px 13px', fontSize:12, color:'rgba(42,10,26,0.35)' }}>Écris ta situation…</div>
+        <div style={{ width:30, height:30, background:'#660A43', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="#FFF1E7"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -141,6 +188,16 @@ export default function HomePage() {
     <>
       <style>{`
         @keyframes abri-dot { 0%,60%,100% { opacity:0.2; transform:scale(0.8); } 30% { opacity:1; transform:scale(1); } }
+        .iphone-bubble { max-width:80%; padding:9px 13px; border-radius:18px; font-size:12.5px; line-height:1.45; opacity:0; transform:translateY(6px); transition:opacity 0.4s,transform 0.4s; }
+        .iphone-bubble.show { opacity:1; transform:translateY(0); }
+        .iphone-bubble-u { background:#660A43; color:#fff; align-self:flex-end; border-radius:18px 18px 4px 18px; }
+        .iphone-bubble-a { background:rgba(102,10,67,0.1); color:#2a0a1a; align-self:flex-start; border-radius:18px 18px 18px 4px; }
+        .iphone-sender { font-size:9.5px; font-weight:700; color:#660A43; margin-bottom:3px; padding-left:2px; }
+        .iphone-typing { display:flex; gap:4px; padding:10px 14px; background:rgba(102,10,67,0.1); border-radius:18px 18px 18px 4px; width:fit-content; opacity:0; transition:opacity 0.3s; }
+        .iphone-typing.show { opacity:1; }
+        .iphone-typing span { width:6px; height:6px; border-radius:50%; background:#660A43; opacity:0.35; animation:abri-dot 1.2s infinite; display:inline-block; }
+        .iphone-typing span:nth-child(2) { animation-delay:0.2s; }
+        .iphone-typing span:nth-child(3) { animation-delay:0.4s; }
         @keyframes abri-pop { from { opacity:0; transform:scale(0.85); } to { opacity:1; transform:scale(1); } }
         @keyframes abri-bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(6px); } }
         @keyframes temo-scroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
