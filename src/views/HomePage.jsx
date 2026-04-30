@@ -752,7 +752,7 @@ export default function HomePage() {
         }
         .abri-track-wrap { overflow:hidden; mask-image:linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%); -webkit-mask-image:linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%); user-select:none; -webkit-user-select:none; }
         .abri-track { display:flex; gap:20px; width:max-content; will-change:transform; }
-        .abri-screen-card { flex-shrink:0; border-radius:18px; overflow:hidden; height:340px; opacity:0.92; transition:opacity 0.3s; background:#fff; display:flex; align-items:flex-start; justify-content:center; }
+        .abri-screen-card { flex-shrink:0; border-radius:18px; overflow:hidden; height:340px; opacity:0.92; transition:opacity 0.3s; background:#fff; display:flex; align-items:center; justify-content:center; }
         .abri-screen-card img { width:100%; height:auto; display:block; -webkit-touch-callout:none; pointer-events:none; user-select:none; -webkit-user-select:none; }
         .hp-btn-light { display:inline-flex; align-items:center; background:#FFF1E7; color:#660A43; text-decoration:none; padding:16px 28px; border-radius:999px; font-weight:700; font-size:15px; transition:transform 0.2s,box-shadow 0.2s; box-shadow:0 8px 24px rgba(0,0,0,0.25); font-family:var(--font-dm-sans,sans-serif); animation:pulse 2.5s ease-in-out infinite; will-change:transform; }
         .hp-btn-light:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,0.3); animation:none; }
