@@ -210,7 +210,7 @@ export default function HomePage() {
       <Header />
 
       {/* ── HERO ── */}
-      <section style={{ minHeight: '100vh', padding: 'clamp(110px,12vw,170px) clamp(32px,5vw,80px) clamp(60px,8vw,100px)', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ minHeight: '100vh', padding: 'clamp(110px,12vw,170px) clamp(32px,5vw,80px) clamp(60px,8vw,100px)', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg, rgb(80,5,50) 0%, rgb(130,15,80) 50%, rgb(80,5,50) 100%)' }}>
         <div style={{ position:'absolute', inset:0, pointerEvents:'none' }}>
           <div style={{ position:'absolute', width:500, height:500, borderRadius:'50%', background:'radial-gradient(circle, rgba(220,60,140,0.35) 0%, transparent 70%)', top:'-10%', right:'-5%', filter:'blur(70px)', animation:'blob1 9s ease-in-out infinite' }} />
           <div style={{ position:'absolute', width:380, height:380, borderRadius:'50%', background:'radial-gradient(circle, rgba(102,10,67,0.45) 0%, transparent 70%)', bottom:'5%', left:'-5%', filter:'blur(60px)', animation:'blob2 11s ease-in-out infinite' }} />
