@@ -548,7 +548,7 @@ function BentoSection() {
           card.style.opacity = '1'
           card.style.transform = 'translateY(0)'
           setTimeout(() => { card.style.transition = '' }, 520)
-        }, i * 130)
+        }, i * 220)
       })
       obs.disconnect()
     }, { threshold: 0.15 })
