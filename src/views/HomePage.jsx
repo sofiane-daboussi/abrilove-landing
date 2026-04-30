@@ -604,7 +604,7 @@ function ToggleSection() {
           <path d="M0,35 Q720,58 1440,35 L1440,80 L0,80 Z" fill="#FFF4F7" />
         </svg>
       </div>
-      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 800, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <div className={`abri-section${active ? ' active' : ''}`} style={{ marginTop: 0 }}>
           <div className="abri-left">
             <h2>Maintenant, tu as deux choix :</h2>
