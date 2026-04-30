@@ -211,7 +211,6 @@ export default function HomePage() {
         .hp-bento-link:hover { color:#FFF1E7; }
         @media (max-width:720px) {
           .hp-hero-cols { flex-direction:column !important; }
-          .hp-hero-iphone { display:none !important; }
           .hp-2cols { flex-direction:column !important; }
           .hp-2cols-rev { flex-direction:column-reverse !important; }
           .hp-steps { grid-template-columns:1fr !important; }
