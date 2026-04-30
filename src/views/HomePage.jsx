@@ -188,7 +188,17 @@ function TemuSection() {
   const allImgs = [...TEMOS, ...TEMOS]
 
   return (
-    <section style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: 'clamp(40px,6vw,80px) 0', position: 'relative' }}>
+    <section style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: 'calc(clamp(40px,6vw,80px) + 80px) 0', position: 'relative' }}>
+        <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+            <path d="M0,0 L0,50 Q720,10 1440,50 L1440,0 Z" fill="#FFF4F7" />
+          </svg>
+        </div>
+        <div style={{ position: 'absolute', bottom: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+            <path d="M0,30 Q720,70 1440,30 L1440,80 L0,80 Z" fill="#FFF4F7" />
+          </svg>
+        </div>
       <div className="temo-title-wrap" style={{ maxWidth: 1200, margin: '0 auto', paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
         <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(24px,3vw,36px)', fontWeight: 700, textAlign: 'center', marginBottom: 20 }}>
           Elles ont osé écrire.{' '}
