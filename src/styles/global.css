@@ -9,6 +9,9 @@
 
 html { background: #660A43; min-height: 100%; overflow-x: hidden; }
 
+[data-fade] { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+[data-fade].fade-in { opacity: 1; transform: translateY(0); }
+
 body {
   overflow-x: hidden;
   background: #660A43;

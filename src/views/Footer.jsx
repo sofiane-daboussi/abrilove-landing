@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const NAV_LINKS = [
   { label: 'Accueil', href: '/' },
@@ -66,6 +66,18 @@ export default function Footer() {
     }
   }
 
+  useEffect(() => {
+    const els = document.querySelectorAll('footer [data-fade]')
+    if (!els.length) return
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('fade-in'); obs.unobserve(entry.target) }
+      })
+    }, { threshold: 0.15 })
+    els.forEach(el => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
+
   return (
     <footer style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', marginTop: 0, position: 'relative', background: 'linear-gradient(180deg, #500532 0%, #820F50 50%, #500532 100%)' }}>
       <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
@@ -76,7 +88,7 @@ export default function Footer() {
 
       {/* Newsletter */}
       <div style={{ padding: '120px 16px 0' }}>
-      <div style={{
+      <div data-fade style={{
         background: 'linear-gradient(135deg, #3d0228 0%, #5e063c 55%, #7a1050 100%)',
         padding: 'clamp(24px, 5vw, 64px) 20px',
         textAlign: 'center',

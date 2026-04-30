@@ -445,7 +445,7 @@ function StepsSection() {
           <path d="M0,35 Q720,58 1440,35 L1440,80 L0,80 Z" fill="#FFF4F7" />
         </svg>
       </div>
-      <div style={{ textAlign: 'center', marginBottom: 60 }}>
+      <div data-fade style={{ textAlign: 'center', marginBottom: 60 }}>
         <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(26px,3.5vw,42px)', fontWeight: 700, lineHeight: 1.2 }}>
           Comment on t'aide <em>concrètement</em>
         </h2>
@@ -721,9 +721,7 @@ export default function HomePage() {
         .hp-btn-light:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,0.3); animation:none; }
         .hp-btn-dark { display:inline-flex; align-items:center; background:#660A43; color:#fff; text-decoration:none; padding:14px 28px; border-radius:999px; font-weight:700; font-size:15px; transition:transform 0.2s,box-shadow 0.2s; box-shadow:0 6px 20px rgba(102,10,67,0.4); font-family:var(--font-dm-sans,sans-serif); animation:pulse 2.5s ease-in-out infinite; will-change:transform; }
         .hp-btn-dark:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(102,10,67,0.5); animation:none; }
-        [data-fade] { opacity:0; transform:translateY(28px); transition:opacity 0.65s ease,transform 0.65s ease; }
-        [data-fade].fade-in { opacity:1; transform:translateY(0); }
-        .hp-bento-card { background:rgba(255,241,231,0.06); border:1px solid rgba(255,241,231,0.12); border-radius:20px; padding:28px; transition:background 0.2s; }
+.hp-bento-card { background:rgba(255,241,231,0.06); border:1px solid rgba(255,241,231,0.12); border-radius:20px; padding:28px; transition:background 0.2s; }
         .hp-bento-card:hover { background:rgba(255,241,231,0.1); }
         .hp-bento-link { color:rgba(255,241,231,0.7); font-size:14px; text-decoration:none; display:inline-flex; align-items:center; gap:4px; margin-top:16px; transition:color 0.15s; }
         .hp-bento-link:hover { color:#FFF1E7; }
