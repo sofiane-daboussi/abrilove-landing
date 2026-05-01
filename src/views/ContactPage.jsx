@@ -73,11 +73,11 @@ export default function ContactPage() {
 
             <h1 style={{ fontFamily: 'var(--font-playfair, serif)', color: '#FFF1E7', fontSize: 'clamp(26px, 5vw, 40px)', fontWeight: 700, textAlign: 'center', marginBottom: 12, lineHeight: 1.2 }}>
               Une question ?<br />
-              <em style={{ fontStyle: 'italic' }}>On te répond.</em>
+              <em style={{ fontStyle: 'italic', color: '#FFF1E7' }}>On te répond.</em>
             </h1>
 
             <p style={{ color: 'rgba(255,241,231,0.85)', textAlign: 'center', fontSize: 15, marginBottom: 40, lineHeight: 1.6 }}>
-              Pour toute question sur nos e-books, un problème de commande,<br />ou simplement pour dire bonjour.
+              Pour toute question sur nos e-books, un problème de commande, ou simplement pour dire bonjour.
             </p>
 
             {status === 'sent' ? (
@@ -164,9 +164,11 @@ export default function ContactPage() {
           </div>
 
           {/* Arc bas */}
-          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ position:'absolute', bottom:0, left:0, width:'100%', height:80, display:'block' }}>
-            <path d="M0,80 C360,0 1080,0 1440,80 L1440,80 L0,80 Z" fill="#FFF4F7" />
-          </svg>
+          <div style={{ position: 'absolute', bottom: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2 }}>
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+              <path d="M0,35 Q720,58 1440,35 L1440,80 L0,80 Z" fill="#FFF4F7" />
+            </svg>
+          </div>
         </section>
 
         {/* ── L'ABRI IA ── */}
