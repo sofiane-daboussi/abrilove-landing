@@ -150,6 +150,35 @@ var oto_worker_clean_default = {
               })
             });
           }
+          if (email && profil === "abrimail") {
+            await fetch("https://api.brevo.com/v3/contacts", {
+              method: "POST",
+              headers: {
+                "accept": "application/json",
+                "content-type": "application/json",
+                "api-key": env.BREVO_API_KEY
+              },
+              body: JSON.stringify({
+                email,
+                listIds: [40, 7],
+                updateEnabled: true
+              })
+            });
+            await fetch("https://api.brevo.com/v3/smtp/email", {
+              method: "POST",
+              headers: {
+                "accept": "application/json",
+                "content-type": "application/json",
+                "api-key": env.BREVO_API_KEY
+              },
+              body: JSON.stringify({
+                sender: { email: "bonjour@abrilove.fr", name: "Sofi & Oli" },
+                to: [{ email }],
+                subject: "💌 Merci pour ta confiance, envoie-moi ton histoire",
+                htmlContent: `<p>Coucou,</p><p>Merci beaucoup pour ta confiance 🤍</p><p>Pour que je puisse te répondre de la manière la plus juste possible, tu peux m'envoyer ton message (ou ta situation) directement ici, en réponse à ce mail.</p><p>Dis-moi ce que tu vis, ce que tu ressens, et sur quoi tu aimerais que je t'apporte de la clarté.</p><p>Je te répondrai personnellement 🤍</p><p>À très vite,<br>Sofi & Oli 🌸</p>`
+              })
+            });
+          }
         }
         return new Response(JSON.stringify({ received: true }), {
           status: 200,
