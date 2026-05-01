@@ -286,7 +286,7 @@ export default function CoachingPage() {
             Tu veux d'abord déposer ce que tu ressens à l'écrit, sans visio, sans échange en direct ?<br /><br />
             Découvre <strong>L'Abri Mail</strong>, une lecture écrite et personnalisée de ta situation amoureuse. Tu m'écris, je te réponds personnellement sous 24h avec une analyse lucide et bienveillante pour t'aider à y voir plus clair.
           </p>
-          <a href="/contact" className="coaching-cta coaching-cta-dark">
+          <a href="/abri-mail" className="coaching-cta coaching-cta-dark">
             J'envoie mon message
           </a>
         </div>
