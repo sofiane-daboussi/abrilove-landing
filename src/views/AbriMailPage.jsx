@@ -43,7 +43,7 @@ export default function AbriMailPage() {
         paddingTop: 'clamp(130px,14vw,190px)',
         paddingLeft: 'clamp(32px,5vw,80px)',
         paddingRight: 'clamp(32px,5vw,80px)',
-        paddingBottom: 'calc(clamp(48px,6vw,80px) + 80px)',
+        paddingBottom: 'calc(clamp(16px,2vw,28px) + 80px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -115,7 +115,7 @@ export default function AbriMailPage() {
               </p>
             </div>
             <div style={{ flex: '0 0 38%' }}>
-              <img src="/images/abrimail-section.jpg" alt="L'Abri Mail" style={{ width: '100%', borderRadius: 24, objectFit: 'cover', maxHeight: 500 }} />
+              <img src="/images/abrimail-section.jpg" alt="L'Abri Mail" style={{ width: '100%', borderRadius: 24, display: 'block' }} />
             </div>
           </div>
         </div>
