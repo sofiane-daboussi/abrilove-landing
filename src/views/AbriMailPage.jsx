@@ -62,7 +62,7 @@ export default function AbriMailPage() {
           <h1 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(22px,4vw,54px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 24 }}>
             Ta lecture écrite personnalisée
           </h1>
-          <p style={{ color: 'rgba(255,241,231,0.85)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.85, marginBottom: 40, maxWidth: 560, margin: '0 auto 40px' }}>
+          <p style={{ color: 'rgba(255,241,231,0.85)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.85, maxWidth: 560, margin: '0 auto 40px' }}>
             Une réponse claire, bienveillante et lucide à ta situation amoureuse. Tu m'écris, je te réponds personnellement sous 24h avec une analyse lucide et bienveillante pour t'aider à y voir plus clair.
           </p>
           <a href="#paiement" onClick={e => { e.preventDefault(); document.getElementById('paiement')?.scrollIntoView({ behavior: 'smooth' }) }} className="coaching-cta coaching-cta-light">
@@ -132,8 +132,8 @@ export default function AbriMailPage() {
             <div className="abrimail-4cols" style={{ display: 'flex', gap: 28 }}>
               {[
                 { n: 1, text: 'Tu procèdes au paiement en ligne (15 €).' },
-                { n: 2, text: 'Tu reçois immédiatement un e-mail avec l\'adresse à laquelle écrire.' },
-                { n: 3, text: 'Tu m\'envoies ton message en décrivant ta situation et ce que tu veux comprendre.' },
+                { n: 2, text: "Tu reçois immédiatement un e-mail avec l'adresse à laquelle écrire." },
+                { n: 3, text: "Tu m'envoies ton message en décrivant ta situation et ce que tu veux comprendre." },
                 { n: 4, text: 'Sous 24h, tu reçois ta réponse écrite : une lecture lucide, des repères clairs, et des pistes concrètes pour avancer sans te perdre.' },
               ].map(({ n, text }) => (
                 <div key={n} style={{ flex: 1, background: '#fff', borderRadius: 20, padding: '32px 24px', boxShadow: '0 4px 24px rgba(102,10,67,0.07)', textAlign: 'center' }}>
@@ -163,33 +163,48 @@ export default function AbriMailPage() {
             <path d="M0,35 Q720,58 1440,35 L1440,80 L0,80 Z" fill="#FFF4F7" />
           </svg>
         </div>
-        <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <div data-fade className="abrimail-2cols-rev" style={{ display: 'flex', alignItems: 'center', gap: 60 }}>
+        <div data-fade style={{ maxWidth: 640, margin: '0 auto', position: 'relative', zIndex: 1, textAlign: 'center' }}>
+          <p style={{ color: 'rgba(255,241,231,0.55)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Ta réponse</p>
+          <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 32 }}>
+            Ce que tu recevras
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 32, textAlign: 'left' }}>
+            {[
+              'Une réponse personnalisée et détaillée',
+              'Une analyse émotionnelle et relationnelle juste',
+              'Des conseils concrets pour te recentrer et agir avec discernement',
+            ].map((item, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, background: 'rgba(255,241,231,0.08)', borderRadius: 14, padding: '16px 20px' }}>
+                <span style={{ fontSize: 18, flexShrink: 0 }}>✅</span>
+                <p style={{ color: 'rgba(255,241,231,0.9)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.7, margin: 0 }}>{item}</p>
+              </div>
+            ))}
+          </div>
+          <p style={{ color: 'rgba(255,241,231,0.7)', fontSize: 15, lineHeight: 1.75, marginBottom: 36, fontStyle: 'italic' }}>
+            Pas de jugement, pas de phrases toutes faites — juste une lecture humaine, honnête et apaisante.
+          </p>
+          <a href="#paiement" onClick={e => { e.preventDefault(); document.getElementById('paiement')?.scrollIntoView({ behavior: 'smooth' }) }} className="coaching-cta coaching-cta-light">
+            J'envoie mon message
+          </a>
+        </div>
+      </section>
+
+      {/* ── SOFI & OLI ── */}
+      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px)' }}>
+        <div data-fade style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div className="abrimail-2cols" style={{ display: 'flex', alignItems: 'center', gap: 60 }}>
             <div style={{ flex: 1 }}>
-              <img src="/images/coaching-clarte.avif" alt="Ce que tu recevras" style={{ width: '100%', borderRadius: 24, objectFit: 'cover', maxHeight: 500 }} />
+              <img src="/images/section-img-2.avif" alt="Sofi et Oli" style={{ width: '100%', borderRadius: 24, objectFit: 'cover', maxHeight: 500 }} />
             </div>
             <div style={{ flex: 1 }}>
-              <p style={{ color: 'rgba(255,241,231,0.55)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Ta réponse</p>
-              <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 28 }}>
-                Ce que tu recevras
+              <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(26px,3.5vw,42px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 20 }}>
+                Hey, nous sommes <em style={{ color: '#660A43' }}>Sofi & Oli</em>
               </h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 32 }}>
-                {[
-                  'Une réponse personnalisée et détaillée',
-                  'Une analyse émotionnelle et relationnelle juste',
-                  'Des conseils concrets pour te recentrer et agir avec discernement',
-                ].map((item, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, background: 'rgba(255,241,231,0.08)', borderRadius: 14, padding: '16px 20px' }}>
-                    <span style={{ fontSize: 18, flexShrink: 0 }}>✅</span>
-                    <p style={{ color: 'rgba(255,241,231,0.9)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.7, margin: 0 }}>{item}</p>
-                  </div>
-                ))}
-              </div>
-              <p style={{ color: 'rgba(255,241,231,0.7)', fontSize: 15, lineHeight: 1.75, marginBottom: 32, fontStyle: 'italic' }}>
-                Pas de jugement, pas de phrases toutes faites — juste une lecture humaine, honnête et apaisante.
+              <p style={{ color: '#5a3040', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.85, marginBottom: 32 }}>
+                Chaque jour, nous accompagnons des femmes dans leurs relations, leurs doutes, leurs schémas et ce qu'elles traversent intérieurement. Au fil de milliers d'heures de coaching, de conversations et de situations réelles, nous avons appris à voir ce qui se joue vraiment derrière les mots, les silences et les comportements.
               </p>
-              <a href="#paiement" onClick={e => { e.preventDefault(); document.getElementById('paiement')?.scrollIntoView({ behavior: 'smooth' }) }} className="coaching-cta coaching-cta-light">
-                J'envoie mon message
+              <a href="#paiement" onClick={e => { e.preventDefault(); document.getElementById('paiement')?.scrollIntoView({ behavior: 'smooth' }) }} className="coaching-cta coaching-cta-dark">
+                J'envoie ma situation
               </a>
             </div>
           </div>
@@ -197,7 +212,7 @@ export default function AbriMailPage() {
       </section>
 
       {/* ── TÉMOIGNAGES ── */}
-      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px)' }}>
+      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px)', borderTop: '1px solid rgba(102,10,67,0.08)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div data-fade>
             <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, textAlign: 'center', marginBottom: 48, lineHeight: 1.2 }}>
@@ -215,7 +230,7 @@ export default function AbriMailPage() {
       </section>
 
       {/* ── PAIEMENT ── */}
-      <section id="paiement" style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)', borderTop: '1px solid rgba(102,10,67,0.08)' }}>
+      <section id="paiement" style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px)', borderTop: '1px solid rgba(102,10,67,0.08)' }}>
         <div data-fade style={{ maxWidth: 860, margin: '0 auto', textAlign: 'center' }}>
           <p style={{ color: '#660A43', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Paiement</p>
           <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(24px,3.5vw,38px)', fontWeight: 700, marginBottom: 20, lineHeight: 1.2 }}>
@@ -231,27 +246,17 @@ export default function AbriMailPage() {
       </section>
 
       {/* ── COACHING ── */}
-      <section style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: 'calc(clamp(24px,3vw,44px) + 80px) clamp(32px,5vw,80px)', position: 'relative' }}>
-        <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
-          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
-            <path d="M0,0 L0,45 Q720,22 1440,45 L1440,0 Z" fill="#FFF4F7" />
-          </svg>
-        </div>
-        <div style={{ position: 'absolute', bottom: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
-          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
-            <path d="M0,35 Q720,58 1440,35 L1440,80 L0,80 Z" fill="#FFF4F7" />
-          </svg>
-        </div>
-        <div data-fade style={{ maxWidth: 640, margin: '0 auto', position: 'relative', zIndex: 1, textAlign: 'center' }}>
-          <p style={{ color: 'rgba(255,241,231,0.55)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Alternative</p>
-          <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 24 }}>
+      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)', borderTop: '1px solid rgba(102,10,67,0.08)' }}>
+        <div data-fade style={{ maxWidth: 640, margin: '0 auto', textAlign: 'center' }}>
+          <p style={{ color: '#660A43', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Alternative</p>
+          <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 24 }}>
             Envie d'en parler de vive voix ?
           </h2>
-          <p style={{ color: 'rgba(255,241,231,0.85)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.85, marginBottom: 36 }}>
+          <p style={{ color: '#5a3040', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.85, marginBottom: 36 }}>
             Parfois, tu as besoin de plus qu'une réponse écrite. Tu veux échanger, poser des mots à l'oral, et être guidée en direct pour comprendre ce que tu vis.<br /><br />
             L'Abri Love, c'est une séance de coaching individuelle en visio avec Sofi. Pendant une heure, tu poses tout, on analyse ensemble ta situation, et tu repars avec des repères clairs pour avancer, apaisée et confiante.
           </p>
-          <a href="/coaching" className="coaching-cta coaching-cta-light">
+          <a href="/coaching" className="coaching-cta coaching-cta-dark">
             Je réserve mon appel
           </a>
         </div>
