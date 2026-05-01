@@ -135,7 +135,7 @@ export default function AbriMailPage() {
         paddingTop: 'clamp(130px,14vw,190px)',
         paddingLeft: 'clamp(32px,5vw,80px)',
         paddingRight: 'clamp(32px,5vw,80px)',
-        paddingBottom: 'calc(clamp(8px,1vw,12px) + 80px)',
+        paddingBottom: '80px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
