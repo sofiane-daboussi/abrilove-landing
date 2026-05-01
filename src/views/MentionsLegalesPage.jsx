@@ -5,10 +5,15 @@ import Footer from './Footer'
 export default function MentionsLegalesPage() {
   return (
     <div style={{ margin: '-24px -16px' }}>
+      <style>{`
+        @media (max-width: 780px) {
+          .ml-hero { padding-bottom: 56px !important; }
+        }
+      `}</style>
       <Header />
 
       {/* ── HERO ── */}
-      <section style={{
+      <section className="ml-hero" style={{
         background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)',
         padding: 'clamp(120px,12vw,160px) clamp(16px,5vw,80px) 100px',
         position: 'relative',
@@ -34,7 +39,7 @@ export default function MentionsLegalesPage() {
       </section>
 
       {/* ── CONTENU ── */}
-      <section style={{ background: '#FFF4F7', padding: 'clamp(56px,6vw,96px) clamp(16px,5vw,80px)' }}>
+      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(16px,5vw,80px) clamp(56px,6vw,96px)' }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
           <p style={{ color: '#5a3040', fontSize: 15, lineHeight: 1.85, marginBottom: 40 }}>
             Conformément aux dispositions des articles 6-III et 19 de la Loi n°2004-575 du 21 juin 2004 pour la Confiance dans l'Économie Numérique (LCEN), il est porté à la connaissance des utilisateurs et visiteurs du site abrilove.fr les présentes mentions légales.
