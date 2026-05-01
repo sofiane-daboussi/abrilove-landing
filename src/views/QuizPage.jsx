@@ -616,9 +616,10 @@ export default function QuizPage() {
             </div>
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <a href="/" className="qz-back-home">← Retour à l'accueil</a>
-        </div>
+      </div>
+
+      <div style={{ textAlign: 'center', paddingBottom: 40, position: 'relative', zIndex: 1 }}>
+        <a href="/" className="qz-back-home">← Retour à l'accueil</a>
       </div>
 
       {loading && (
