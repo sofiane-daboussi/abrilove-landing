@@ -72,15 +72,16 @@ const CSS = `
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: rgba(255,241,231,0.3);
+  color: rgba(255,241,231,0.45);
   text-decoration: none;
   font-family: var(--font-dm-sans, sans-serif);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
-  margin-top: 32px;
+  margin-top: 28px;
+  margin-bottom: 40px;
   transition: color 0.2s;
 }
-.qz-back-home:hover { color: rgba(255,241,231,0.6); }
+.qz-back-home:hover { color: rgba(255,241,231,0.7); }
 
 .qz-progress-bar {
   position: fixed;
