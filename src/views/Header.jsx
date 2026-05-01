@@ -145,6 +145,11 @@ export default function Header() {
         </button>
       </header>
 
+      {/* Overlay fermeture menu */}
+      {open && (
+        <div onClick={() => setOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 98 }} />
+      )}
+
       {/* Menu mobile arrondi */}
       {open && (
         <div style={{
