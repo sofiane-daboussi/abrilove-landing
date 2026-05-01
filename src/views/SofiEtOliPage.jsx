@@ -48,7 +48,7 @@ export default function SofiEtOliPage() {
         paddingTop: 'clamp(110px,12vw,170px)',
         paddingLeft: 'clamp(32px,5vw,80px)',
         paddingRight: 'clamp(32px,5vw,80px)',
-        paddingBottom: 'calc(clamp(8px,1.5vw,16px) + 80px)',
+        paddingBottom: 'calc(clamp(8px,1.5vw,16px) + 36px)',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
