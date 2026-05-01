@@ -4,15 +4,6 @@ import Header from './Header'
 import Footer from './Footer'
 
 export default function CoachingPage() {
-  useEffect(() => {
-    if (!document.getElementById('fillout-script')) {
-      const s = document.createElement('script')
-      s.id = 'fillout-script'
-      s.src = 'https://server.fillout.com/embed/v1/'
-      s.async = true
-      document.head.appendChild(s)
-    }
-  }, [])
 
   useEffect(() => {
     const els = document.querySelectorAll('[data-fade]')
@@ -255,12 +246,10 @@ export default function CoachingPage() {
           <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(24px,3.5vw,38px)', fontWeight: 700, textAlign: 'center', marginBottom: 40, lineHeight: 1.2 }}>
             Réserve ton appel Abri Clarté
           </h2>
-          <div
-            style={{ width: '100%', height: 500 }}
-            data-fillout-id="wFDYhHfmwDus"
-            data-fillout-embed-type="standard"
-            data-fillout-inherit-parameters=""
-            data-fillout-dynamic-resize=""
+          <iframe
+            src="https://form.fillout.com/t/wFDYhHfmwDus"
+            style={{ width: '100%', height: 600, border: 'none', borderRadius: 16 }}
+            allow="fullscreen"
           />
         </div>
       </section>
