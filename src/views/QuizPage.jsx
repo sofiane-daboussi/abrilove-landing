@@ -46,7 +46,7 @@ const CSS = `
 .qz-body {
   font-family: 'Crimson Pro', serif;
   background: linear-gradient(180deg, #660A43 0%, #660A43 12%, #9e1566 30%, #cc2d82 50%, #9e1566 70%, #660A43 88%, #660A43 100%);
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 @keyframes qz-blob-a {
   0%,100% { transform: translate(0,0) scale(1); }
@@ -530,7 +530,7 @@ export default function QuizPage() {
     <>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Crimson+Pro:wght@300;400;500;600&display=swap" />
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ minHeight: '100dvh', position: 'relative' }}>
 
       {showResume && (
         <div className="qz-resume-overlay">
@@ -619,9 +619,10 @@ export default function QuizPage() {
         </div>
       </div>
 
-      <div style={{ marginTop: 'auto', textAlign: 'center', padding: '16px 0 40px', position: 'relative', zIndex: 1 }}>
-        <a href="/" className="qz-back-home">← Retour à l'accueil</a>
       </div>
+
+      <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, textAlign: 'center', paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 8px)', paddingTop: 10, zIndex: 10, pointerEvents: 'none' }}>
+        <a href="/" className="qz-back-home" style={{ pointerEvents: 'auto' }}>← Retour à l'accueil</a>
       </div>
 
       {loading && (
