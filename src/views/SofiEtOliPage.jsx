@@ -30,8 +30,10 @@ export default function SofiEtOliPage() {
         .sao-cta-dark { background:#660A43; color:#fff; box-shadow:0 6px 20px rgba(102,10,67,0.3); }
         .sao-cta-dark:hover { box-shadow:0 10px 28px rgba(102,10,67,0.5); }
         @media (max-width: 720px) {
-          .sao-hero-cols { flex-direction: column !important; }
-          .sao-hero-imgs { flex-direction: row !important; gap: 12px !important; }
+          .sao-hero-cols { flex-direction: column !important; gap: 24px !important; }
+          .sao-hero-imgs { width: 100% !important; flex: none !important; flex-direction: row !important; gap: 12px !important; }
+          .sao-hero-imgs img { max-height: 220px !important; }
+          .sao-hero-section { padding-top: 90px !important; }
           .sao-2cols { flex-direction: column !important; }
           .sao-2cols-rev { flex-direction: column-reverse !important; }
           .sao-3cols { flex-direction: column !important; }
@@ -41,14 +43,15 @@ export default function SofiEtOliPage() {
       <Header />
 
       {/* ── HERO ── */}
-      <section style={{
+      <section className="sao-hero-section" style={{
         minHeight: '100vh',
         paddingTop: 'clamp(110px,12vw,170px)',
         paddingLeft: 'clamp(32px,5vw,80px)',
         paddingRight: 'clamp(32px,5vw,80px)',
         paddingBottom: 'calc(clamp(8px,1.5vw,16px) + 80px)',
         display: 'flex',
-        alignItems: 'center',
+        flexDirection: 'column',
+        justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
         background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)',
@@ -59,32 +62,32 @@ export default function SofiEtOliPage() {
           <div style={{ position: 'absolute', width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle, rgba(210,40,120,0.5) 0%, transparent 65%)', top: '50%', left: '20%', filter: 'blur(50px)', animation: 'blob3 7s ease-in-out infinite' }} />
         </div>
         <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%', position: 'relative', zIndex: 1 }}>
-          <div className="sao-hero-cols" style={{ display: 'flex', alignItems: 'center', gap: 60 }}>
+          <div className="sao-hero-cols" style={{ display: 'flex', alignItems: 'center', gap: 60, marginBottom: 48 }}>
             <div style={{ flex: 1 }}>
               <p style={{ color: 'rgba(255,241,231,0.55)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 20 }}>À propos</p>
               <h1 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(22px,4vw,54px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 24 }}>
-                Nous, c'est <em style={{ fontStyle: 'italic' }}>Sofi & Oli.</em>
+                Nous, c'est <em style={{ fontStyle: 'italic', color: '#FFF1E7' }}>Sofi & Oli.</em>
               </h1>
-              <p style={{ color: 'rgba(255,241,231,0.85)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.85, marginBottom: 40, maxWidth: 520 }}>
+              <p style={{ color: 'rgba(255,241,231,0.85)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.85, maxWidth: 520 }}>
                 Un couple à Marseille, un projet à deux cœurs (et quatre pattes). Notre envie commune : créer un espace sincère pour parler d'amour autrement.
               </p>
-              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                <a
-                  href="#adeux"
-                  onClick={e => { e.preventDefault(); document.getElementById('adeux')?.scrollIntoView({ behavior: 'smooth' }) }}
-                  style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 8, textDecoration: 'none' }}
-                >
-                  <span style={{ fontFamily: 'var(--font-dm-sans,sans-serif)', fontSize: 11, fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: '#FFF1E7' }}>Découvrir</span>
-                  <div style={{ width: 36, height: 36, border: '1px solid rgba(255,241,231,0.5)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'abri-bounce 2s 1s ease-in-out infinite' }}>
-                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="#FFF1E7" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
-                  </div>
-                </a>
-              </div>
             </div>
             <div className="sao-hero-imgs" style={{ flex: '0 0 42%', display: 'flex', gap: 16, alignItems: 'flex-end' }}>
               <img src="/images/sofi-oli-1.avif" alt="Sofi & Oli" style={{ flex: 1, borderRadius: 24, objectFit: 'cover', maxHeight: 520, width: 0 }} />
               <img src="/images/sofi-oli-2.jpg" alt="Pumba" style={{ flex: 1, borderRadius: 24, objectFit: 'cover', maxHeight: 440, width: 0 }} />
             </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <a
+              href="#adeux"
+              onClick={e => { e.preventDefault(); document.getElementById('adeux')?.scrollIntoView({ behavior: 'smooth' }) }}
+              style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 8, textDecoration: 'none' }}
+            >
+              <span style={{ fontFamily: 'var(--font-dm-sans,sans-serif)', fontSize: 11, fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: '#FFF1E7' }}>Découvrir</span>
+              <div style={{ width: 36, height: 36, border: '1px solid rgba(255,241,231,0.5)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'abri-bounce 2s 1s ease-in-out infinite' }}>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="#FFF1E7" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
+              </div>
+            </a>
           </div>
         </div>
         <div style={{ position: 'absolute', bottom: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2 }}>
@@ -106,7 +109,7 @@ export default function SofiEtOliPage() {
             <em style={{ fontStyle: 'italic', color: '#660A43' }}>"Et si on créait un espace pour parler d'amour autrement ?"</em><br /><br />
             Pas comme une formule magique.<br />
             Pas comme un mode d'emploi.<br /><br />
-            Mais comme un refuge sincère, pour celles et ceux qui aiment fort — et veulent aimer juste.
+            Mais comme un refuge sincère, pour celles et ceux qui aiment fort, et veulent aimer juste.
           </p>
         </div>
       </section>
@@ -134,10 +137,9 @@ export default function SofiEtOliPage() {
                 Ce qui nous relie
               </h2>
               <p style={{ color: 'rgba(255,241,231,0.85)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.85 }}>
-                On vient de deux pays (🇫🇷 & 🇵🇱), on a des parcours très différents, mais une envie commune :<br /><br />
-                <strong style={{ color: '#FFF1E7' }}>comprendre au lieu de juger.</strong><br /><br />
+                On vient de deux pays (🇫🇷 & 🇵🇱), on a des parcours très différents, mais une envie commune : <strong style={{ color: '#FFF1E7' }}>comprendre au lieu de juger.</strong><br /><br />
                 Aimer sans flou, sans jeux, sans performance.<br /><br />
-                Et partager tout ça avec celles et ceux qui veulent encore y croire — avec lucidité.
+                Et partager tout ça avec celles et ceux qui veulent encore y croire, avec lucidité.
               </p>
             </div>
           </div>
@@ -162,7 +164,7 @@ export default function SofiEtOliPage() {
                 {
                   icon: <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#660A43" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12S24.627 6 18 6z"/><path d="M18 14v4l3 3"/></svg>,
                   title: 'Des blessures qui ont appris',
-                  desc: "On a connu des relations floues, parfois douloureuses — et on a appris à aimer autrement, avec plus de conscience."
+                  desc: "On a connu des relations floues, parfois douloureuses, et on a appris à aimer autrement, avec plus de conscience."
                 },
                 {
                   icon: <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#660A43" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M6 6h24a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H13l-7 4V8a2 2 0 0 1 2-2z"/><line x1="11" y1="13" x2="25" y2="13"/><line x1="11" y1="18" x2="19" y2="18"/></svg>,

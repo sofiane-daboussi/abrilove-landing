@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -16,6 +16,17 @@ export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState(null)
+
+  useEffect(() => {
+    const els = document.querySelectorAll('[data-fade]')
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('fade-in'); obs.unobserve(entry.target) }
+      })
+    }, { threshold: 0.1 })
+    els.forEach(el => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
 
   function validate() {
     const e = {}
@@ -173,7 +184,7 @@ export default function ContactPage() {
 
         {/* ── L'ABRI IA ── */}
         <section style={{ background: '#FFF4F7', padding: 'clamp(56px,6vw,96px) clamp(16px,5vw,80px)' }}>
-          <div style={{ maxWidth: 680, margin: '0 auto', textAlign: 'center' }}>
+          <div data-fade style={{ maxWidth: 680, margin: '0 auto', textAlign: 'center' }}>
             <p style={{ color: '#660A43', fontSize: 13, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>
               Ta situation mérite une vraie réponse.
             </p>
