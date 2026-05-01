@@ -26,7 +26,6 @@ export default function AbriMailPage() {
           .abrimail-2cols-rev { flex-direction: column-reverse !important; }
           .abrimail-3cols { flex-direction: column !important; }
           .abrimail-4cols { flex-direction: column !important; }
-          .abrimail-img { flex: none !important; width: 100% !important; max-width: 380px; margin: 0 auto; }
         }
         @keyframes coaching-pulse { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
         .coaching-cta { display:inline-flex; align-items:center; text-decoration:none; padding:16px 28px; border-radius:999px; font-weight:700; font-size:15px; font-family:var(--font-dm-sans,sans-serif); transition:transform 0.2s, box-shadow 0.2s; animation:coaching-pulse 2.5s ease-in-out infinite; will-change:transform; }
@@ -115,8 +114,8 @@ export default function AbriMailPage() {
                 L'Abri Mail, c'est une lecture écrite et personnalisée de ta situation amoureuse, rédigée par Sofi ou Oli — avec la lucidité et la douceur Abrilove.
               </p>
             </div>
-            <div className="abrimail-img" style={{ flex: '0 0 38%' }}>
-              <img src="/images/abrimail-section.jpg" alt="L'Abri Mail" style={{ width: '100%', borderRadius: 24, display: 'block' }} />
+            <div style={{ flex: 1 }}>
+              <img src="/images/abrimail-section.jpg" alt="L'Abri Mail" style={{ width: '100%', borderRadius: 24, objectFit: 'cover', maxHeight: 500 }} />
             </div>
           </div>
         </div>
