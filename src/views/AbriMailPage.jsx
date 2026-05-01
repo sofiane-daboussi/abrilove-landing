@@ -104,7 +104,7 @@ export default function AbriMailPage() {
           </svg>
         </div>
         <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <div data-fade className="coaching-2cols-rev" style={{ display: 'flex', alignItems: 'center', gap: 60 }}>
+          <div data-fade className="abrimail-2cols-rev" style={{ display: 'flex', alignItems: 'center', gap: 60 }}>
             <div style={{ flex: 1 }}>
               <img src="/images/abrimail-section.jpg" alt="L'Abri Mail" style={{ width: '100%', borderRadius: 24, objectFit: 'cover', maxHeight: 500 }} />
             </div>
