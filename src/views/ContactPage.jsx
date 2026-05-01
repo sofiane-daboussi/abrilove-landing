@@ -51,13 +51,11 @@ export default function ContactPage() {
         .contact-input:focus { border-color: rgba(255,255,255,0.8) !important; }
         @keyframes contact-blob1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(30px,-20px) scale(1.1)} }
         @keyframes contact-blob2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-20px,30px) scale(0.95)} }
-        @keyframes contact-bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
-        .contact-btn-submit { transition: background 0.2s, transform 0.2s, box-shadow 0.2s; }
-        .contact-btn-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(102,10,67,0.25); }
-        .contact-btn-submit:active:not(:disabled) { transform: translateY(0); }
-        .contact-btn-ia { transition: background 0.2s, transform 0.2s, box-shadow 0.2s; }
-        .contact-btn-ia:hover { background: #4a0830 !important; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(102,10,67,0.3); animation: contact-bounce 0.6s ease; }
-        .contact-btn-ia:active { transform: translateY(0); }
+        @keyframes contact-pulse { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+        .contact-btn-submit { transition: transform 0.2s, box-shadow 0.2s; animation: contact-pulse 2.5s ease-in-out infinite; will-change: transform; }
+        .contact-btn-submit:hover:not(:disabled) { transform: translateY(-3px) !important; animation: none; box-shadow: 0 10px 28px rgba(0,0,0,0.2); }
+        .contact-btn-ia { transition: transform 0.2s, box-shadow 0.2s, background 0.2s; animation: contact-pulse 2.5s ease-in-out infinite; will-change: transform; }
+        .contact-btn-ia:hover { background: #4a0830 !important; transform: translateY(-3px) !important; animation: none; box-shadow: 0 10px 28px rgba(102,10,67,0.4); }
       `}</style>
       <div style={{ margin: '-24px -16px' }}>
         <Header />
@@ -69,16 +67,16 @@ export default function ContactPage() {
           <div style={{ position:'absolute', width:380, height:380, borderRadius:'50%', background:'radial-gradient(circle, rgba(160,15,85,0.45) 0%, transparent 65%)', bottom:'-5%', left:'-8%', filter:'blur(45px)', animation:'contact-blob2 9s ease-in-out infinite', pointerEvents:'none' }} />
 
           <div style={{ maxWidth: 680, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16, textAlign: 'center' }}>
+            <p style={{ color: 'rgba(255,241,231,0.55)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 20, textAlign: 'center' }}>
               Contact
             </p>
 
-            <h1 style={{ fontFamily: 'var(--font-playfair, serif)', color: '#fff', fontSize: 'clamp(26px, 5vw, 40px)', fontWeight: 700, textAlign: 'center', marginBottom: 12, lineHeight: 1.2 }}>
+            <h1 style={{ fontFamily: 'var(--font-playfair, serif)', color: '#FFF1E7', fontSize: 'clamp(26px, 5vw, 40px)', fontWeight: 700, textAlign: 'center', marginBottom: 12, lineHeight: 1.2 }}>
               Une question ?<br />
-              <em style={{ color: 'rgba(255,200,220,0.9)', fontStyle: 'italic' }}>On te répond.</em>
+              <em style={{ fontStyle: 'italic' }}>On te répond.</em>
             </h1>
 
-            <p style={{ color: 'rgba(255,255,255,0.65)', textAlign: 'center', fontSize: 15, marginBottom: 40, lineHeight: 1.6 }}>
+            <p style={{ color: 'rgba(255,241,231,0.85)', textAlign: 'center', fontSize: 15, marginBottom: 40, lineHeight: 1.6 }}>
               Pour toute question sur nos e-books, un problème de commande,<br />ou simplement pour dire bonjour.
             </p>
 
@@ -177,7 +175,7 @@ export default function ContactPage() {
             <p style={{ color: '#660A43', fontSize: 13, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>
               IA disponible 24h/24
             </p>
-            <h2 style={{ fontFamily: 'var(--font-playfair, serif)', color: '#1a0011', fontSize: 'clamp(22px,4vw,34px)', fontWeight: 700, marginBottom: 20, lineHeight: 1.25 }}>
+            <h2 style={{ fontFamily: 'var(--font-playfair, serif)', color: '#660A43', fontSize: 'clamp(22px,4vw,34px)', fontWeight: 700, marginBottom: 20, lineHeight: 1.25 }}>
               Ce n'est pas une IA comme les autres.
             </h2>
             <p style={{ color: '#5a3040', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.85, marginBottom: 36 }}>
