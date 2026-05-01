@@ -6,6 +6,8 @@ import QuizPage from './QuizPage'
 
 const AVATAR = '/images/hero-avatar.avif'
 
+const HERO_WORDS = ['le ghosting.', 'le silence.', 'le doute.', "l'attachement anxieux.", "la peur d'aimer."]
+
 const TEMOS = [
   '/images/temo-1.avif',
   '/images/temo-2.avif',
@@ -685,6 +687,12 @@ function FaqItem({ q, a }) {
 export default function HomePage() {
   const [guideEmail, setGuideEmail] = useState('')
   const [guideStatus, setGuideStatus] = useState(null)
+  const [heroWordIdx, setHeroWordIdx] = useState(0)
+
+  useEffect(() => {
+    const t = setInterval(() => setHeroWordIdx(i => (i + 1) % HERO_WORDS.length), 2800)
+    return () => clearInterval(t)
+  }, [])
 
   useEffect(() => {
     const els = document.querySelectorAll('[data-fade]')
@@ -717,6 +725,7 @@ export default function HomePage() {
   return (
     <div style={{ margin: '-24px -16px' }}>
       <style>{`
+        @keyframes hero-word-in { from { transform:translateY(105%); } to { transform:translateY(0); } }
         @keyframes abri-dot { 0%,60%,100% { opacity:0.2; transform:scale(0.8); } 30% { opacity:1; transform:scale(1); } }
         .iphone .bubble { max-width:80%; padding:9px 13px; border-radius:18px; font-size:12.5px; line-height:1.45; opacity:0; transform:translateY(6px); transition:opacity 0.4s,transform 0.4s; }
         .iphone .bubble.show { opacity:1; transform:translateY(0); }
@@ -845,8 +854,13 @@ export default function HomePage() {
                 <span style={{ fontSize: 13, fontWeight: 500, color: '#FFF1E7', letterSpacing: '0.2px' }}>Hey, c'est Sofi & Oli.</span>
               </div>
 
-              <h1 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(24px,5vw,62px)', fontWeight: 700, lineHeight: 1.15, marginBottom: 24 }}>
-                C'est quoi ton plus grand problème amoureux ?
+              <h1 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(24px,5vw,62px)', fontWeight: 700, lineHeight: 1.25, marginBottom: 24 }}>
+                Tu mérites mieux que<br />
+                <span style={{ display: 'block', overflow: 'hidden', height: '1.3em' }}>
+                  <em key={heroWordIdx} style={{ display: 'block', color: '#E8637A', fontStyle: 'italic', animation: 'hero-word-in 0.45s cubic-bezier(0.22,1,0.36,1) both' }}>
+                    {HERO_WORDS[heroWordIdx]}
+                  </em>
+                </span>
               </h1>
 
               <p style={{ color: 'rgba(255,241,231,0.9)', fontSize: 'clamp(15px,1.8vw,18px)', lineHeight: 1.7, marginBottom: 36, maxWidth: 520 }}>
