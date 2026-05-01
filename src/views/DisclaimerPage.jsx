@@ -50,14 +50,14 @@ export default function DisclaimerPage() {
 
           <Block title="À des fins d'information uniquement">
             <p>
-              Les contenus proposés par Abrilove — e-books, newsletters, accompagnements, publications, formations et toute autre ressource — ont une vocation d'information et de développement personnel.<br /><br />
+              Les contenus proposés par Abrilove,e-books, newsletters, accompagnements, publications, formations et toute autre ressource,ont une vocation d'information et de développement personnel.<br /><br />
               Ils ne remplacent en aucun cas un suivi médical, thérapeutique ou psychologique. Si vous traversez une période difficile, n'hésitez pas à consulter un professionnel de santé ou un(e) thérapeute qualifié(e).
             </p>
           </Block>
 
           <Block title="Pas de substitut à un accompagnement spécialisé">
             <p>
-              Les ressources Abrilove — y compris les échanges avec le widget Abr(IA) — ne se substituent pas à une prise en charge médicale, ni à un accompagnement spécialisé en santé mentale.<br /><br />
+              Les ressources Abrilove,y compris les échanges avec le widget Abr(IA),ne se substituent pas à une prise en charge médicale, ni à un accompagnement spécialisé en santé mentale.<br /><br />
               L'intelligence artificielle Abr(IA) est un outil de réflexion et d'accompagnement basé sur les contenus et la méthode Abrilove. Elle ne formule pas de diagnostic, ne prescrit aucun traitement et ne remplace pas l'avis d'un professionnel qualifié.
             </p>
           </Block>

@@ -80,13 +80,13 @@ export default function PolitiqueConfidentialitePage() {
               <li>Nom et prénom</li>
               <li>Adresse email</li>
               <li>Adresse postale (en cas de livraison)</li>
-              <li>Données de paiement (traitées par Stripe — nous n'y avons jamais accès directement)</li>
+              <li>Données de paiement (traitées par Stripe,nous n'y avons jamais accès directement)</li>
             </ul>
 
             <SubTitle>Lors d'un abonnement (Abr(IA)) :</SubTitle>
             <ul>
               <li>Adresse email et prénom (pour la création de compte)</li>
-              <li>Données de paiement récurrent (traitées par Stripe — non accessibles par nos soins)</li>
+              <li>Données de paiement récurrent (traitées par Stripe,non accessibles par nos soins)</li>
               <li>Statut d'abonnement et dates de renouvellement</li>
             </ul>
 
@@ -185,8 +185,8 @@ export default function PolitiqueConfidentialitePage() {
               <li><strong>Cloudflare Pages</strong> (hébergement du site)</li>
               <li><strong>Google Analytics / Meta Pixel</strong> (statistiques et publicités)</li>
               <li><strong>Make / Zapier</strong> (automatisations)</li>
-              <li><strong>Anthropic, PBC</strong> (traitement des messages via l'API Claude) — siège aux États-Unis. Les conversations transitent par leurs serveurs pour générer les réponses de l'IA. Anthropic s'engage contractuellement à ne pas utiliser ces données pour entraîner ses modèles sans consentement explicite.</li>
-              <li><strong>Cloudflare, Inc.</strong> (hébergement du widget Abr(IA), stockage des conversations et des sessions) — siège aux États-Unis, données stockées en Europe lorsque possible. Cloudflare est certifié conforme au RGPD via ses clauses contractuelles types.</li>
+              <li><strong>Anthropic, PBC</strong> (traitement des messages via l'API Claude),siège aux États-Unis. Les conversations transitent par leurs serveurs pour générer les réponses de l'IA. Anthropic s'engage contractuellement à ne pas utiliser ces données pour entraîner ses modèles sans consentement explicite.</li>
+              <li><strong>Cloudflare, Inc.</strong> (hébergement du widget Abr(IA), stockage des conversations et des sessions),siège aux États-Unis, données stockées en Europe lorsque possible. Cloudflare est certifié conforme au RGPD via ses clauses contractuelles types.</li>
             </ul>
             <p>Tous respectent les exigences RGPD, notamment via des clauses contractuelles types si leurs serveurs sont situés hors UE.</p>
           </Block>

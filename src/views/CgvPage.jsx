@@ -72,7 +72,7 @@ export default function CgvPage() {
             <p>Abrilove propose à la vente :</p>
             <ul>
               <li>Des <strong>produits numériques</strong> (e-books, guides PDF, contenus audio/vidéo)</li>
-              <li>Des <strong>abonnements numériques</strong> (Abr(IA) — accès mensuel ou annuel au widget IA)</li>
+              <li>Des <strong>abonnements numériques</strong> (Abr(IA),accès mensuel ou annuel au widget IA)</li>
               <li>Des <strong>prestations de service</strong> (coaching, accompagnement, formations en ligne)</li>
               <li>Des <strong>produits physiques</strong> (ex : t-shirts, papeterie, accessoires)</li>
             </ul>
@@ -102,7 +102,7 @@ export default function CgvPage() {
             </p>
           </Block>
 
-          <Block title="5bis. Abonnement Abr(IA) — conditions spécifiques">
+          <Block title="5bis. Abonnement Abr(IA),conditions spécifiques">
             <p>L'abonnement Abr(IA) donne accès à un widget d'intelligence artificielle entraîné sur les contenus et la méthode Abrilove. Les conditions suivantes s'appliquent en complément des présentes CGV :</p>
             <ul>
               <li><strong>Renouvellement automatique :</strong> l'abonnement est reconduit tacitement à chaque échéance. L'abonné peut résilier à tout moment, l'accès reste actif jusqu'à la fin de la période payée.</li>
@@ -177,7 +177,7 @@ export default function CgvPage() {
             </p>
           </Block>
 
-          <Block title="Règlement amiable des litiges — Médiation de la consommation" last>
+          <Block title="Règlement amiable des litiges,Médiation de la consommation" last>
             <p>
               Conformément aux dispositions des articles L 611-1 et R 612-1 et suivants du Code de la Consommation concernant le règlement amiable des litiges :<br /><br />
               Lorsque le consommateur a adressé une réclamation écrite au professionnel et qu'il n'a pas obtenu satisfaction ou de réponse dans un délai de deux mois, il peut soumettre gratuitement sa réclamation au médiateur de la consommation. Le médiateur doit être saisi dans le délai maximal d'un an à compter de la réclamation initiale.<br /><br />
