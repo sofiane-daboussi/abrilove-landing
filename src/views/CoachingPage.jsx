@@ -83,7 +83,6 @@ export default function CoachingPage() {
         @keyframes blob3 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(60px,-70px) scale(1.1); } }
         @media (max-width: 720px) {
           .coaching-hero-cols { flex-direction: column !important; }
-          .coaching-hero-img { display: none !important; }
         }
       `}</style>
     </div>
