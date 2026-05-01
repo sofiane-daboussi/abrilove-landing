@@ -135,7 +135,7 @@ export default function AbriMailPage() {
         paddingTop: 'clamp(130px,14vw,190px)',
         paddingLeft: 'clamp(32px,5vw,80px)',
         paddingRight: 'clamp(32px,5vw,80px)',
-        paddingBottom: 'calc(clamp(16px,2vw,28px) + 80px)',
+        paddingBottom: 'calc(clamp(8px,1vw,12px) + 80px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -332,7 +332,7 @@ export default function AbriMailPage() {
       </section>
 
       {/* ── PAIEMENT ── */}
-      <section id="paiement" style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px)', borderTop: '1px solid rgba(102,10,67,0.08)' }}>
+      <section id="paiement" style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)', borderTop: '1px solid rgba(102,10,67,0.08)' }}>
         <div style={{ maxWidth: 560, margin: '0 auto' }}>
           <p style={{ color: '#660A43', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', textAlign: 'center', marginBottom: 16 }}>Paiement</p>
           <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(24px,3.5vw,38px)', fontWeight: 700, textAlign: 'center', marginBottom: 40, lineHeight: 1.2 }}>
