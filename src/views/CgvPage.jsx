@@ -129,21 +129,20 @@ export default function CgvPage() {
           </Block>
 
           <Block title="7. Droit de rétractation">
-            <p>Conformément à l'article L221-28 du Code de la consommation :</p>
+            <p>Conformément à l'article L221-28 du Code de la consommation, le droit de rétractation ne s'applique pas aux produits et services proposés par Abrilove :</p>
             <ul>
-              <li><strong>Produits numériques :</strong> le droit de rétractation ne s'applique pas une fois le téléchargement ou l'accès commencé.</li>
-              <li><strong>Abonnement Abr(IA) :</strong> le droit de rétractation de 14 jours s'applique à compter de la souscription, à condition que le service n'ait pas été utilisé. Passé ce délai ou en cas d'utilisation, aucun remboursement ne sera effectué pour la période en cours.</li>
-              <li><strong>Coaching / services :</strong> rétractation possible jusqu'à 48h avant le rendez-vous. Passé ce délai, la prestation est due.</li>
-              <li><strong>Produits physiques :</strong> le client dispose d'un délai de 14 jours à compter de la réception pour exercer son droit de rétractation. Les produits doivent être retournés en parfait état, à la charge du client.</li>
+              <li><strong>Produits numériques :</strong> droit de rétractation exclu dès le début du téléchargement ou de l'accès au contenu.</li>
+              <li><strong>Abonnement Abr(IA) :</strong> service numérique activé immédiatement après paiement, droit de rétractation exclu dès l'activation.</li>
+              <li><strong>Coaching / services :</strong> prestation de service personnalisée, droit de rétractation exclu dès le début de la prestation.</li>
+              <li><strong>Ateliers :</strong> organisés à une date précise, l'achat est ferme et définitif et ne peut donner lieu à remboursement.</li>
             </ul>
-            <p>Conformément à l'article L221-28 du Code de la consommation, le droit de rétractation ne s'applique pas aux prestations de loisirs fournies à une date déterminée. Les ateliers proposés sur le site étant organisés à une date précise, l'achat d'une place est ferme et définitif et ne peut donner lieu à remboursement.</p>
           </Block>
 
           <Block title="8. Politique de remboursement">
             <p>Aucun remboursement ne sera effectué pour :</p>
             <ul>
               <li>Les produits numériques après accès ou livraison</li>
-              <li>L'abonnement Abr(IA) en cours d'utilisation ou après le délai de rétractation</li>
+              <li>L'abonnement Abr(IA) une fois le service utilisé ou la période en cours</li>
               <li>Les séances annulées hors délai</li>
               <li>Les produits physiques retournés usagés ou incomplets</li>
             </ul>
