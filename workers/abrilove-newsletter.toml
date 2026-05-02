@@ -1,0 +1,8 @@
+name = "abrilove-newsletter"
+main = "abrilove-newsletter.js"
+compatibility_date = "2024-01-01"
+account_id = "ca6c8764e8f25e749d988df205376571"
+
+# Secrets à ajouter via :
+#   wrangler secret put BREVO_API_KEY --config workers/abrilove-newsletter.toml
+#   wrangler secret put WORKER_SECRET --config workers/abrilove-newsletter.toml
