@@ -378,7 +378,7 @@ export default function AbriMailPage() {
 
       {/* ── COACHING ── */}
       <section style={{ background: '#FFF4F7', padding: 'clamp(56px,6vw,80px) clamp(32px,5vw,80px)', borderTop: '1px solid rgba(102,10,67,0.08)' }}>
-        <div data-fade style={{ maxWidth: 640, margin: '0 auto', textAlign: 'center' }}>
+        <div data-fade style={{ maxWidth: 640, margin: '0 auto' }}>
           <p style={{ color: '#660A43', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Alternative</p>
           <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 24 }}>
             Envie d'en parler de vive voix ?
