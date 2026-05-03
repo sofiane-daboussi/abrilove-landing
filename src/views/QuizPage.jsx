@@ -532,7 +532,7 @@ export default function QuizPage({ embedded = false }) {
       <div>
 
       {showResume && (
-        <div className="qz-resume-overlay" style={embedded ? { position: 'absolute' } : {}}>
+        <div className="qz-resume-overlay">
           <div className="qz-resume-box">
             <div className="qz-resume-title">Quiz en cours 💌</div>
             <p className="qz-resume-text">Tu as déjà commencé ce quiz. Veux-tu continuer où tu t'es arrêté·e ou recommencer ?</p>
