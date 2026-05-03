@@ -154,13 +154,13 @@ function EbookCard({ ebook }) {
             <button
               type="submit"
               disabled={loading}
+              className="amour-btn"
               style={{
                 background: '#660A43', color: '#fff',
                 border: 'none', borderRadius: 10,
                 padding: '13px 20px', fontSize: 14, fontWeight: 700,
                 cursor: loading ? 'not-allowed' : 'pointer',
                 opacity: loading ? 0.7 : 1,
-                transition: 'opacity 0.2s',
               }}
             >
               {loading ? 'Envoi...' : 'Obtenir gratuitement'}
@@ -196,8 +196,17 @@ export default function AmourPage() {
         @media (min-width: 721px) and (max-width: 1080px) {
           .amour-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
-        @keyframes cardIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-        .amour-card { animation: cardIn 0.55s ease both; }
+        .amour-card > div { transition: transform 0.2s, box-shadow 0.2s; }
+        .amour-card > div:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(102,10,67,0.16) !important; }
+        @keyframes coaching-pulse { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
+        .coaching-cta { display:inline-flex; align-items:center; text-decoration:none; padding:16px 28px; border-radius:999px; font-weight:700; font-size:15px; font-family:var(--font-dm-sans,sans-serif); transition:transform 0.2s, box-shadow 0.2s; animation:coaching-pulse 2.5s ease-in-out infinite; will-change:transform; }
+        .coaching-cta:hover { transform:translateY(-3px) !important; animation:none; }
+        .coaching-cta-light { background:#FFF1E7; color:#660A43; box-shadow:0 8px 24px rgba(0,0,0,0.25); border:1.5px solid rgba(232,99,122,0.55); }
+        .coaching-cta-light:hover { box-shadow:0 12px 30px rgba(0,0,0,0.3); }
+        .coaching-cta-dark { background:#660A43; color:#fff; box-shadow:0 6px 20px rgba(102,10,67,0.3); }
+        .coaching-cta-dark:hover { box-shadow:0 10px 28px rgba(102,10,67,0.5); }
+        .amour-btn { transition: transform 0.2s, opacity 0.2s; }
+        .amour-btn:hover:not(:disabled) { transform: translateY(-2px); opacity: 0.88; }
       `}</style>
 
       <Header />
@@ -263,7 +272,7 @@ export default function AmourPage() {
             }}
           >
             {EBOOKS.map((ebook, i) => (
-              <div key={ebook.id} className="amour-card" style={{ animationDelay: `${i * 0.08}s` }}>
+              <div key={ebook.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
                 <EbookCard ebook={ebook} />
               </div>
             ))}
@@ -296,14 +305,7 @@ export default function AmourPage() {
           <p style={{ color: 'rgba(255,241,231,0.8)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.75, marginBottom: 36 }}>
             L'Abri IA t'accompagne à tout moment. Pose tes questions, comprends tes schémas, avance à ton rythme.
           </p>
-          <a href="https://ia.abrilove.fr" style={{
-            display: 'inline-flex', alignItems: 'center', textDecoration: 'none',
-            padding: '16px 28px', borderRadius: 999, fontWeight: 700, fontSize: 15,
-            fontFamily: 'var(--font-dm-sans,sans-serif)',
-            background: '#FFF1E7', color: '#660A43',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
-            border: '1.5px solid rgba(232,99,122,0.55)',
-          }}>
+          <a href="https://ia.abrilove.fr" className="coaching-cta coaching-cta-light">
             Découvrir l'Abri IA
           </a>
         </div>
@@ -319,13 +321,7 @@ export default function AmourPage() {
           <p style={{ color: '#5a3040', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.85, marginBottom: 36 }}>
             Une séance de coaching individuelle en visio avec Sofi. Pendant une heure, tu poses tout, on analyse ta situation, et tu repars avec des repères clairs.
           </p>
-          <a href="/coaching" style={{
-            display: 'inline-flex', alignItems: 'center', textDecoration: 'none',
-            padding: '16px 28px', borderRadius: 999, fontWeight: 700, fontSize: 15,
-            fontFamily: 'var(--font-dm-sans,sans-serif)',
-            background: '#660A43', color: '#fff',
-            boxShadow: '0 6px 20px rgba(102,10,67,0.3)',
-          }}>
+          <a href="/coaching" className="coaching-cta coaching-cta-dark">
             Je réserve mon appel
           </a>
         </div>
