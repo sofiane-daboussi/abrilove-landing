@@ -1,8 +1,66 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, memo } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import Link from 'next/link'
+
+const IPhoneChat = memo(function IPhoneChat() {
+  const [op, setOp] = useState({ m1:0, t1:0, m2:0, m3:0, t2:0, m4:0 })
+  const msgsRef = useRef(null)
+  useEffect(() => {
+    const timers = []
+    function show(key) { setOp(prev => ({ ...prev, [key]: 1 })); if (msgsRef.current) msgsRef.current.scrollTop = 9999 }
+    function hide(key) { setOp(prev => ({ ...prev, [key]: 0 })) }
+    function reset() { setOp({ m1:0, t1:0, m2:0, m3:0, t2:0, m4:0 }); if (msgsRef.current) msgsRef.current.scrollTop = 0; timers.push(setTimeout(run, 800)) }
+    function run() {
+      timers.push(setTimeout(() => show('m1'), 600))
+      timers.push(setTimeout(() => show('t1'), 2000))
+      timers.push(setTimeout(() => { hide('t1'); show('m2') }, 4500))
+      timers.push(setTimeout(() => show('m3'), 7000))
+      timers.push(setTimeout(() => show('t2'), 8800))
+      timers.push(setTimeout(() => { hide('t2'); show('m4') }, 12000))
+      timers.push(setTimeout(reset, 17000))
+    }
+    run()
+    return () => timers.forEach(clearTimeout)
+  }, [])
+  const row = (key, align, children) => (
+    <div style={{ display:'flex', flexDirection:'column', alignItems:align, opacity:op[key], transform:op[key]?'translateY(0)':'translateY(8px)', transition:'opacity 0.4s,transform 0.4s', pointerEvents:'none' }}>{children}</div>
+  )
+  return (
+    <div className="iphone" style={{ width:260, background:'#FFF1E7', borderRadius:44, border:'11px solid #1a0812', boxShadow:'0 0 0 1px #3a1020,0 30px 70px rgba(0,0,0,0.4)', overflow:'hidden', margin:'0 auto', fontFamily:'-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif' }}>
+      <div style={{ background:'#FFF1E7', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'10px 22px 8px', fontSize:13, fontWeight:700, color:'#2a0a1a', position:'relative' }}>
+        <span>9:41</span>
+        <div style={{ position:'absolute', top:6, left:'50%', transform:'translateX(-50%)', width:95, height:30, background:'#1a0812', borderRadius:20 }} />
+        <span>●●●</span>
+      </div>
+      <div style={{ display:'flex', alignItems:'center', gap:8, padding:'4px 14px 10px', borderBottom:'1px solid rgba(102,10,67,0.1)' }}>
+        <span style={{ color:'#660A43', fontSize:22, fontWeight:300 }}>‹</span>
+        <div style={{ width:34, height:34, borderRadius:'50%', overflow:'hidden', flexShrink:0 }}>
+          <img src="/images/hero-avatar.avif" style={{ width:'100%', height:'100%', objectFit:'cover' }} alt="" />
+        </div>
+        <div style={{ flex:1 }}>
+          <div style={{ fontSize:12, fontWeight:700, color:'#2a0a1a' }}>Sofi & Oli, Abrilove</div>
+          <div style={{ fontSize:10, color:'#4caf50', fontWeight:500 }}>● En ligne</div>
+        </div>
+      </div>
+      <div ref={msgsRef} style={{ padding:12, display:'flex', flexDirection:'column', gap:7, minHeight:340, background:'#FFF1E7', overflow:'hidden' }}>
+        {row('m1','flex-end', <div style={{ maxWidth:'80%', padding:'9px 13px', borderRadius:'18px 18px 4px 18px', fontSize:12.5, lineHeight:1.45, background:'#660A43', color:'#fff' }}>Il me laisse en vu depuis 2 jours… 😞</div>)}
+        {row('t1','flex-start', <div style={{ display:'flex', gap:4, padding:'10px 14px', background:'rgba(102,10,67,0.1)', borderRadius:'18px 18px 18px 4px' }}><span style={{ width:6,height:6,borderRadius:'50%',background:'#660A43',opacity:0.35,animation:'abri-dot 1.2s infinite',display:'inline-block' }}/><span style={{ width:6,height:6,borderRadius:'50%',background:'#660A43',opacity:0.35,animation:'abri-dot 1.2s 0.2s infinite',display:'inline-block' }}/><span style={{ width:6,height:6,borderRadius:'50%',background:'#660A43',opacity:0.35,animation:'abri-dot 1.2s 0.4s infinite',display:'inline-block' }}/></div>)}
+        {row('m2','flex-start', <><div style={{ fontSize:9.5, fontWeight:700, color:'#660A43', marginBottom:3, paddingLeft:2 }}>Sofi & Oli 💛</div><div style={{ maxWidth:'80%', padding:'9px 13px', borderRadius:'18px 18px 18px 4px', fontSize:12.5, lineHeight:1.45, background:'rgba(102,10,67,0.1)', color:'#2a0a1a' }}>C'est nouveau chez lui ou il l'a déjà fait avant ?</div></>)}
+        {row('m3','flex-end', <div style={{ maxWidth:'80%', padding:'9px 13px', borderRadius:'18px 18px 4px 18px', fontSize:12.5, lineHeight:1.45, background:'#660A43', color:'#fff' }}>Jamais… 😔</div>)}
+        {row('t2','flex-start', <div style={{ display:'flex', gap:4, padding:'10px 14px', background:'rgba(102,10,67,0.1)', borderRadius:'18px 18px 18px 4px' }}><span style={{ width:6,height:6,borderRadius:'50%',background:'#660A43',opacity:0.35,animation:'abri-dot 1.2s infinite',display:'inline-block' }}/><span style={{ width:6,height:6,borderRadius:'50%',background:'#660A43',opacity:0.35,animation:'abri-dot 1.2s 0.2s infinite',display:'inline-block' }}/><span style={{ width:6,height:6,borderRadius:'50%',background:'#660A43',opacity:0.35,animation:'abri-dot 1.2s 0.4s infinite',display:'inline-block' }}/></div>)}
+        {row('m4','flex-start', <><div style={{ fontSize:9.5, fontWeight:700, color:'#660A43', marginBottom:3, paddingLeft:2 }}>Sofi & Oli 💛</div><div style={{ maxWidth:'80%', padding:'9px 13px', borderRadius:'18px 18px 18px 4px', fontSize:12.5, lineHeight:1.45, background:'rgba(102,10,67,0.1)', color:'#2a0a1a' }}>Les hommes se retirent rarement par indifférence. Voilà quoi faire 👇</div></>)}
+      </div>
+      <div style={{ display:'flex', alignItems:'center', gap:8, padding:'8px 12px 18px', background:'#FFF1E7', borderTop:'1px solid rgba(102,10,67,0.08)' }}>
+        <div style={{ flex:1, background:'rgba(102,10,67,0.07)', borderRadius:20, padding:'9px 13px', fontSize:12, color:'rgba(42,10,26,0.35)' }}>Écris ta situation…</div>
+        <div style={{ width:30, height:30, background:'#660A43', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="#FFF1E7"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        </div>
+      </div>
+    </div>
+  )
+})
 
 const COURS = [
   {
@@ -241,6 +299,10 @@ export default function AmourPage() {
         .amour-tab { background: transparent; border: 2px solid rgba(102,10,67,0.25); color: #660A43; border-radius: 999px; padding: 10px 22px; font-size: 14px; font-weight: 700; font-family: var(--font-dm-sans,sans-serif); cursor: pointer; transition: all 0.2s; white-space: nowrap; }
         .amour-tab:hover { border-color: #660A43; background: rgba(102,10,67,0.06); }
         .amour-tab.active { background: #660A43; color: #fff; border-color: #660A43; }
+        @keyframes abri-dot { 0%,60%,100% { transform:scale(0.7); opacity:0.35; } 30% { transform:scale(1); opacity:1; } }
+        @keyframes abri-bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-5px); } }
+        .abria-2cols { display: flex; align-items: center; gap: 60px; }
+        @media (max-width: 720px) { .abria-2cols { flex-direction: column; gap: 40px; } }
       `}</style>
 
       <Header />
@@ -390,9 +452,9 @@ export default function AmourPage() {
             {COURS.map((cours, i) => (
               <div key={cours.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
                 <a href={cours.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', borderRadius: 20, overflow: 'hidden', boxShadow: '0 6px 32px rgba(102,10,67,0.10)' }}>
-                  <div style={{ position: 'relative' }}>
-                    <img src={cours.cover} alt={cours.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
-                    <div style={{ position: 'absolute', top: 14, left: 14, background: '#E8196E', color: '#fff', fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: 6, padding: '4px 10px' }}>Programme</div>
+                  <div style={{ position: 'relative', padding: '20px 20px 0' }}>
+                    <img src={cours.cover} alt={cours.title} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 8 }} />
+                    <div style={{ position: 'absolute', top: 30, left: 30, background: '#E8196E', color: '#fff', fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: 6, padding: '4px 10px' }}>Programme</div>
                   </div>
                   <div style={{ padding: '20px 20px 28px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                     <h3 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 17, fontWeight: 700, lineHeight: 1.35, marginBottom: 10 }}>{cours.title}</h3>
@@ -413,8 +475,6 @@ export default function AmourPage() {
         background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)',
         padding: 'calc(clamp(24px,3vw,44px) + 80px) clamp(32px,5vw,80px)',
         position: 'relative',
-        textAlign: 'center',
-        display: activeTab === 'all' ? 'block' : 'none',
       }}>
         <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
@@ -426,22 +486,29 @@ export default function AmourPage() {
             <path d="M0,35 Q720,58 1440,35 L1440,80 L0,80 Z" fill="#FFF4F7" />
           </svg>
         </div>
-        <div data-fade style={{ maxWidth: 620, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <p style={{ color: 'rgba(255,241,231,0.55)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>L'Abri IA</p>
-          <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(22px,3.5vw,38px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 20 }}>
-            Tu veux aller plus loin ?
-          </h2>
-          <p style={{ color: 'rgba(255,241,231,0.8)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.75, marginBottom: 36 }}>
-            L'Abri IA t'accompagne à tout moment. Pose tes questions, comprends tes schémas, avance à ton rythme.
-          </p>
-          <a href="https://ia.abrilove.fr" className="coaching-cta coaching-cta-light">
-            Découvrir l'Abri IA
-          </a>
+        <div data-fade style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <div className="abria-2cols">
+            <div style={{ flex: 1 }}>
+              <p style={{ color: 'rgba(255,241,231,0.55)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>L'Abri IA</p>
+              <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(22px,3.5vw,38px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 20 }}>
+                Tu veux aller plus loin ?
+              </h2>
+              <p style={{ color: 'rgba(255,241,231,0.8)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.75, marginBottom: 36 }}>
+                L'Abri IA t'accompagne à tout moment. Pose tes questions, comprends tes schémas, avance à ton rythme.
+              </p>
+              <a href="https://ia.abrilove.fr" className="coaching-cta coaching-cta-light">
+                Découvrir l'Abri IA
+              </a>
+            </div>
+            <div style={{ flexShrink: 0 }}>
+              <IPhoneChat />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ── COACHING ── */}
-      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)', display: activeTab === 'all' ? 'block' : 'none' }}>
+      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)' }}>
         <div data-fade style={{ maxWidth: 640, margin: '0 auto' }}>
           <p style={{ color: '#660A43', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Coaching</p>
           <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 24 }}>
