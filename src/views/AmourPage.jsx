@@ -267,15 +267,15 @@ export default function AmourPage() {
       const all = document.querySelectorAll('[data-fade]:not(.fade-in)')
       all.forEach(el => {
         const r = el.getBoundingClientRect()
-        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('fade-in')
+        if (r.top < window.innerHeight + 400 && r.bottom > 0) el.classList.add('fade-in')
       })
       obs = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) { entry.target.classList.add('fade-in'); obs.unobserve(entry.target) }
         })
-      }, { threshold: 0 })
+      }, { threshold: 0, rootMargin: '0px 0px 300px 0px' })
       document.querySelectorAll('[data-fade]:not(.fade-in)').forEach(el => obs.observe(el))
-    }, 50)
+    }, 150)
     return () => { clearTimeout(timer); obs?.disconnect() }
   }, [activeTab])
 
@@ -311,6 +311,10 @@ export default function AmourPage() {
         .abria-2cols { display: flex; align-items: center; gap: 60px; }
         @media (max-width: 720px) { .abria-2cols { flex-direction: column; gap: 40px; } }
         @media (min-width: 721px) { .coaching-center { text-align: center; } .coaching-center a { justify-content: center; } }
+        @media (min-width: 721px) {
+          .amour-card a { transition: transform 0.22s ease, box-shadow 0.22s ease; }
+          .amour-card a:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(102,10,67,0.18); }
+        }
       `}</style>
 
       <Header />
