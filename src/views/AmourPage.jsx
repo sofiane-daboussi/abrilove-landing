@@ -4,6 +4,16 @@ import Header from './Header'
 import Footer from './Footer'
 import Link from 'next/link'
 
+const COURS = [
+  {
+    id: 'abri-de-soi',
+    cover: '/images/cours-abri-de-soi.png',
+    title: "L'Abri de soi",
+    description: "Le programme dans lequel tu cesses enfin de douter de ta valeur. Tu apprends à ne plus courir après la validation, à fermer les portes du passé et à reconstruire une confiance solide, celle que plus rien ni personne ne peut t'enlever.",
+    link: 'https://abri-love.webflow.io/re-construis-ta-confiance',
+  },
+]
+
 const PAID_EBOOKS = [
   {
     id: 'dating',
@@ -48,7 +58,7 @@ const EBOOKS = [
     listId: 20,
     cover: '/images/ebook-7-habitudes.png',
     title: '7 habitudes qui reconstruisent ta confiance (vraiment)',
-    description: "Reprends en main tes relations et ne laisse plus jamais une seule personne te ghoster.",
+    description: "Les 7 habitudes concrètes pour reconstruire une confiance solide et cesser de douter de toi en amour.",
   },
   {
     id: 'courir',
@@ -211,6 +221,8 @@ export default function AmourPage() {
         @keyframes blob3 { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(60px,-70px) scale(1.1); } }
         @media (max-width: 720px) {
           .amour-grid { grid-template-columns: 1fr !important; }
+          .amour-tabs { flex-wrap: wrap !important; }
+          .amour-tab { font-size: 12px !important; padding: 8px 16px !important; }
         }
         @media (min-width: 721px) and (max-width: 1080px) {
           .amour-grid { grid-template-columns: repeat(2, 1fr) !important; }
@@ -244,10 +256,10 @@ export default function AmourPage() {
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        background: 'linear-gradient(180deg, #660A43 0%, #660A43 20%, #8a1258 55%, #660A43 100%)',
+        background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)',
       }}>
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0 }}>
-          <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(190,25,105,0.6) 0%, transparent 65%)', top: '20%', right: '-10%', filter: 'blur(50px)', animation: 'blob1 6s ease-in-out infinite' }} />
+          <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(190,25,105,0.6) 0%, transparent 65%)', top: '40%', right: '-10%', filter: 'blur(50px)', animation: 'blob1 6s ease-in-out infinite' }} />
           <div style={{ position: 'absolute', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(160,15,85,0.55) 0%, transparent 65%)', bottom: '0%', left: '-10%', filter: 'blur(45px)', animation: 'blob2 8s ease-in-out infinite' }} />
           <div style={{ position: 'absolute', width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle, rgba(210,40,120,0.5) 0%, transparent 65%)', top: '50%', left: '20%', filter: 'blur(50px)', animation: 'blob3 7s ease-in-out infinite' }} />
         </div>
@@ -268,8 +280,8 @@ export default function AmourPage() {
       </section>
 
       {/* ── TABS ── */}
-      <div style={{ background: '#FFF4F7', padding: '28px clamp(32px,5vw,80px) 0', position: 'sticky', top: 0, zIndex: 10, borderBottom: '1px solid rgba(102,10,67,0.08)' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 20 }}>
+      <div style={{ background: '#FFF4F7', padding: '24px clamp(32px,5vw,80px)', borderBottom: '1px solid rgba(102,10,67,0.08)' }}>
+        <div className="amour-tabs" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 10, flexWrap: 'wrap' }}>
           {[
             { id: 'all', label: 'Tout' },
             { id: 'gratuit', label: 'Ressources gratuites' },
@@ -306,14 +318,7 @@ export default function AmourPage() {
               Tes guides offerts
             </h2>
           </div>
-          <div
-            className="amour-grid"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 28,
-            }}
-          >
+          <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
             {EBOOKS.map((ebook, i) => (
               <div key={ebook.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
                 <EbookCard ebook={ebook} />
@@ -323,8 +328,13 @@ export default function AmourPage() {
         </div>
       </section>
 
-      {/* ── SÉPARATEUR ── */}
-      <section style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: 'calc(clamp(16px,2vw,28px) + 80px) clamp(32px,5vw,80px)', position: 'relative', textAlign: 'center', display: activeTab === 'all' ? 'block' : 'none' }}>
+      {/* ── EBOOKS PAYANTS (fond sombre) ── */}
+      <section style={{
+        background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)',
+        padding: 'calc(clamp(32px,4vw,56px) + 80px) clamp(32px,5vw,80px) calc(clamp(56px,6vw,80px) + 80px)',
+        position: 'relative',
+        display: activeTab === 'all' || activeTab === 'guides' ? 'block' : 'none',
+      }}>
         <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
             <path d="M0,0 L0,45 Q720,22 1440,45 L1440,0 Z" fill="#FFF4F7" />
@@ -335,29 +345,19 @@ export default function AmourPage() {
             <path d="M0,35 Q720,58 1440,35 L1440,80 L0,80 Z" fill="#FFF4F7" />
           </svg>
         </div>
-        <div data-fade style={{ position: 'relative', zIndex: 1 }}>
-          <p style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(18px,2.5vw,28px)', fontWeight: 700 }}>
-            Tu veux aller plus loin ?
-          </p>
-        </div>
-      </section>
-
-      {/* ── EBOOKS PAYANTS ── */}
-      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)', display: activeTab === 'all' || activeTab === 'guides' ? 'block' : 'none' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div data-fade>
-            <p style={{ color: '#660A43', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 12 }}>Nos guides</p>
-            <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, lineHeight: 1.3, marginBottom: 48 }}>
-              Tes guides complets
+            <p style={{ color: 'rgba(255,241,231,0.55)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 12 }}>Nos guides</p>
+            <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, lineHeight: 1.3, marginBottom: 48 }}>
+              Tu veux aller plus loin ?
             </h2>
           </div>
-          <div data-fade className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
+          <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
             {PAID_EBOOKS.map((ebook, i) => (
-              <div key={ebook.id} className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
-                <a href={ebook.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', borderRadius: 20, overflow: 'hidden', boxShadow: '0 6px 32px rgba(102,10,67,0.10)' }}>
+              <div key={ebook.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
+                <a href={ebook.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', borderRadius: 20, overflow: 'hidden', boxShadow: '0 6px 32px rgba(102,10,67,0.15)' }}>
                   <div style={{ position: 'relative' }}>
                     <img src={ebook.cover} alt={ebook.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
-                    <div style={{ position: 'absolute', top: 14, left: 14, background: '#E8196E', color: '#fff', fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: 6, padding: '4px 10px' }}>Guide</div>
                   </div>
                   <div style={{ padding: '20px 20px 28px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                     <h3 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 17, fontWeight: 700, lineHeight: 1.35, marginBottom: 10 }}>{ebook.title}</h3>
@@ -374,36 +374,41 @@ export default function AmourPage() {
       </section>
 
       {/* ── COURS & WORKSHOPS ── */}
-      {(activeTab === 'all' || activeTab === 'cours') && (
-        <section style={{ background: activeTab === 'cours' ? '#FFF4F7' : 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: activeTab === 'cours' ? 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)' : 'calc(clamp(16px,2vw,28px) + 80px) clamp(32px,5vw,80px)', position: 'relative', textAlign: 'center' }}>
-          {activeTab === 'cours' ? null : (
-            <>
-              <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
-                <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
-                  <path d="M0,0 L0,45 Q720,22 1440,45 L1440,0 Z" fill="#FFF4F7" />
-                </svg>
-              </div>
-              <div style={{ position: 'absolute', bottom: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
-                <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
-                  <path d="M0,35 Q720,58 1440,35 L1440,80 L0,80 Z" fill="#FFF4F7" />
-                </svg>
-              </div>
-            </>
-          )}
-          <div data-fade style={{ maxWidth: 560, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-            <p style={{ fontSize: 40, marginBottom: 20 }}>🚧</p>
-            <p style={{ color: activeTab === 'cours' ? '#660A43' : 'rgba(255,241,231,0.55)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Bientôt disponible</p>
-            <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: activeTab === 'cours' ? '#660A43' : '#FFF1E7', fontSize: 'clamp(22px,3.5vw,38px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 16 }}>
-              Cours & Workshops
+      <section style={{
+        background: '#FFF4F7',
+        padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)',
+        display: activeTab === 'all' || activeTab === 'cours' ? 'block' : 'none',
+      }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div data-fade>
+            <p style={{ color: '#660A43', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 12 }}>Cours & Workshops</p>
+            <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, lineHeight: 1.3, marginBottom: 48 }}>
+              Les programmes
             </h2>
-            <p style={{ color: activeTab === 'cours' ? '#7a4060' : 'rgba(255,241,231,0.75)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.75 }}>
-              Des ateliers en direct et des formations approfondies arrivent très bientôt. Reste à l'affût !
-            </p>
           </div>
-        </section>
-      )}
+          <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
+            {COURS.map((cours, i) => (
+              <div key={cours.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
+                <a href={cours.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', borderRadius: 20, overflow: 'hidden', boxShadow: '0 6px 32px rgba(102,10,67,0.10)' }}>
+                  <div style={{ position: 'relative' }}>
+                    <img src={cours.cover} alt={cours.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                    <div style={{ position: 'absolute', top: 14, left: 14, background: '#E8196E', color: '#fff', fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: 6, padding: '4px 10px' }}>Programme</div>
+                  </div>
+                  <div style={{ padding: '20px 20px 28px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                    <h3 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 17, fontWeight: 700, lineHeight: 1.35, marginBottom: 10 }}>{cours.title}</h3>
+                    <p style={{ color: '#7a4060', fontSize: 14, lineHeight: 1.65, marginBottom: 20, flex: 1 }}>{cours.description}</p>
+                    <span className="amour-btn" style={{ background: '#660A43', color: '#fff', border: 'none', borderRadius: 10, padding: '13px 20px', fontSize: 14, fontWeight: 700, textAlign: 'center', display: 'block' }}>
+                      Découvrir le programme
+                    </span>
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* ── SECTION SOMBRE ── */}
+      {/* ── SECTION SOMBRE (Abri IA) ── */}
       <section style={{
         background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)',
         padding: 'calc(clamp(24px,3vw,44px) + 80px) clamp(32px,5vw,80px)',
