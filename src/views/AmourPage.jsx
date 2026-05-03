@@ -281,7 +281,7 @@ export default function AmourPage() {
 
       {/* ── TABS ── */}
       <div style={{ background: '#FFF4F7', padding: '20px clamp(32px,5vw,80px) 0' }}>
-        <div className="amour-tabs" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center', paddingBottom: 20, borderBottom: '1px solid rgba(102,10,67,0.08)' }}>
+        <div className="amour-tabs" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center', paddingBottom: 36, borderBottom: '1px solid rgba(102,10,67,0.08)' }}>
           {[
             { id: 'all', label: 'Tout' },
             { id: 'gratuit', label: 'Ressources gratuites' },
