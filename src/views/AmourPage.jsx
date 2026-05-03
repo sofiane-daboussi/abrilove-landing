@@ -267,7 +267,7 @@ export default function AmourPage() {
       entries.forEach(entry => {
         if (entry.isIntersecting) { entry.target.classList.add('fade-in'); obs.unobserve(entry.target) }
       })
-    }, { threshold: 0.1 })
+    }, { threshold: 0 })
     els.forEach(el => obs.observe(el))
     return () => obs.disconnect()
   }, [activeTab])
