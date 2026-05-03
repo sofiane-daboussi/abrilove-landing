@@ -355,7 +355,7 @@ export default function AmourPage() {
           <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28, alignItems: 'start' }}>
             {PAID_EBOOKS.map((ebook, i) => (
               <div key={ebook.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
-                <a href={ebook.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', borderRadius: 20, overflow: 'hidden', border: '1.5px solid rgba(255,241,231,0.3)', background: 'transparent' }}>
+                <a href={ebook.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', borderRadius: 20, border: '1.5px solid rgba(255,241,231,0.3)', background: 'transparent' }}>
                   <div style={{ position: 'relative' }}>
                     <img src={ebook.cover} alt={ebook.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
                   </div>
