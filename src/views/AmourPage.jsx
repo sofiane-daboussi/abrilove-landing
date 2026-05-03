@@ -196,8 +196,6 @@ export default function AmourPage() {
         @media (min-width: 721px) and (max-width: 1080px) {
           .amour-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
-        .amour-card > div { transition: transform 0.2s, box-shadow 0.2s; }
-        .amour-card > div:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(102,10,67,0.16) !important; }
         @keyframes coaching-pulse { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
         .coaching-cta { display:inline-flex; align-items:center; text-decoration:none; padding:16px 28px; border-radius:999px; font-weight:700; font-size:15px; font-family:var(--font-dm-sans,sans-serif); transition:transform 0.2s, box-shadow 0.2s; animation:coaching-pulse 2.5s ease-in-out infinite; will-change:transform; }
         .coaching-cta:hover { transform:translateY(-3px) !important; animation:none; }
@@ -205,8 +203,8 @@ export default function AmourPage() {
         .coaching-cta-light:hover { box-shadow:0 12px 30px rgba(0,0,0,0.3); }
         .coaching-cta-dark { background:#660A43; color:#fff; box-shadow:0 6px 20px rgba(102,10,67,0.3); }
         .coaching-cta-dark:hover { box-shadow:0 10px 28px rgba(102,10,67,0.5); }
-        .amour-btn { transition: transform 0.2s, opacity 0.2s; }
-        .amour-btn:hover:not(:disabled) { transform: translateY(-2px); opacity: 0.88; }
+        .amour-btn { transition: transform 0.2s, box-shadow 0.2s; animation: coaching-pulse 2.5s ease-in-out infinite; will-change: transform; }
+        .amour-btn:hover:not(:disabled) { transform: translateY(-3px) !important; animation: none; box-shadow: 0 10px 28px rgba(102,10,67,0.4); }
       `}</style>
 
       <Header />
