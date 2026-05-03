@@ -8,21 +8,21 @@ const EBOOKS = [
   {
     id: 'reperes',
     listId: 21,
-    cover: '/images/ebook-7-reperes.avif',
+    cover: '/images/ebook-7-reperes.png',
     title: '7 repères pour savoir si tu perds ton temps avec lui',
     description: 'Et ne plus jamais te tromper en amour.',
   },
   {
     id: 'premier-rdv',
     listId: 23,
-    cover: '/images/ebook-premier-rdv.avif',
+    cover: '/images/ebook-premier-rdv.png',
     title: 'Le guide ultime pour un premier rendez-vous réussi',
     description: 'Dis stop aux dates qui te font perdre ton temps avec la mauvaise personne.',
   },
   {
     id: 'ghostee',
     listId: 19,
-    cover: '/images/ebook-ghostee.avif',
+    cover: '/images/ebook-ghostee.png',
     title: "Tu t'es encore fait ghoster – Partie 1",
     description: "Reprends en main tes relations et ne laisse plus jamais une seule personne te ghoster.",
   },
@@ -36,7 +36,7 @@ const EBOOKS = [
   {
     id: 'courir',
     listId: 22,
-    cover: '/images/ebook-courir.avif',
+    cover: '/images/ebook-courir.png',
     title: "Arrête de courir après lui",
     description: "Un guide pour celles qui en ont assez de tout donner pour être choisies. Ce livre t'apprend à cesser de courir après l'amour, et à revenir vers toi.",
   },
