@@ -262,13 +262,21 @@ export default function AmourPage() {
   const [activeTab, setActiveTab] = useState('all')
 
   useEffect(() => {
-    const els = document.querySelectorAll('[data-fade]:not(.fade-in)')
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('fade-in'); obs.unobserve(entry.target) }
+    const run = () => {
+      const els = document.querySelectorAll('[data-fade]:not(.fade-in)')
+      els.forEach(el => {
+        const r = el.getBoundingClientRect()
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('fade-in')
       })
-    }, { threshold: 0 })
-    els.forEach(el => obs.observe(el))
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('fade-in'); obs.unobserve(entry.target) }
+        })
+      }, { threshold: 0 })
+      document.querySelectorAll('[data-fade]:not(.fade-in)').forEach(el => obs.observe(el))
+      return obs
+    }
+    const obs = run()
     return () => obs.disconnect()
   }, [activeTab])
 
