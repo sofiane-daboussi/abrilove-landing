@@ -429,9 +429,9 @@ export default function AmourPage() {
                   <div style={{ position: 'relative', paddingTop: 24 }}>
                     <img src={ebook.cover} alt={ebook.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
                   </div>
-                  <div style={{ padding: '8px 20px 28px', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ padding: '8px 20px 28px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                     <h3 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 17, fontWeight: 700, lineHeight: 1.35, marginBottom: 10 }}>{ebook.title}</h3>
-                    <p style={{ color: 'rgba(255,241,231,0.72)', fontSize: 14, lineHeight: 1.65, marginBottom: 20 }}>{ebook.description}</p>
+                    <p style={{ color: 'rgba(255,241,231,0.72)', fontSize: 14, lineHeight: 1.65, marginBottom: 20, flex: 1 }}>{ebook.description}</p>
                     <span className="amour-btn" style={{ background: '#FFF1E7', color: '#660A43', border: 'none', borderRadius: 10, padding: '13px 20px', fontSize: 14, fontWeight: 700, textAlign: 'center', display: 'block' }}>
                       Découvrir le guide
                     </span>
