@@ -946,7 +946,7 @@ export default function HomePage() {
                 Fais le <strong>test gratuit</strong> et découvre ton profil amoureux, pour mieux comprendre ce que tu vis, en profondeur.
               </p>
             </div>
-            <div style={{ flex: 1 }} className="hp-quiz-embed" >
+            <div style={{ flex: 1, position: 'relative' }} className="hp-quiz-embed" >
               <QuizPage embedded />
             </div>
           </div>
