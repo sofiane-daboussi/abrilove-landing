@@ -88,11 +88,11 @@ function EbookCard({ ebook }) {
       display: 'flex',
       flexDirection: 'column',
     }}>
-      <div style={{ position: 'relative', background: '#fff' }}>
+      <div style={{ position: 'relative' }}>
         <img
           src={ebook.cover}
           alt={ebook.title}
-          style={{ width: '100%', display: 'block', objectFit: 'contain' }}
+          style={{ width: '100%', display: 'block', objectFit: 'cover', aspectRatio: '3/4' }}
         />
         <div style={{
           position: 'absolute', top: 14, left: 14,
