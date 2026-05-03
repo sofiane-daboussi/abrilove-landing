@@ -18,7 +18,7 @@
 //     }'
 // ============================================================
 
-const DEFAULT_SENDER_NAME  = 'Abrilove';
+const DEFAULT_SENDER_NAME  = 'Sofi & Oli - Abrilove';
 const DEFAULT_SENDER_EMAIL = 'bonjour@abrilove.fr';
 
 function jsonResponse(data, status = 200) {
@@ -79,6 +79,7 @@ export default {
       const {
         subject,
         html,
+        text,
         segmentIds,
         listIds,
         testEmails,
@@ -89,7 +90,7 @@ export default {
       } = body;
 
       if (!subject || typeof subject !== 'string') return errorResponse('subject requis');
-      if (!html    || typeof html    !== 'string') return errorResponse('html requis');
+      if (!html && !text) return errorResponse('html ou text requis');
 
       const isTest      = Array.isArray(testEmails) && testEmails.length > 0;
       const hasSegments = Array.isArray(segmentIds) && segmentIds.length > 0;
@@ -108,10 +109,11 @@ export default {
       const campaignPayload = {
         name,
         subject,
-        htmlContent: html,
         sender: { name: senderName, email: senderEmail },
         recipients,
       };
+      if (html) campaignPayload.htmlContent = html;
+      if (text) campaignPayload.textContent = text;
       if (scheduledAt && !isTest) campaignPayload.scheduledAt = scheduledAt;
 
       // 1. Créer la campagne

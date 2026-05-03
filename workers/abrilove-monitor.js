@@ -17,7 +17,7 @@ const CHECKS = [
   { name: 'worker-chat',         url: 'https://abrilove-chat.sofiane-daboussi.workers.dev/',         method: 'OPTIONS', expectStatus: [204, 200, 404] },
   { name: 'worker-quiz-submit',  url: 'https://abrilove-quiz-submit.sofiane-daboussi.workers.dev/',  method: 'OPTIONS', expectStatus: [204, 200, 404] },
   { name: 'worker-oto',          url: 'https://abrilove-oto-worker.sofiane-daboussi.workers.dev/',   method: 'OPTIONS', expectStatus: [204, 200, 404] },
-  { name: 'worker-newsletter',   url: 'https://abrilove-newsletter.sofiane-daboussi.workers.dev/send', method: 'POST', body: '{}', expectStatus: [400, 401] },
+  { name: 'worker-newsletter',   url: 'https://abrilove-newsletter.sofiane-daboussi.workers.dev/',    method: 'OPTIONS', expectStatus: [204, 200, 404] },
 
   // APIs externes
   { name: 'stripe-api',  url: 'https://api.stripe.com/',      method: 'GET', expectStatus: [200, 401, 404] },

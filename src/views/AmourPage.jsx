@@ -190,6 +190,8 @@ function EbookCard({ ebook }) {
 }
 
 export default function AmourPage() {
+  const [activeTab, setActiveTab] = useState('all')
+
   useEffect(() => {
     const els = document.querySelectorAll('[data-fade]')
     const obs = new IntersectionObserver(entries => {
@@ -224,6 +226,9 @@ export default function AmourPage() {
         .amour-card > div { height: 100%; }
         .amour-btn { transition: transform 0.2s, box-shadow 0.2s; animation: coaching-pulse 2.5s ease-in-out infinite; will-change: transform; }
         .amour-btn:hover:not(:disabled) { transform: translateY(-3px) !important; animation: none; box-shadow: 0 10px 28px rgba(102,10,67,0.4); }
+        .amour-tab { background: transparent; border: 2px solid rgba(102,10,67,0.25); color: #660A43; border-radius: 999px; padding: 10px 22px; font-size: 14px; font-weight: 700; font-family: var(--font-dm-sans,sans-serif); cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+        .amour-tab:hover { border-color: #660A43; background: rgba(102,10,67,0.06); }
+        .amour-tab.active { background: #660A43; color: #fff; border-color: #660A43; }
       `}</style>
 
       <Header />
@@ -239,7 +244,7 @@ export default function AmourPage() {
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)',
+        background: 'linear-gradient(180deg, #660A43 0%, #660A43 20%, #8a1258 55%, #660A43 100%)',
       }}>
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0 }}>
           <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(190,25,105,0.6) 0%, transparent 65%)', top: '20%', right: '-10%', filter: 'blur(50px)', animation: 'blob1 6s ease-in-out infinite' }} />
@@ -262,10 +267,31 @@ export default function AmourPage() {
         </div>
       </section>
 
+      {/* ── TABS ── */}
+      <div style={{ background: '#FFF4F7', padding: '28px clamp(32px,5vw,80px) 0', position: 'sticky', top: 0, zIndex: 10, borderBottom: '1px solid rgba(102,10,67,0.08)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 20 }}>
+          {[
+            { id: 'all', label: 'Tout' },
+            { id: 'gratuit', label: 'Ressources gratuites' },
+            { id: 'guides', label: 'Guides' },
+            { id: 'cours', label: 'Cours & Workshops' },
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`amour-tab${activeTab === tab.id ? ' active' : ''}`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* ── EBOOKS GRATUITS ── */}
       <section style={{
         background: '#FFF4F7',
         padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)',
+        display: activeTab === 'all' || activeTab === 'gratuit' ? 'block' : 'none',
       }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div data-fade>
@@ -298,7 +324,7 @@ export default function AmourPage() {
       </section>
 
       {/* ── SÉPARATEUR ── */}
-      <section style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: 'calc(clamp(16px,2vw,28px) + 80px) clamp(32px,5vw,80px)', position: 'relative', textAlign: 'center' }}>
+      <section style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: 'calc(clamp(16px,2vw,28px) + 80px) clamp(32px,5vw,80px)', position: 'relative', textAlign: 'center', display: activeTab === 'all' ? 'block' : 'none' }}>
         <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
             <path d="M0,0 L0,45 Q720,22 1440,45 L1440,0 Z" fill="#FFF4F7" />
@@ -317,7 +343,7 @@ export default function AmourPage() {
       </section>
 
       {/* ── EBOOKS PAYANTS ── */}
-      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)' }}>
+      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)', display: activeTab === 'all' || activeTab === 'guides' ? 'block' : 'none' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div data-fade>
             <p style={{ color: '#660A43', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 12 }}>Nos guides</p>
@@ -347,12 +373,43 @@ export default function AmourPage() {
         </div>
       </section>
 
+      {/* ── COURS & WORKSHOPS ── */}
+      {(activeTab === 'all' || activeTab === 'cours') && (
+        <section style={{ background: activeTab === 'cours' ? '#FFF4F7' : 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: activeTab === 'cours' ? 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)' : 'calc(clamp(16px,2vw,28px) + 80px) clamp(32px,5vw,80px)', position: 'relative', textAlign: 'center' }}>
+          {activeTab === 'cours' ? null : (
+            <>
+              <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
+                <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+                  <path d="M0,0 L0,45 Q720,22 1440,45 L1440,0 Z" fill="#FFF4F7" />
+                </svg>
+              </div>
+              <div style={{ position: 'absolute', bottom: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
+                <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+                  <path d="M0,35 Q720,58 1440,35 L1440,80 L0,80 Z" fill="#FFF4F7" />
+                </svg>
+              </div>
+            </>
+          )}
+          <div data-fade style={{ maxWidth: 560, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+            <p style={{ fontSize: 40, marginBottom: 20 }}>🚧</p>
+            <p style={{ color: activeTab === 'cours' ? '#660A43' : 'rgba(255,241,231,0.55)', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Bientôt disponible</p>
+            <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: activeTab === 'cours' ? '#660A43' : '#FFF1E7', fontSize: 'clamp(22px,3.5vw,38px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 16 }}>
+              Cours & Workshops
+            </h2>
+            <p style={{ color: activeTab === 'cours' ? '#7a4060' : 'rgba(255,241,231,0.75)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.75 }}>
+              Des ateliers en direct et des formations approfondies arrivent très bientôt. Reste à l'affût !
+            </p>
+          </div>
+        </section>
+      )}
+
       {/* ── SECTION SOMBRE ── */}
       <section style={{
         background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)',
         padding: 'calc(clamp(24px,3vw,44px) + 80px) clamp(32px,5vw,80px)',
         position: 'relative',
         textAlign: 'center',
+        display: activeTab === 'all' ? 'block' : 'none',
       }}>
         <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
@@ -379,7 +436,7 @@ export default function AmourPage() {
       </section>
 
       {/* ── COACHING ── */}
-      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)' }}>
+      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)', display: activeTab === 'all' ? 'block' : 'none' }}>
         <div data-fade style={{ maxWidth: 640, margin: '0 auto' }}>
           <p style={{ color: '#660A43', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Coaching</p>
           <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 24 }}>
