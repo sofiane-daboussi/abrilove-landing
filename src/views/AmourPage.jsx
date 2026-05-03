@@ -224,7 +224,6 @@ export default function AmourPage() {
           .amour-grid { grid-template-columns: 1fr !important; }
           .amour-tabs { flex-wrap: wrap !important; }
           .amour-tab { font-size: 12px !important; padding: 8px 16px !important; }
-          .amour-ebook-img { max-height: 220px !important; object-fit: cover !important; object-position: top !important; }
         }
         @media (min-width: 721px) and (max-width: 1080px) {
           .amour-grid { grid-template-columns: repeat(2, 1fr) !important; }
@@ -237,6 +236,7 @@ export default function AmourPage() {
         .coaching-cta-dark { background:#660A43; color:#fff; box-shadow:0 6px 20px rgba(102,10,67,0.3); }
         .coaching-cta-dark:hover { box-shadow:0 10px 28px rgba(102,10,67,0.5); }
         .amour-card { height: auto; }
+        .amour-ebook-img { max-height: 220px; object-fit: cover; object-position: top; }
         .amour-btn { transition: transform 0.2s, box-shadow 0.2s; animation: coaching-pulse 2.5s ease-in-out infinite; will-change: transform; }
         .amour-btn:hover:not(:disabled) { transform: translateY(-3px) !important; animation: none; box-shadow: 0 10px 28px rgba(102,10,67,0.4); }
         .amour-tab { background: transparent; border: 2px solid rgba(102,10,67,0.25); color: #660A43; border-radius: 999px; padding: 10px 22px; font-size: 14px; font-weight: 700; font-family: var(--font-dm-sans,sans-serif); cursor: pointer; transition: all 0.2s; white-space: nowrap; }
