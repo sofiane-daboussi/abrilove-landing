@@ -92,7 +92,7 @@ function EbookCard({ ebook }) {
         <img
           src={ebook.cover}
           alt={ebook.title}
-          style={{ width: '100%', display: 'block', objectFit: 'cover', aspectRatio: '1/1' }}
+          style={{ width: '100%', height: 'auto', display: 'block' }}
         />
         <div style={{
           position: 'absolute', top: 14, left: 14,
