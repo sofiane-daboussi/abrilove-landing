@@ -62,7 +62,7 @@ function EbookCard({ ebook }) {
     }
     setLoading(true)
     try {
-      const res = await fetch('https://abrilove-oto-worker.sofiane-daboussi.workers.dev/api/newsletter', {
+      const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, listId: ebook.listId }),
