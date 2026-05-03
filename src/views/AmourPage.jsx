@@ -280,7 +280,7 @@ export default function AmourPage() {
       </section>
 
       {/* ── TABS ── */}
-      <div style={{ background: '#FFF4F7', paddingTop: 20, paddingBottom: activeTab === 'guides' ? 20 : 28, paddingLeft: 'clamp(32px,5vw,80px)', paddingRight: 'clamp(32px,5vw,80px)', borderBottom: '1px solid rgba(102,10,67,0.08)' }}>
+      <div style={{ background: '#FFF4F7', paddingTop: 20, paddingBottom: activeTab === 'guides' ? 24 : 32, paddingLeft: 'clamp(32px,5vw,80px)', paddingRight: 'clamp(32px,5vw,80px)', borderBottom: '1px solid rgba(102,10,67,0.08)' }}>
         <div className="amour-tabs" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
           {[
             { id: 'all', label: 'Tout' },
