@@ -204,7 +204,7 @@ export default function AmourPage() {
   const [activeTab, setActiveTab] = useState('all')
 
   useEffect(() => {
-    const els = document.querySelectorAll('[data-fade]')
+    const els = document.querySelectorAll('[data-fade]:not(.fade-in)')
     const obs = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) { entry.target.classList.add('fade-in'); obs.unobserve(entry.target) }
@@ -212,7 +212,7 @@ export default function AmourPage() {
     }, { threshold: 0.1 })
     els.forEach(el => obs.observe(el))
     return () => obs.disconnect()
-  }, [])
+  }, [activeTab])
 
   return (
     <div style={{ margin: '-24px -16px' }}>
