@@ -17,14 +17,14 @@ const COURS = [
 const PAID_EBOOKS = [
   {
     id: 'dating',
-    cover: '/images/ebook-dating-pay.png',
+    cover: '/images/datingg.png',
     title: 'Comment trouver l\'amour sur les applications de rencontre',
     description: 'Le guide ultime de 250 pages pour enfin trouver la personne qui te mérite.',
     link: 'https://abri-love.webflow.io/ebook-dating',
   },
   {
     id: 'ghosting',
-    cover: '/images/ebook-ghosting-pay.png',
+    cover: '/images/ghostingg.png',
     title: 'Tu t\'es encore fait ghoster',
     description: 'Comprends enfin pourquoi il t\'a ghostée, sans remettre en question ta valeur.',
     link: 'https://abri-love.webflow.io/stop-ghosting',
