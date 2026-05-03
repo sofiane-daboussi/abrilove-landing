@@ -246,7 +246,6 @@ export default function AmourPage() {
 
       {/* ── HERO ── */}
       <section style={{
-        minHeight: '70vh',
         paddingTop: 'clamp(130px,14vw,190px)',
         paddingLeft: 'clamp(32px,5vw,80px)',
         paddingRight: 'clamp(32px,5vw,80px)',
@@ -256,7 +255,7 @@ export default function AmourPage() {
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)',
+        background: 'linear-gradient(180deg, #660A43 0%, #660A43 50%, #8a1258 75%, #660A43 100%)',
       }}>
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0 }}>
           <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(190,25,105,0.6) 0%, transparent 65%)', top: '40%', right: '-10%', filter: 'blur(50px)', animation: 'blob1 6s ease-in-out infinite' }} />
@@ -355,7 +354,7 @@ export default function AmourPage() {
           <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28, alignItems: 'start' }}>
             {PAID_EBOOKS.map((ebook, i) => (
               <div key={ebook.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
-                <a href={ebook.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', borderRadius: 20, overflow: 'hidden', border: '1.5px solid rgba(255,241,231,0.25)', background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(8px)' }}>
+                <a href={ebook.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', borderRadius: 20, overflow: 'hidden', border: '1.5px solid rgba(255,241,231,0.3)', background: 'transparent' }}>
                   <div style={{ position: 'relative' }}>
                     <img src={ebook.cover} alt={ebook.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
                   </div>
