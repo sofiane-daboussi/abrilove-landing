@@ -92,7 +92,7 @@ function EbookCard({ ebook }) {
         <img
           src={ebook.cover}
           alt={ebook.title}
-          style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', display: 'block' }}
+          style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
         />
         <div style={{
           position: 'absolute', top: 14, left: 14,
@@ -103,11 +103,11 @@ function EbookCard({ ebook }) {
         }}>Gratuit</div>
       </div>
 
-      <div style={{ padding: '12px 20px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+      <div style={{ padding: '0 20px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
         <h3 style={{
           fontFamily: 'var(--font-playfair,serif)',
           color: '#660A43', fontSize: 17, fontWeight: 700,
-          lineHeight: 1.35, marginBottom: 10,
+          lineHeight: 1.35, marginBottom: 10, marginTop: 16,
         }}>{ebook.title}</h3>
         <p style={{ color: '#7a4060', fontSize: 14, lineHeight: 1.65, marginBottom: 20, flex: 1 }}>
           {ebook.description}
