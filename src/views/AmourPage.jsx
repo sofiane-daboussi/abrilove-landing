@@ -4,6 +4,23 @@ import Header from './Header'
 import Footer from './Footer'
 import Link from 'next/link'
 
+const PAID_EBOOKS = [
+  {
+    id: 'dating',
+    cover: '/images/ebook-dating-pay.png',
+    title: 'Comment trouver l\'amour sur les applications de rencontre',
+    description: 'Le guide ultime de 250 pages pour enfin trouver la personne qui te mérite.',
+    link: 'https://abri-love.webflow.io/ebook-dating',
+  },
+  {
+    id: 'ghosting',
+    cover: '/images/ebook-ghosting-pay.png',
+    title: 'Tu t\'es encore fait ghoster',
+    description: 'Comprends enfin pourquoi il t\'a ghostée, sans remettre en question ta valeur.',
+    link: 'https://abri-love.webflow.io/stop-ghosting',
+  },
+]
+
 const EBOOKS = [
   {
     id: 'reperes',
@@ -274,6 +291,56 @@ export default function AmourPage() {
             {EBOOKS.map((ebook, i) => (
               <div key={ebook.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
                 <EbookCard ebook={ebook} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SÉPARATEUR ── */}
+      <section style={{ background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)', padding: 'calc(clamp(16px,2vw,28px) + 80px) clamp(32px,5vw,80px)', position: 'relative', textAlign: 'center' }}>
+        <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+            <path d="M0,0 L0,45 Q720,22 1440,45 L1440,0 Z" fill="#FFF4F7" />
+          </svg>
+        </div>
+        <div style={{ position: 'absolute', bottom: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+            <path d="M0,35 Q720,58 1440,35 L1440,80 L0,80 Z" fill="#FFF4F7" />
+          </svg>
+        </div>
+        <div data-fade style={{ position: 'relative', zIndex: 1 }}>
+          <p style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 'clamp(18px,2.5vw,28px)', fontWeight: 700 }}>
+            Tu veux aller plus loin ?
+          </p>
+        </div>
+      </section>
+
+      {/* ── EBOOKS PAYANTS ── */}
+      <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div data-fade>
+            <p style={{ color: '#660A43', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 12 }}>Nos guides</p>
+            <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, lineHeight: 1.3, marginBottom: 48 }}>
+              Tes guides complets
+            </h2>
+          </div>
+          <div data-fade className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
+            {PAID_EBOOKS.map((ebook, i) => (
+              <div key={ebook.id} className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
+                <a href={ebook.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', borderRadius: 20, overflow: 'hidden', boxShadow: '0 6px 32px rgba(102,10,67,0.10)' }}>
+                  <div style={{ position: 'relative' }}>
+                    <img src={ebook.cover} alt={ebook.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                    <div style={{ position: 'absolute', top: 14, left: 14, background: '#E8196E', color: '#fff', fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: 6, padding: '4px 10px' }}>Guide</div>
+                  </div>
+                  <div style={{ padding: '20px 20px 28px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                    <h3 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 17, fontWeight: 700, lineHeight: 1.35, marginBottom: 10 }}>{ebook.title}</h3>
+                    <p style={{ color: '#7a4060', fontSize: 14, lineHeight: 1.65, marginBottom: 20, flex: 1 }}>{ebook.description}</p>
+                    <span className="amour-btn" style={{ background: '#660A43', color: '#fff', border: 'none', borderRadius: 10, padding: '13px 20px', fontSize: 14, fontWeight: 700, textAlign: 'center', display: 'block' }}>
+                      Découvrir le guide
+                    </span>
+                  </div>
+                </a>
               </div>
             ))}
           </div>
