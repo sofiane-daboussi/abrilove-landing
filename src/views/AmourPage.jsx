@@ -273,7 +273,7 @@ export default function AmourPage() {
         entries.forEach(entry => {
           if (entry.isIntersecting) { entry.target.classList.add('fade-in'); obs.unobserve(entry.target) }
         })
-      }, { threshold: 0, rootMargin: '0px 0px 300px 0px' })
+      }, { threshold: 0 })
       document.querySelectorAll('[data-fade]:not(.fade-in)').forEach(el => obs.observe(el))
     }, 150)
     return () => { clearTimeout(timer); obs?.disconnect() }
