@@ -115,14 +115,15 @@ function EbookCard({ ebook }) {
       display: 'flex',
       flexDirection: 'column',
     }}>
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: 'relative', paddingTop: 44, background: '#fff' }}>
         <img
           src={ebook.cover}
           alt={ebook.title}
+          className="amour-ebook-img"
           style={{ width: '100%', height: 'auto', display: 'block' }}
         />
         <div style={{
-          position: 'absolute', top: 14, left: 14,
+          position: 'absolute', top: 12, left: 14,
           background: '#660A43', color: '#fff',
           fontSize: 11, fontWeight: 700, letterSpacing: '0.12em',
           textTransform: 'uppercase', borderRadius: 6,
@@ -223,6 +224,7 @@ export default function AmourPage() {
           .amour-grid { grid-template-columns: 1fr !important; }
           .amour-tabs { flex-wrap: wrap !important; }
           .amour-tab { font-size: 12px !important; padding: 8px 16px !important; }
+          .amour-ebook-img { max-height: 220px !important; object-fit: cover !important; object-position: top !important; }
         }
         @media (min-width: 721px) and (max-width: 1080px) {
           .amour-grid { grid-template-columns: repeat(2, 1fr) !important; }
