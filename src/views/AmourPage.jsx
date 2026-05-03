@@ -103,7 +103,7 @@ function EbookCard({ ebook }) {
         }}>Gratuit</div>
       </div>
 
-      <div style={{ padding: '24px 24px 28px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+      <div style={{ padding: '16px 20px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
         <h3 style={{
           fontFamily: 'var(--font-playfair,serif)',
           color: '#660A43', fontSize: 17, fontWeight: 700,
@@ -196,6 +196,8 @@ export default function AmourPage() {
         @media (min-width: 721px) and (max-width: 1080px) {
           .amour-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
+        @keyframes cardIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        .amour-card { animation: cardIn 0.55s ease both; }
       `}</style>
 
       <Header />
@@ -253,7 +255,6 @@ export default function AmourPage() {
             </h2>
           </div>
           <div
-            data-fade
             className="amour-grid"
             style={{
               display: 'grid',
@@ -261,8 +262,10 @@ export default function AmourPage() {
               gap: 28,
             }}
           >
-            {EBOOKS.map(ebook => (
-              <EbookCard key={ebook.id} ebook={ebook} />
+            {EBOOKS.map((ebook, i) => (
+              <div key={ebook.id} className="amour-card" style={{ animationDelay: `${i * 0.08}s` }}>
+                <EbookCard ebook={ebook} />
+              </div>
             ))}
           </div>
         </div>
