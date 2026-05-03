@@ -57,7 +57,7 @@ function EbookCard({ ebook }) {
       return
     }
     if (!checked) {
-      setError('Tu dois accepter la newsletter pour continuer.')
+      setError('Coche la case pour recevoir ton guide 🩷')
       return
     }
     setLoading(true)
@@ -132,7 +132,7 @@ function EbookCard({ ebook }) {
                 width: '100%', boxSizing: 'border-box',
                 padding: '12px 14px', borderRadius: 10,
                 border: '1.5px solid rgba(102,10,67,0.2)',
-                fontSize: 14, color: '#660A43', outline: 'none',
+                fontSize: 16, color: '#660A43', outline: 'none',
                 background: '#FFF4F7',
               }}
             />
