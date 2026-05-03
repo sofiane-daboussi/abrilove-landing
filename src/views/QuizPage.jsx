@@ -404,7 +404,7 @@ const CSS = `
 }
 `
 
-export default function QuizPage() {
+export default function QuizPage({ embedded = false }) {
   const [answers, setAnswers] = useState({})
   const [currentQ, setCurrentQ] = useState(1)
   const [email, setEmail] = useState('')
@@ -413,9 +413,10 @@ export default function QuizPage() {
   const [savedData, setSavedData] = useState(null)
 
   useEffect(() => {
+    if (embedded) return
     document.documentElement.style.background = '#660A43'
     return () => { document.documentElement.style.background = '' }
-  }, [])
+  }, [embedded])
 
   useEffect(() => {
     try {
@@ -619,9 +620,11 @@ export default function QuizPage() {
 
       </div>
 
-      <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, display: 'flex', justifyContent: 'flex-end', paddingRight: 24, paddingBottom: 'max(env(safe-area-inset-bottom, 20px), 20px)', paddingTop: 10, zIndex: 10, pointerEvents: 'none' }}>
-        <a href="/" className="qz-back-home" style={{ pointerEvents: 'auto' }}>← Retour à l'accueil</a>
-      </div>
+      {!embedded && (
+        <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, display: 'flex', justifyContent: 'flex-end', paddingRight: 24, paddingBottom: 'max(env(safe-area-inset-bottom, 20px), 20px)', paddingTop: 10, zIndex: 10, pointerEvents: 'none' }}>
+          <a href="/" className="qz-back-home" style={{ pointerEvents: 'auto' }}>← Retour à l'accueil</a>
+        </div>
+      )}
 
       {loading && (
         <div className="qz-loading">
