@@ -1059,7 +1059,7 @@ export default function HomePage() {
                 </div>
               ) : (
                 <form onSubmit={handleGuide} style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                  <input type="email" placeholder="Ton adresse email" value={guideEmail} onChange={e => setGuideEmail(e.target.value)} required style={{ flex: 1, minWidth: 220, background: '#fff', border: '2px solid rgba(102,10,67,0.2)', borderRadius: 999, padding: '14px 20px', fontSize: 15, color: '#2a0a1a', outline: 'none', fontFamily: 'var(--font-dm-sans,sans-serif)' }} />
+                  <input type="email" placeholder="Ton adresse email" value={guideEmail} onChange={e => setGuideEmail(e.target.value)} required style={{ flex: 1, minWidth: 220, background: '#fff', border: '2px solid rgba(102,10,67,0.2)', borderRadius: 999, padding: '14px 20px', fontSize: 16, color: '#2a0a1a', outline: 'none', fontFamily: 'var(--font-dm-sans,sans-serif)' }} />
                   <button type="submit" disabled={guideStatus === 'sending'} style={{ background: '#660A43', color: '#fff', border: 'none', borderRadius: 999, padding: '14px 28px', fontSize: 15, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', boxShadow: '0 6px 20px rgba(102,10,67,0.3)', fontFamily: 'var(--font-dm-sans,sans-serif)' }}>
                     {guideStatus === 'sending' ? 'Envoi…' : 'Je le veux pour 0€'}
                   </button>
