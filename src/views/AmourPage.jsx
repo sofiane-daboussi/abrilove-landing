@@ -280,7 +280,7 @@ export default function AmourPage() {
       </section>
 
       {/* ── TABS ── */}
-      <div style={{ background: '#FFF4F7', paddingTop: 20, paddingBottom: 36, paddingLeft: 'clamp(32px,5vw,80px)', paddingRight: 'clamp(32px,5vw,80px)', borderBottom: '1px solid rgba(102,10,67,0.08)' }}>
+      <div style={{ background: '#FFF4F7', padding: '20px clamp(32px,5vw,80px)', borderBottom: '1px solid rgba(102,10,67,0.08)' }}>
         <div className="amour-tabs" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
           {[
             { id: 'all', label: 'Tout' },
@@ -331,20 +331,15 @@ export default function AmourPage() {
       {/* ── EBOOKS PAYANTS (fond sombre) ── */}
       <section style={{
         background: 'linear-gradient(180deg, #660A43 0%, #8a1258 50%, #660A43 100%)',
-        paddingTop: activeTab === 'guides' ? 'clamp(32px,4vw,56px)' : 'calc(clamp(32px,4vw,56px) + 80px)',
-        paddingBottom: 'calc(clamp(56px,6vw,80px) + 80px)',
-        paddingLeft: 'clamp(32px,5vw,80px)',
-        paddingRight: 'clamp(32px,5vw,80px)',
+        padding: 'calc(clamp(32px,4vw,56px) + 80px) clamp(32px,5vw,80px) calc(clamp(32px,4vw,56px) + 80px)',
         position: 'relative',
         display: activeTab === 'all' || activeTab === 'guides' ? 'block' : 'none',
       }}>
-        {activeTab !== 'guides' && (
-          <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
-            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
-              <path d="M0,0 L0,45 Q720,22 1440,45 L1440,0 Z" fill="#FFF4F7" />
-            </svg>
-          </div>
-        )}
+        <div style={{ position: 'absolute', top: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
+            <path d="M0,0 L0,45 Q720,22 1440,45 L1440,0 Z" fill="#FFF4F7" />
+          </svg>
+        </div>
         <div style={{ position: 'absolute', bottom: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2, pointerEvents: 'none' }}>
           <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
             <path d="M0,35 Q720,58 1440,35 L1440,80 L0,80 Z" fill="#FFF4F7" />
