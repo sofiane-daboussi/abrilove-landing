@@ -312,8 +312,8 @@ export default function AmourPage() {
         @media (max-width: 720px) { .abria-2cols { flex-direction: column; gap: 40px; } }
         @media (min-width: 721px) { .coaching-center { text-align: center; } .coaching-center a { justify-content: center; } }
         @media (min-width: 721px) {
-          .amour-card a { transition: transform 0.22s ease, box-shadow 0.22s ease; }
-          .amour-card a:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(102,10,67,0.18); }
+          .amour-card a { transition: transform 0.22s ease; }
+          .amour-card a:hover { transform: translateY(-6px); }
         }
       `}</style>
 
@@ -429,7 +429,7 @@ export default function AmourPage() {
           <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
             {PAID_EBOOKS.map((ebook, i) => (
               <div key={ebook.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s`, height: '100%' }}>
-                <a href={ebook.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', borderRadius: 20, border: '1.5px solid rgba(255,241,231,0.3)', background: 'transparent' }}>
+                <a href={ebook.link} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', borderRadius: 20, border: '1.5px solid rgba(255,241,231,0.3)', background: 'transparent' }}>
                   <div style={{ position: 'relative', paddingTop: 24 }}>
                     <img src={ebook.cover} alt={ebook.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
                   </div>
@@ -463,7 +463,7 @@ export default function AmourPage() {
           <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28, alignItems: 'start' }}>
             {COURS.map((cours, i) => (
               <div key={cours.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
-                <a href={cours.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', background: '#fff', borderRadius: 20, boxShadow: '0 6px 32px rgba(102,10,67,0.10)' }}>
+                <a href={cours.link} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', background: '#fff', borderRadius: 20, boxShadow: '0 6px 32px rgba(102,10,67,0.10)' }}>
                   <div style={{ position: 'relative', padding: '20px 30px 0' }}>
                     <img src={cours.cover} alt={cours.title} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 8 }} />
                     <div style={{ position: 'absolute', top: 30, left: 30, background: '#E8196E', color: '#fff', fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: 6, padding: '4px 10px' }}>Programme</div>
