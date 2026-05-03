@@ -119,7 +119,7 @@ function EbookCard({ ebook }) {
         <img
           src={ebook.cover}
           alt={ebook.title}
-          style={{ width: '100%', height: '260px', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
+          style={{ width: '100%', height: 'auto', display: 'block' }}
         />
         <div style={{
           position: 'absolute', top: 14, left: 14,
@@ -227,6 +227,9 @@ export default function AmourPage() {
         @media (min-width: 721px) and (max-width: 1080px) {
           .amour-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
+        @media (min-width: 1081px) {
+          .amour-grid-free { grid-template-columns: repeat(4, 1fr) !important; }
+        }
         @keyframes coaching-pulse { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
         .coaching-cta { display:inline-flex; align-items:center; text-decoration:none; padding:16px 28px; border-radius:999px; font-weight:700; font-size:15px; font-family:var(--font-dm-sans,sans-serif); transition:transform 0.2s, box-shadow 0.2s; animation:coaching-pulse 2.5s ease-in-out infinite; will-change:transform; }
         .coaching-cta:hover { transform:translateY(-3px) !important; animation:none; }
@@ -317,7 +320,7 @@ export default function AmourPage() {
               Tes guides offerts
             </h2>
           </div>
-          <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28, alignItems: 'start' }}>
+          <div className="amour-grid amour-grid-free" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28, alignItems: 'start' }}>
             {EBOOKS.map((ebook, i) => (
               <div key={ebook.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
                 <EbookCard ebook={ebook} />
