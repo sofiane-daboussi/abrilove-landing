@@ -303,6 +303,7 @@ export default function AmourPage() {
         @keyframes abri-bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-5px); } }
         .abria-2cols { display: flex; align-items: center; gap: 60px; }
         @media (max-width: 720px) { .abria-2cols { flex-direction: column; gap: 40px; } }
+        @media (min-width: 721px) { .coaching-center { text-align: center; } .coaching-center a { justify-content: center; } }
       `}</style>
 
       <Header />
@@ -331,7 +332,7 @@ export default function AmourPage() {
             La bibliothèque
           </h1>
           <p style={{ color: 'rgba(255,241,231,0.8)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto' }}>
-            Des guides gratuits pour mieux comprendre tes relations, te reconnecter à toi-même et avancer avec clarté.
+            Des guides, programmes et outils pour mieux comprendre tes relations, te reconnecter à toi-même et avancer avec clarté.
           </p>
         </div>
         <div style={{ position: 'absolute', bottom: -1, left: 0, width: '100%', lineHeight: 0, zIndex: 2 }}>
@@ -451,7 +452,7 @@ export default function AmourPage() {
           <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28, alignItems: 'start' }}>
             {COURS.map((cours, i) => (
               <div key={cours.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
-                <a href={cours.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', borderRadius: 20, overflow: 'hidden', boxShadow: '0 6px 32px rgba(102,10,67,0.10)' }}>
+                <a href={cours.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', borderRadius: 20, boxShadow: '0 6px 32px rgba(102,10,67,0.10)' }}>
                   <div style={{ position: 'relative', padding: '20px 20px 0' }}>
                     <img src={cours.cover} alt={cours.title} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 8 }} />
                     <div style={{ position: 'absolute', top: 30, left: 30, background: '#E8196E', color: '#fff', fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: 6, padding: '4px 10px' }}>Programme</div>
@@ -509,7 +510,7 @@ export default function AmourPage() {
 
       {/* ── COACHING ── */}
       <section style={{ background: '#FFF4F7', padding: 'clamp(32px,4vw,56px) clamp(32px,5vw,80px) clamp(56px,6vw,80px)' }}>
-        <div data-fade style={{ maxWidth: 640, margin: '0 auto' }}>
+        <div data-fade className="coaching-center" style={{ maxWidth: 640, margin: '0 auto' }}>
           <p style={{ color: '#660A43', fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 16 }}>Coaching</p>
           <h2 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 700, lineHeight: 1.2, marginBottom: 24 }}>
             Envie d'en parler de vive voix ?
