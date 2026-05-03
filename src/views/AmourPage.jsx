@@ -234,8 +234,7 @@ export default function AmourPage() {
         .coaching-cta-light:hover { box-shadow:0 12px 30px rgba(0,0,0,0.3); }
         .coaching-cta-dark { background:#660A43; color:#fff; box-shadow:0 6px 20px rgba(102,10,67,0.3); }
         .coaching-cta-dark:hover { box-shadow:0 10px 28px rgba(102,10,67,0.5); }
-        .amour-card { height: 100%; }
-        .amour-card > div { height: 100%; }
+        .amour-card { height: auto; }
         .amour-btn { transition: transform 0.2s, box-shadow 0.2s; animation: coaching-pulse 2.5s ease-in-out infinite; will-change: transform; }
         .amour-btn:hover:not(:disabled) { transform: translateY(-3px) !important; animation: none; box-shadow: 0 10px 28px rgba(102,10,67,0.4); }
         .amour-tab { background: transparent; border: 2px solid rgba(102,10,67,0.25); color: #660A43; border-radius: 999px; padding: 10px 22px; font-size: 14px; font-weight: 700; font-family: var(--font-dm-sans,sans-serif); cursor: pointer; transition: all 0.2s; white-space: nowrap; }
@@ -247,6 +246,7 @@ export default function AmourPage() {
 
       {/* ── HERO ── */}
       <section style={{
+        minHeight: '70vh',
         paddingTop: 'clamp(130px,14vw,190px)',
         paddingLeft: 'clamp(32px,5vw,80px)',
         paddingRight: 'clamp(32px,5vw,80px)',
@@ -281,7 +281,7 @@ export default function AmourPage() {
 
       {/* ── TABS ── */}
       <div style={{ background: '#FFF4F7', padding: '24px clamp(32px,5vw,80px)', borderBottom: '1px solid rgba(102,10,67,0.08)' }}>
-        <div className="amour-tabs" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+        <div className="amour-tabs" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
           {[
             { id: 'all', label: 'Tout' },
             { id: 'gratuit', label: 'Ressources gratuites' },
@@ -318,7 +318,7 @@ export default function AmourPage() {
               Tes guides offerts
             </h2>
           </div>
-          <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
+          <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28, alignItems: 'start' }}>
             {EBOOKS.map((ebook, i) => (
               <div key={ebook.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
                 <EbookCard ebook={ebook} />
@@ -352,17 +352,17 @@ export default function AmourPage() {
               Tu veux aller plus loin ?
             </h2>
           </div>
-          <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
+          <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28, alignItems: 'start' }}>
             {PAID_EBOOKS.map((ebook, i) => (
               <div key={ebook.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
-                <a href={ebook.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', borderRadius: 20, overflow: 'hidden', boxShadow: '0 6px 32px rgba(102,10,67,0.15)' }}>
+                <a href={ebook.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', borderRadius: 20, overflow: 'hidden', border: '1.5px solid rgba(255,241,231,0.25)', background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(8px)' }}>
                   <div style={{ position: 'relative' }}>
                     <img src={ebook.cover} alt={ebook.title} style={{ width: '100%', height: 'auto', display: 'block' }} />
                   </div>
-                  <div style={{ padding: '20px 20px 28px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                    <h3 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#660A43', fontSize: 17, fontWeight: 700, lineHeight: 1.35, marginBottom: 10 }}>{ebook.title}</h3>
-                    <p style={{ color: '#7a4060', fontSize: 14, lineHeight: 1.65, marginBottom: 20, flex: 1 }}>{ebook.description}</p>
-                    <span className="amour-btn" style={{ background: '#660A43', color: '#fff', border: 'none', borderRadius: 10, padding: '13px 20px', fontSize: 14, fontWeight: 700, textAlign: 'center', display: 'block' }}>
+                  <div style={{ padding: '20px 20px 28px', display: 'flex', flexDirection: 'column' }}>
+                    <h3 style={{ fontFamily: 'var(--font-playfair,serif)', color: '#FFF1E7', fontSize: 17, fontWeight: 700, lineHeight: 1.35, marginBottom: 10 }}>{ebook.title}</h3>
+                    <p style={{ color: 'rgba(255,241,231,0.72)', fontSize: 14, lineHeight: 1.65, marginBottom: 20 }}>{ebook.description}</p>
+                    <span className="amour-btn" style={{ background: '#FFF1E7', color: '#660A43', border: 'none', borderRadius: 10, padding: '13px 20px', fontSize: 14, fontWeight: 700, textAlign: 'center', display: 'block' }}>
                       Découvrir le guide
                     </span>
                   </div>
@@ -386,7 +386,7 @@ export default function AmourPage() {
               Les programmes
             </h2>
           </div>
-          <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
+          <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28, alignItems: 'start' }}>
             {COURS.map((cours, i) => (
               <div key={cours.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
                 <a href={cours.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', borderRadius: 20, overflow: 'hidden', boxShadow: '0 6px 32px rgba(102,10,67,0.10)' }}>
