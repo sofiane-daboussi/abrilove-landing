@@ -114,6 +114,7 @@ function EbookCard({ ebook }) {
       boxShadow: '0 6px 32px rgba(102,10,67,0.10)',
       display: 'flex',
       flexDirection: 'column',
+      height: '100%',
     }}>
       <div style={{ position: 'relative', paddingTop: 40, background: '#fff' }}>
         <img
@@ -317,7 +318,7 @@ export default function AmourPage() {
               Tes guides offerts
             </h2>
           </div>
-          <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28, alignItems: 'start' }}>
+          <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
             {EBOOKS.map((ebook, i) => (
               <div key={ebook.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
                 <EbookCard ebook={ebook} />
