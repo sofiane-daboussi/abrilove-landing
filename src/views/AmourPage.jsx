@@ -203,6 +203,8 @@ export default function AmourPage() {
         .coaching-cta-light:hover { box-shadow:0 12px 30px rgba(0,0,0,0.3); }
         .coaching-cta-dark { background:#660A43; color:#fff; box-shadow:0 6px 20px rgba(102,10,67,0.3); }
         .coaching-cta-dark:hover { box-shadow:0 10px 28px rgba(102,10,67,0.5); }
+        .amour-card { height: 100%; }
+        .amour-card > div { height: 100%; }
         .amour-btn { transition: transform 0.2s, box-shadow 0.2s; animation: coaching-pulse 2.5s ease-in-out infinite; will-change: transform; }
         .amour-btn:hover:not(:disabled) { transform: translateY(-3px) !important; animation: none; box-shadow: 0 10px 28px rgba(102,10,67,0.4); }
       `}</style>
