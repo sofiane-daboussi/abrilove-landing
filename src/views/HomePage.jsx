@@ -947,7 +947,7 @@ export default function HomePage() {
               </p>
             </div>
             <div style={{ flex: 1 }} className="hp-quiz-embed" >
-              <QuizPage />
+              <QuizPage embedded />
             </div>
           </div>
         </div>

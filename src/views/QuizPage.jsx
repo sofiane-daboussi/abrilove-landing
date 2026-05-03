@@ -404,7 +404,7 @@ const CSS = `
 }
 `
 
-export default function QuizPage() {
+export default function QuizPage({ embedded = false }) {
   const [answers, setAnswers] = useState({})
   const [currentQ, setCurrentQ] = useState(1)
   const [email, setEmail] = useState('')
@@ -413,9 +413,10 @@ export default function QuizPage() {
   const [savedData, setSavedData] = useState(null)
 
   useEffect(() => {
+    if (embedded) return
     document.documentElement.style.background = '#660A43'
     return () => { document.documentElement.style.background = '' }
-  }, [])
+  }, [embedded])
 
   useEffect(() => {
     try {
@@ -543,14 +544,18 @@ export default function QuizPage() {
         </div>
       )}
 
-      <div className="qz-progress-bar">
-        <div className="qz-progress-fill" style={{ width: progress + '%' }} />
-      </div>
+      {!embedded && (
+        <div className="qz-progress-bar">
+          <div className="qz-progress-fill" style={{ width: progress + '%' }} />
+        </div>
+      )}
 
-      <div className="qz-blob" style={{ width: 550, height: 550, background: 'radial-gradient(circle, rgba(230,60,150,0.65) 0%, transparent 65%)', top: '12%', right: '-12%', filter: 'blur(55px)', animation: 'qz-blob-a 7s ease-in-out infinite' }} />
-      <div className="qz-blob" style={{ width: 480, height: 480, background: 'radial-gradient(circle, rgba(200,30,120,0.6) 0%, transparent 65%)', bottom: '18%', left: '-10%', filter: 'blur(50px)', animation: 'qz-blob-b 9s ease-in-out infinite' }} />
-      <div className="qz-blob" style={{ width: 420, height: 420, background: 'radial-gradient(circle, rgba(240,70,155,0.55) 0%, transparent 65%)', bottom: '20%', right: '-8%', filter: 'blur(52px)', animation: 'qz-blob-a 8s ease-in-out infinite reverse' }} />
-      <div className="qz-blob" style={{ width: 380, height: 380, background: 'radial-gradient(circle, rgba(240,80,160,0.5) 0%, transparent 65%)', top: '40%', left: '30%', filter: 'blur(60px)', animation: 'qz-blob-c 6s ease-in-out infinite' }} />
+      {!embedded && <>
+        <div className="qz-blob" style={{ width: 550, height: 550, background: 'radial-gradient(circle, rgba(230,60,150,0.65) 0%, transparent 65%)', top: '12%', right: '-12%', filter: 'blur(55px)', animation: 'qz-blob-a 7s ease-in-out infinite' }} />
+        <div className="qz-blob" style={{ width: 480, height: 480, background: 'radial-gradient(circle, rgba(200,30,120,0.6) 0%, transparent 65%)', bottom: '18%', left: '-10%', filter: 'blur(50px)', animation: 'qz-blob-b 9s ease-in-out infinite' }} />
+        <div className="qz-blob" style={{ width: 420, height: 420, background: 'radial-gradient(circle, rgba(240,70,155,0.55) 0%, transparent 65%)', bottom: '20%', right: '-8%', filter: 'blur(52px)', animation: 'qz-blob-a 8s ease-in-out infinite reverse' }} />
+        <div className="qz-blob" style={{ width: 380, height: 380, background: 'radial-gradient(circle, rgba(240,80,160,0.5) 0%, transparent 65%)', top: '40%', left: '30%', filter: 'blur(60px)', animation: 'qz-blob-c 6s ease-in-out infinite' }} />
+      </>}
 
       <div className="qz-wrap" style={{ position: 'relative', zIndex: 1 }}>
         <div className="qz-card">
@@ -619,9 +624,11 @@ export default function QuizPage() {
 
       </div>
 
-      <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, display: 'flex', justifyContent: 'flex-end', paddingRight: 24, paddingBottom: 'max(env(safe-area-inset-bottom, 20px), 20px)', paddingTop: 10, zIndex: 10, pointerEvents: 'none' }}>
-        <a href="/" className="qz-back-home" style={{ pointerEvents: 'auto' }}>← Retour à l'accueil</a>
-      </div>
+      {!embedded && (
+        <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, display: 'flex', justifyContent: 'flex-end', paddingRight: 24, paddingBottom: 'max(env(safe-area-inset-bottom, 20px), 20px)', paddingTop: 10, zIndex: 10, pointerEvents: 'none' }}>
+          <a href="/" className="qz-back-home" style={{ pointerEvents: 'auto' }}>← Retour à l'accueil</a>
+        </div>
+      )}
 
       {loading && (
         <div className="qz-loading">
