@@ -240,17 +240,19 @@ var oto_worker_clean_default = {
     }
     if (request.method === "POST" && url.pathname === "/api/newsletter") {
       try {
-        const { email } = await request.json();
+        const { email, listId } = await request.json();
         if (!email) {
           return new Response(JSON.stringify({ error: "Email requis" }), {
             status: 400,
             headers: { ...headers, "Content-Type": "application/json" }
           });
         }
+        const ALLOWED_LIST_IDS = [19, 20, 21, 22, 23];
+        const resolvedListId = ALLOWED_LIST_IDS.includes(listId) ? listId : 21;
         const res = await fetch("https://api.brevo.com/v3/contacts", {
           method: "POST",
           headers: { "accept": "application/json", "content-type": "application/json", "api-key": env.BREVO_API_KEY },
-          body: JSON.stringify({ email, listIds: [21], updateEnabled: true })
+          body: JSON.stringify({ email, listIds: [resolvedListId], updateEnabled: true })
         });
         const ok = res.status >= 200 && res.status < 300;
         return new Response(JSON.stringify({ ok }), {
