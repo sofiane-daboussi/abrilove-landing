@@ -262,22 +262,21 @@ export default function AmourPage() {
   const [activeTab, setActiveTab] = useState('all')
 
   useEffect(() => {
-    const run = () => {
-      const els = document.querySelectorAll('[data-fade]:not(.fade-in)')
-      els.forEach(el => {
+    let obs
+    const timer = setTimeout(() => {
+      const all = document.querySelectorAll('[data-fade]:not(.fade-in)')
+      all.forEach(el => {
         const r = el.getBoundingClientRect()
         if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('fade-in')
       })
-      const obs = new IntersectionObserver(entries => {
+      obs = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) { entry.target.classList.add('fade-in'); obs.unobserve(entry.target) }
         })
       }, { threshold: 0 })
       document.querySelectorAll('[data-fade]:not(.fade-in)').forEach(el => obs.observe(el))
-      return obs
-    }
-    const obs = run()
-    return () => obs.disconnect()
+    }, 50)
+    return () => { clearTimeout(timer); obs?.disconnect() }
   }, [activeTab])
 
   return (
@@ -460,8 +459,8 @@ export default function AmourPage() {
           <div className="amour-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28, alignItems: 'start' }}>
             {COURS.map((cours, i) => (
               <div key={cours.id} data-fade className="amour-card" style={{ transitionDelay: `${i * 0.08}s` }}>
-                <a href={cours.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%', background: '#fff', borderRadius: 20, boxShadow: '0 6px 32px rgba(102,10,67,0.10)' }}>
-                  <div style={{ position: 'relative', padding: '20px 20px 0' }}>
+                <a href={cours.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', background: '#fff', borderRadius: 20, boxShadow: '0 6px 32px rgba(102,10,67,0.10)' }}>
+                  <div style={{ position: 'relative', padding: '20px 30px 0' }}>
                     <img src={cours.cover} alt={cours.title} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 8 }} />
                     <div style={{ position: 'absolute', top: 30, left: 30, background: '#E8196E', color: '#fff', fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: 6, padding: '4px 10px' }}>Programme</div>
                   </div>
