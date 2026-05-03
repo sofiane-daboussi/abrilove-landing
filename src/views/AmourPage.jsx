@@ -103,7 +103,7 @@ function EbookCard({ ebook }) {
         }}>Gratuit</div>
       </div>
 
-      <div style={{ padding: '16px 20px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+      <div style={{ padding: '12px 20px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
         <h3 style={{
           fontFamily: 'var(--font-playfair,serif)',
           color: '#660A43', fontSize: 17, fontWeight: 700,
