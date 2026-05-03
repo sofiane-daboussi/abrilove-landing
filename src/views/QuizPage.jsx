@@ -531,7 +531,7 @@ export default function QuizPage({ embedded = false }) {
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Crimson+Pro:wght@300;400;500;600&display=swap" />
       <div>
 
-      {showResume && (
+      {showResume && !embedded && (
         <div className="qz-resume-overlay">
           <div className="qz-resume-box">
             <div className="qz-resume-title">Quiz en cours 💌</div>
