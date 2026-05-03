@@ -544,14 +544,18 @@ export default function QuizPage({ embedded = false }) {
         </div>
       )}
 
-      <div className="qz-progress-bar">
-        <div className="qz-progress-fill" style={{ width: progress + '%' }} />
-      </div>
+      {!embedded && (
+        <div className="qz-progress-bar">
+          <div className="qz-progress-fill" style={{ width: progress + '%' }} />
+        </div>
+      )}
 
-      <div className="qz-blob" style={{ width: 550, height: 550, background: 'radial-gradient(circle, rgba(230,60,150,0.65) 0%, transparent 65%)', top: '12%', right: '-12%', filter: 'blur(55px)', animation: 'qz-blob-a 7s ease-in-out infinite' }} />
-      <div className="qz-blob" style={{ width: 480, height: 480, background: 'radial-gradient(circle, rgba(200,30,120,0.6) 0%, transparent 65%)', bottom: '18%', left: '-10%', filter: 'blur(50px)', animation: 'qz-blob-b 9s ease-in-out infinite' }} />
-      <div className="qz-blob" style={{ width: 420, height: 420, background: 'radial-gradient(circle, rgba(240,70,155,0.55) 0%, transparent 65%)', bottom: '20%', right: '-8%', filter: 'blur(52px)', animation: 'qz-blob-a 8s ease-in-out infinite reverse' }} />
-      <div className="qz-blob" style={{ width: 380, height: 380, background: 'radial-gradient(circle, rgba(240,80,160,0.5) 0%, transparent 65%)', top: '40%', left: '30%', filter: 'blur(60px)', animation: 'qz-blob-c 6s ease-in-out infinite' }} />
+      {!embedded && <>
+        <div className="qz-blob" style={{ width: 550, height: 550, background: 'radial-gradient(circle, rgba(230,60,150,0.65) 0%, transparent 65%)', top: '12%', right: '-12%', filter: 'blur(55px)', animation: 'qz-blob-a 7s ease-in-out infinite' }} />
+        <div className="qz-blob" style={{ width: 480, height: 480, background: 'radial-gradient(circle, rgba(200,30,120,0.6) 0%, transparent 65%)', bottom: '18%', left: '-10%', filter: 'blur(50px)', animation: 'qz-blob-b 9s ease-in-out infinite' }} />
+        <div className="qz-blob" style={{ width: 420, height: 420, background: 'radial-gradient(circle, rgba(240,70,155,0.55) 0%, transparent 65%)', bottom: '20%', right: '-8%', filter: 'blur(52px)', animation: 'qz-blob-a 8s ease-in-out infinite reverse' }} />
+        <div className="qz-blob" style={{ width: 380, height: 380, background: 'radial-gradient(circle, rgba(240,80,160,0.5) 0%, transparent 65%)', top: '40%', left: '30%', filter: 'blur(60px)', animation: 'qz-blob-c 6s ease-in-out infinite' }} />
+      </>}
 
       <div className="qz-wrap" style={{ position: 'relative', zIndex: 1 }}>
         <div className="qz-card">
